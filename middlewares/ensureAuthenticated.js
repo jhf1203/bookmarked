@@ -3,7 +3,7 @@ module.exports = (req, res, next) => {
     next();
   } else {
     res.status(401).json({
-      errorMessage: 'Session error. Please log out and log back in.'
+      errorMessage: "Session error. Please log out and log back in."
     });
   }
 };

@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Book = sequelize.define('Book', {
+  const Book = sequelize.define("Book", {
     title: {
       type: DataTypes.STRING,
       allowNull: false
@@ -15,7 +15,10 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.TEXT
     },
-    year: {
+    state: {
+      type: DataTypes.STRING
+    },
+    isbn: {
       type: DataTypes.STRING,
       allowNull: false
     }
@@ -23,7 +26,13 @@ module.exports = (sequelize, DataTypes) => {
 
   Book.associate = function (models) {
     Book.hasMany(models.List, {
-      onDelete: 'cascade'
+      onDelete: "cascade"
+    });
+    Book.hasMany(models.Rating, {
+      onDelete: "cascade"
+    });
+    Book.hasMany(models.Review, {
+      onDelete: "cascade"
     });
   };
 

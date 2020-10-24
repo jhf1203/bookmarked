@@ -1,7 +1,7 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 module.exports = function (sequelize, DataTypes) {
-  const User = sequelize.define('User', {
+  const User = sequelize.define("User", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -18,7 +18,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       unique: {
         args: true,
-        msg: 'User already exists'
+        msg: "User already exists"
       }
     },
     password: {
@@ -33,7 +33,7 @@ module.exports = function (sequelize, DataTypes) {
     timestamps: true,
     hooks: {
       beforeValidate: function (user) {
-        if (user.changed('password')) {
+        if (user.changed("password")) {
           return bcrypt.hash(user.password, 10).then((password) => {
             user.password = password;
           });
@@ -44,20 +44,26 @@ module.exports = function (sequelize, DataTypes) {
 
   User.associate = function (models) {
     User.hasMany(models.Example, {
-      onDelete: 'cascade'
+      onDelete: "cascade"
     });
     User.hasMany(models.List, {
-      onDelete: 'cascade'
+      onDelete: "cascade"
+    });
+    User.hasMany(models.Review, {
+      onDelete: "cascade"
+    });
+    User.hasMany(models.Rating, {
+      onDelete: "cascade"
     });
     User.belongsToMany(models.User, {
-      through: 'Connections',
-      as: 'Follower',
-      foreignKey: 'followerId'
+      through: "Connections",
+      as: "Follower",
+      foreignKey: "followerId"
     });
     User.belongsToMany(models.User, {
-      through: 'Connections',
-      as: 'Followee',
-      foreignKey: 'followeeId'
+      through: "Connections",
+      as: "Followee",
+      foreignKey: "followeeId"
     });
   };
   // This will check if an unhashed password can be compared to the hashed password stored in our database

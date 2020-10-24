@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const Connection = sequelize.define('Connection', {
+  const Connection = sequelize.define("Connection", {
     followerID: {
       type: DataTypes.INTEGER,
       allowNull: false

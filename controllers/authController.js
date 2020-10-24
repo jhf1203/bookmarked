@@ -2,7 +2,7 @@ module.exports = (passport, db) => {
   return {
     register: (req, res) => {
       if (!req.body.email || !req.body.password) {
-        return res.json({ message: 'Email and Password required!' });
+        return res.json({ message: "Email and Password required!" });
       }
 
       db.User.sync().then(() => {
@@ -14,15 +14,15 @@ module.exports = (passport, db) => {
         };
 
         return db.User.create(newUser).then(() => {
-          res.status(200).json({ message: 'Registered successfully.' });
+          res.status(200).json({ message: "Registered successfully." });
         });
       }).catch((err) => {
         console.log(err);
-        res.status(403).json({ error: 'Email already exists!' });
+        res.status(403).json({ error: "Email already exists!" });
       });
     },
     login: (req, res, next) => {
-      passport.authenticate('local', (err, user) => {
+      passport.authenticate("local", (err, user) => {
         if (err) {
           return next(err);
         }
@@ -34,7 +34,7 @@ module.exports = (passport, db) => {
             return res.status(200).json({ loggedIn: true });
           });
         } else {
-          res.json({ loggedIn: false, error: 'Can not log in, check your user name and password!' });
+          res.json({ loggedIn: false, error: "Can not log in, check your user name and password!" });
         }
       })(req, res, next);
     },
@@ -44,8 +44,8 @@ module.exports = (passport, db) => {
         if (err) {
           return next(err);
         }
-        res.clearCookie('connect.sid', { path: '/' });
-        res.redirect('/');
+        res.clearCookie("connect.sid", { path: "/" });
+        res.redirect("/");
       });
     },
     updateUser: (req, res) => {

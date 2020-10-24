@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const Connection = sequelize.define('Connection', {
+  const Connection = sequelize.define("Connection", {
 
     followerId: {
       type: DataTypes.INTEGER,
@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  Connection.removeAttribute('id');
+  Connection.removeAttribute("id");
 
   return Connection;
 };
