@@ -1,0 +1,396 @@
+body {
+  color: white;
+  background-size: cover;
+  height: 100%;
+  font-family: 'Antic Slab', serif;
+  font-weight: bold;
+}
+
+/*login page jumbotron*/
+.jumbotron {
+  background: rgba(0, 0, 0, 0);
+  background-image: url("../images/bookmarked.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
+/*navbar for all pages*/
+.navbar {
+  background: #617056;
+}
+
+.nav-link,
+.navbar-brand {
+  color: #aeb4b2;
+}
+
+.nav-link:hover {
+  color: black;
+}
+
+.title-author {
+  font-weight: 800;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.imgDiv5,
+.imgDiv6,
+.imgDiv7 {
+  margin-top: 10%;
+  margin-left: calc(50% - 70px);
+  margin-bottom: 20px;
+}
+
+
+.navbar-brand:hover {
+  color: black;
+}
+
+.navbar-toggler {
+  border: solid 3px #aeb4b2;
+  font-size: 15px;
+}
+
+/* footer for all pages */
+.bottomFooter {
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 30px;
+  padding: 7px;
+  background: #617056;
+  color: #aeb4b2;
+}
+
+/*login and reigster modal*/
+.modal {
+  color: black;
+}
+
+.modal-header {
+  background: #aeb4b2;
+  border: 5px #617056;
+}
+
+.btn {
+  background: #aeb4b2;
+  color: black;
+  border: 2px solid #617056;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: black;
+  border: 2px solid #aeb4b2;
+}
+
+#user-form,
+.header-wrap,
+#create-form,
+.create-user-wrap {
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+#update-err-msg,
+#login-err-msg,
+#create-err-msg {
+  color: red !important;
+}
+
+#go-home {
+  width: auto;
+  height: 65px;
+}
+
+/*container for login page*/
+.container {
+  padding-bottom: 2%;
+  margin-top: 10%;
+  background: #aeb4b2;
+  height: 100%;
+  border: 5px #617056;
+  border-radius: .25rem;
+  margin-bottom: 2%;
+  width: 600px;
+}
+
+[data-useremail="true"] {
+  color: white !important;
+}
+
+[data-register="true"] {
+  color: white !important;
+}
+
+.lead {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+
+.userId h2,
+.header-wrap h1 {
+  text-transform: capitalize;
+}
+
+hr {
+  background-color: #fff !important;
+}
+
+.list-group-item {
+  line-height: 2.5;
+}
+
+.card-body {
+  color: #444;
+  overflow-y: auto;
+}
+
+/*card body for all pages*/
+#cardBody5,
+#cardBody6,
+#cardBody7 {
+  color: #444;
+  overflow-y: auto;
+  text-align: center;
+  display: inline-block;
+  margin-left: 25%;
+  padding: 0;
+}
+
+.container {
+  box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
+}
+
+/*add book button on view books page*/
+.addBook {
+  background: #aeb4b2;
+  color: black;
+  border: 2px solid #617056;
+  font-weight: bold;
+}
+
+.addBook:hover {
+  background-color: black;
+  border: 2px solid #aeb4b2;
+}
+
+/* Profile Page*/
+.userRow {
+  margin-top: 5%;
+  padding: 10px;
+}
+
+.readRow,
+.tbrRow {
+  margin-left: 15%;
+  padding: 10px;
+}
+
+#addUserButton {
+  background: white;
+  color: black;
+  border: 2px solid #617056;
+  border-radius: 5px;
+  font-weight: bold;
+  width: 20%;
+  position: relative;
+}
+
+#addUserButton:hover {
+  background-color: black;
+  border: 2px solid #aeb4b2;
+  color: #aeb4b2;
+}
+
+
+#btnFollow {
+  margin-top: 15px;
+  background-color: #0066FF;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  background: white;
+  color: black;
+  border: 2px solid #617056;
+  border-radius: 5px;
+}
+
+#btnFollow:hover {
+  background-color: black;
+  border: 2px solid #aeb4b2;
+  color: #aeb4b2;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-item+.flex-item {
+  margin-left: 10px;
+}
+
+#cardBody1 {
+  text-align: center;
+}
+
+#cardBody4,
+#cardBody2 {
+  text-align: center;
+}
+
+.scroll {
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.card-header {
+  background-color: #aeb4b2;
+  font-family: 'Antic Slab', serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card {
+  border: 2px solid #617056;
+  font-family: 'Antic Slab', serif;
+  font-weight: bold;
+  box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
+}
+
+/*close button for books*/
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*follower/following modal with pop-out modal*/
+#myModal1,
+#myModal2,
+#myModal3,
+#myModal4 {
+  margin-top: 5%;
+}
+
+#myModal2:nth-of-type(even) {
+  z-index: 1054 !important;
+}
+
+#myModal1-backdrop.show:nth-of-type(even) {
+  z-index: 1051 !important;
+}
+
+#myModal3-backdrop.show:nth-of-type(even) {
+  z-index: 1050 !important;
+}
+
+
+
+/*view books page*/
+/*search books area*/
+#searchBook {
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#bookAuthor,
+#bookTitle {
+  margin-left: 15%;
+}
+
+/*reviews button*/
+#btnReview{
+  background: white;
+  color: black;
+  border: 2px solid #617056;
+  border-radius: 5px;
+  margin-left: 70%;
+}
+
+/* delete book */
+.remove-button {
+  border: 2px solid #617056;
+  background-color:white;
+  border-radius: 5px
+}
+
+/*refresh button*/
+.btnRefresh {
+  background: white;
+  color: black;
+  border: 2px solid #617056;
+  border-radius: 5px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.btnRefresh:hover {
+  background-color: black;
+  color: #aeb4b2;
+  border: 2px solid #aeb4b2;
+}
+
+.card-footer {
+  width: 100%;
+  background-color: white;
+  border-top: white;
+}
+
+@media screen and (max-width: 1050px) {
+
+  .userRow {
+    margin-top: 15%;
+  }
+
+  #addUserButton {
+    width: fit-content;
+  }
+
+  .readRow {
+    position: relative;
+    margin-right: 15%;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+
+  #cardBody5,
+  #cardBody6,
+  #cardBody7 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}

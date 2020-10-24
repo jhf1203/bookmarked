@@ -1,0 +1,180 @@
+{{> nav/nav-block user=true register=false}}
+
+<!--Card for user Profile-->
+<section class="row userRow">
+  <div class="container-fluid">
+    <div class="col-8 mx-auto">
+      <div id="userCard" class="card mb-3" style="max-width: 900px;">
+        <div id="cardHeader" class="card-header">
+          <button id="addUserButton" type="button" class="btn btn-default btn-sm">
+            <i class="fa fa-user-plus">Add</i>
+            <h5> {{ userInfo.firstName}}</h5>
+          </button>
+        </div>
+        <div class="col-md-12">
+          <div class="card-body" id="cardBody1">
+            <div class="row">
+              <div id="imgGoesHere" class="col-md-12">
+                <div class="row">
+                  <div class="col-md-12">
+                    <p class="card-text id=""">Member since {{memberSince}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <p class="card-text">{{userInfo.firstName}} is currently reading:
+                      {{#each currentList}}
+                      <p class={{id}}>{{title}}
+                        <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
+                          <span hidden>
+                            {{id}}</span></button></p><br>
+                      {{/each}}
+                    </p>
+                  </div>
+                </div>
+                <div class="flex">
+                  <button class="flex-item" id="btnFollow" data-toggle="modal" data-target="#myModal1"
+                    type="button">Followers</button>
+                  <button class="flex-item" id="btnFollow" data-toggle="modal" data-target="#myModal3"
+                    type="button">Following</button>
+                  {{#each userInfo.followees}}
+                  <div>{{this.firstName}} {{this.lastName}}</div>
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Have read book card-->
+<section class="container-fluid">
+  <div class="row readRow">
+    <div class="col-8 mx-auto">
+      <div id="haveReadCard" class="card mb-3" style="max-width: 500px;">
+        <div class="card-block">
+          <div class="card-header">Have Read</div>
+          <div class="card-body" id="cardBody2">
+            <ul class='future-list'>
+              {{#each pastList}}
+              <p class={{id}}>{{title}}
+                <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
+                  <span hidden>
+                    {{id}}</span></button></p>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Have want to read book card-->
+<section class="container-fluid">
+  <div class="row readRow">
+    <div class="col-8 mx-auto">
+      <div class="overflow-auto">
+        <div id="haveReadCard" class="card mb-3" style="max-width: 500px;">
+          <div class="card-block">
+            <div class="card-header">Want To Read</div>
+            <div class="card-body" id="cardBody2">
+              <ul class='future-list'>
+                {{#each futureList}}
+                <p class={{id}}>{{title}}
+                  <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
+                    <span hidden>
+                      {{id}}</span></button></p>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Followers Modal -->
+<div class="modal" id="myModal1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Followers</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modalContainer">
+        <div class="modal-body">
+          <ul>
+            {{#each followingUser}}
+            <p class='user-connection' id={{id}}>{{this.firstName}} {{this.lastName}} | <a data-toggle='modal'
+                class='user-books' href='#myModal2'> {{this.firstName}}'s books <i class="fa fa-book"></i></a> | <a
+                class='user-follow'> Follow {{this.firstName}} <i class="fa fa-times test-icon"></i></a></p>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal" class="btn">Close</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Following Modal -->
+<div class="modal" id="myModal3">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Following</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modalContainer">
+        <div class="modal-body">
+          <ul>
+            {{#each userFollowing}}
+            <p class='user-connection' id={{id}}>{{this.firstName}} {{this.lastName}} | <a data-toggle='modal'
+                class='user-books' href='#myModal2'> {{this.firstName}}'s books <i class="fa fa-book"></i></a> | <a
+                class='user-follow'> Follow {{this.firstName}} <i class="fa fa-times test-icon"></i></a></p>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal" class="btn">Close</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--pop out modal for both followers and following. This will show the users books-->
+<div class="modal" id="myModal2" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modalContainer">
+        <div class="modal-body modal-books">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal" class="btn">Close</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  var userId = {
+    {
+      userInfo.id
+    }
+  };
+</script>
+
+{{> modal/login-block}}
