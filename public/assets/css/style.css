@@ -109,7 +109,7 @@ body {
 }
 
 /*container for login page*/
-#container1 {
+#container1, #main-container {
   padding-bottom: 2%;
   margin-top: 10%;
   background: #aeb4b2;
