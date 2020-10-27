@@ -2,152 +2,214 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css" type="text/css" />
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Antic+Slab&display=swap" rel="stylesheet">
-    <title>Bookmarked</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Antic+Slab&display=swap" rel="stylesheet">
+  <title>Bookmarked</title>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-sm fixed-top">
-        <button class="navbar-toggler bg-l" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>Menu
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <!-- Brand/logo -->
-            <a class="navbar-brand" href="/">
-                Bookmarked
-            </a>
+  <nav class="navbar navbar-expand-sm fixed-top">
+    <button class="navbar-toggler bg-l" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>Menu
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <!-- Brand/logo -->
+      <a class="navbar-brand" href="/">
+        Bookmarked
+      </a>
 
-            <!-- Links -->
-            <ul class="nav navbar-nav ml-auto">
+      <!-- Links -->
+      <ul class="nav navbar-nav ml-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/some-feature">Menu item here</a>
-                </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/some-feature">Menu item here</a>
+        </li>
 
-                <li class="nav-item">
-                    <a class="nav-link view-books" href="/example">View Books</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link profile" href="/profile">My Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="login-modal">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register" data-register={{register}}>Register</a>
-                </li>
-            </ul>
-    </nav>
+        <li class="nav-item">
+          <a class="nav-link view-books" href="/example">View Books</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link profile" href="/profile">My Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="login-modal">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register" data-register={{register}}>Register</a>
+        </li>
+      </ul>
+  </nav>
 
-<!--container for page-->
-    <div class="container">
+  <!--container for page-->
+  <div class="container">
 
-          <!-- jumbotron with logo-->
-        <div id="jumbotronProfile" class="jumbotron">
-          </div>
-    
-      <!--user info card-->
-      <div class="card card-1 col-md-4 offset-lg-4">
-        <div class="row">
-          <div class="col-md-6">
-            <img id="placeholderUser" src="https://via.placeholder.com/1000x2000" class="card-img" alt="...">
-            <!-- <div class="custom-file">
+    <!-- jumbotron with logo-->
+    <div id="jumbotronProfile" class="jumbotron">
+    </div>
+
+    <!--user info card-->
+    <div class="card card-1 col-md-4 offset-lg-4">
+      <div class="row">
+        <div class="col-md-6">
+          <img id="placeholderUser" src="https://via.placeholder.com/1000x2000" class="card-img" alt="...">
+          <!--POSSIBLE UPLOAD BUTTON HERE-->
+          <!-- <div class="custom-file">
               <input type="file" class="custom-file-input" id="customFile">
               <label class="custom-file-label" for="customFile"></label>
             </div> -->
-          </div>
-          <div class="col-md-6">
-            <div class="card-body">
-              <h5 id="userName" class="card-title">User Name</h5>
-              <p class="card-text">member since</p>
-              <p>currently reading: </p>
+        </div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <h5 id="userName" class="card-title">User Name</h5>
+            <p class="card-text">member since</p>
+            <p>currently reading: </p>
 
-             <p> <button id="addUserButtonNew" type="button" class="btn btn-default btn-sm">
+            <p> <button id="addUserButtonNew" type="button" class="btn btn-default btn-sm">
                 <i class="fa fa-user-plus">Add Friend</i>
               </button>
+              <!--ADD BUTTON FOR FOLLOWERS/FOLLOWING HERE-- ***Below is the old code***-->
+              <!-- <button class="flex-item" id="btnFollow" data-toggle="modal" data-target="#myModal1"
+                type="button">Followers</button>
+              <button class="flex-item" id="btnFollow" data-toggle="modal" data-target="#myModal3"
+                type="button">Following</button> -->
             </p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
       </div>
+    </div>
 
-      <!--books area-->
-      <div class="row">
-        <div class="col-sm-6 mt-5">
-          <div class="card">
-            <div class="card-header">Have Read</div>
-            <div class="card-body">
-              <p class="card-text">Height will change based off of # of books</p>
-              
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 mt-5">
-          <div class="card">
-            <div class="card-header">Want to Read</div>
-            <div class="card-body">
-              <p class="card-text">Height will change based off of # of books</p>
-              
-            </div>
+    <!--books area-->
+    <div class="row">
+      <div class="col-sm-6 mt-5">
+        <div class="card">
+          <div class="card-header">Have Read</div>
+          <div class="card-body">
+            <p class="card-text">Height will change based off of # of books</p>
+
           </div>
         </div>
       </div>
+      <div class="col-sm-6 mt-5">
+        <div class="card">
+          <div class="card-header">Want to Read</div>
+          <div class="card-body">
+            <p class="card-text">Height will change based off of # of books</p>
 
-      <div class="row">
-        <div class="col md-12 mt-5">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--blog/review area-->
+    <div class="row">
+      <div class="col md-12 mt-5">
         <div class="card">
           <div class="card-header">
             Thoughts: <i class="fa fa-commenting-o"></i>
           </div>
           <div class="card-body">
             <div class="form-group shadow-textarea">
-              <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write something here..."></textarea>
+              <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3"
+                placeholder="Write something here..."></textarea>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             <hr>
-            <p class="card-text">this area will populate with posts?<hr></p>
+            <p class="card-text">this area will populate with posts?
+              <hr>
+            </p>
             <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
           </div>
         </div>
       </div>
     </div>
 
-    </div>
-     
- 
+  </div>
 
-    <!--footer section-->
-    <div class="bottomFooter">
-        <div class="text-center">
-            Jim Faulkner | Victoria Greenfield
+  <!-- ***modals from original code - tweak for new app use*** -->
+
+  <!-- Followers Modal -->
+  <div class="modal" id="myModal1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Followers</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         </div>
+        <div class="modalContainer">
+          <div class="modal-body">
+            <ul>
+              <p class='user-connection' id=>{{this.firstName}} {{this.lastName}} | <a data-toggle='modal'
+                  class='user-books' href='#myModal2'> {{this.firstName}}'s books <i class="fa fa-book"></i></a> | <a
+                  class='user-follow'> Follow {{this.firstName}}
+                  <i class="fa fa-times test-icon"></i></a></p>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn">Close</a>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Following Modal -->
+  <div class="modal" id="myModal3">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Following</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        </div>
+        <div class="modalContainer">
+          <div class="modal-body">
+            <ul>
+
+              <p class='user-connection' id=>Firstname | LastName <a data-toggle='modal' class='user-books'
+                  href='#myModal2'> {{this.firstName}}'s books <i class="fa fa-book"></i></a> | <a class='user-follow'>
+                  <i class="fa fa-times test-icon"></i></a></p>
+
+            </ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn">Close</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous">
-    </script>
-    <script src="../js/app.js"></script>
+  <!--footer section-->
+  <div class="bottomFooter">
+    <div class="text-center">
+      Jim Faulkner | Victoria Greenfield
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous">
+  </script>
+  <script src="../js/app.js"></script>
 </body>
 
 </html>
