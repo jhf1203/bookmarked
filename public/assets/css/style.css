@@ -4,6 +4,7 @@ body {
   height: 100%;
   font-family: 'Antic Slab', serif;
   font-weight: bold;
+  overflow-x: auto;
 }
 
 /*login page jumbotron*/
@@ -108,7 +109,7 @@ body {
 }
 
 /*container for login page*/
-.container {
+#container1, #main-container {
   padding-bottom: 2%;
   margin-top: 10%;
   background: #aeb4b2;
@@ -117,6 +118,13 @@ body {
   border-radius: .25rem;
   margin-bottom: 2%;
   width: 600px;
+    box-shadow:
+      0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+      0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+      0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+      0 100px 80px rgba(0, 0, 0, 0.12)  
 }
 
 [data-useremail="true"] {
@@ -163,7 +171,7 @@ hr {
   padding: 0;
 }
 
-.container {
+#container1 {
   box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),
@@ -394,3 +402,41 @@ hr {
     margin-right: 20px;
   }
 }
+
+/*new profile*/
+.container {
+  margin-top: 10%;
+  padding-bottom: 2%;
+  margin-bottom: 2%;
+  overflow: hidden;
+}
+
+#placeholderUser{
+  margin-top: 3%;
+  margin-bottom: 3%;
+  border-radius: 50%;
+}
+
+#jumbotronProfile {
+  background: rgba(0, 0, 0, 0);
+  background-image: url("../images/bookmarked.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22%;
+}
+
+#addUserButtonNew{
+    background: white;
+    color: black;
+    border: 2px solid #617056;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 100%;
+    position: relative;
+  }
+  
+  #addUserButtonNew:hover {
+    background-color: black;
+    border: 2px solid #aeb4b2;
+    color: #aeb4b2;
+  }
