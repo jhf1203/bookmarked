@@ -43,7 +43,12 @@ module.exports = function (db) {
     },
 
     getUserList: function (req, res) {
-      db.List.findAll({}).then(data => {
+      db.List.findOne({
+        where: {
+          id: req.params.id
+        },
+        include: [db.Book]
+      }).then(data => {
         res.json(data);
       }).catch(error => {
         console.log(error);
@@ -96,8 +101,11 @@ module.exports = function (db) {
     //     console.log(error);
     //   });
     // },
-    getConnections: function (req, res) {
+    getUserConnections: function (req, res) {
       db.Connection.findAll({
+        where: {
+          followeeId: req.params.id
+        }
       }).then(data => {
         res.json(data);
       }).catch(error => {
