@@ -18,7 +18,7 @@ $(".user-connection").on("click", function () {
 function getFollowers (id) {
   $.ajax({
     type: "GET",
-    url: `/api/connections/${id}`
+    url: `/api/connections/`
   }).then(function (res) {
     // This will be a function that renders the list of the user's followers dynamically in the modal
     renderFollowers(res);
@@ -28,11 +28,22 @@ function getFollowers (id) {
 function getFollowing (id) {
   $.ajax({
     type: "GET",
-    url: `api/connections/${id}`
+    url: `api/connections/`
   }).then(function (res) {
     // This will be a function that renders the list of who the user following in the modal
     renderFollowing(res);
   });
+}
+
+function renderFollowing(id) {
+  const arrFollowing = [];
+  const userPage = 3
+  
+  for (let i = 0; i < id.length; i++) {
+    if (id[i].followerId === userPage) {
+      let followerLine = $("<p>").
+    }
+  }
 }
 
 function getUserProfile (id) {
