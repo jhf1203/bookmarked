@@ -313,4 +313,38 @@ $(document).ready(function () {
       }
     });
   });
+
+  // ADDED FOR P2 EXTENSION JF/VG
+
+  $("#btnFollowers").on("click", function () {
+    const idToUse = $(this).attr("id").val();
+    getFollowers(idToUse);
+  });
+
+  $("#btnFollowing").on("click", function () {
+    const idToUse = $(this).attr("id").val();
+    getFollowing(idToUse);
+  });
+
+  function getFollowers (id) {
+    $.ajax({
+      type: "GET",
+      url: `/api/connections/${id}`
+    }).then(function (res) {
+      // This will be a function that renders the list of the user's followers dynamically in the modal
+      renderFollowers(res);
+    });
+  }
+
+  function getFollowing (id) {
+    $.ajax({
+      type: "GET",
+      url: `api/connections/${id}`
+    }).then(function (res) {
+      // This will be a function that renders the list of who the user following in the modal
+      renderFollowing(res);
+    });
+  }
 });
+
+
