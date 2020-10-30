@@ -25,11 +25,12 @@ $(document).ready(function () {
 
     const taCarry = $(this).parent().parent().siblings().html();
     const descCarry = $(this).parent().parent().siblings().next().html();
-    const photoCarry = $(this).parent().parent().parent().parent().siblings().html();
+    const photoStart = $(this).parent().parent().parent().parent().siblings().html();
     const isbnCarry = $(this).parent().parent().parent().parent().siblings().children().attr("id");
     const stateCarry = $(this).val();
     const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
     const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
+    const photoCarry = photoStart.substring(photoStart.indexOf("h"));
     console.log("isbn", isbnCarry);
     console.log("pic", photoCarry);
 
@@ -313,36 +314,4 @@ $(document).ready(function () {
       }
     });
   });
-
-  // ADDED FOR P2 EXTENSION JF/VG
-
-  $("#btnFollowers").on("click", function () {
-    const idToUse = $(this).attr("id").val();
-    getFollowers(idToUse);
-  });
-
-  $("#btnFollowing").on("click", function () {
-    const idToUse = $(this).attr("id").val();
-    getFollowing(idToUse);
-  });
-
-  function getFollowers (id) {
-    $.ajax({
-      type: "GET",
-      url: `/api/connections/${id}`
-    }).then(function (res) {
-      // This will be a function that renders the list of the user's followers dynamically in the modal
-      renderFollowers(res);
-    });
-  }
-
-  function getFollowing (id) {
-    $.ajax({
-      type: "GET",
-      url: `api/connections/${id}`
-    }).then(function (res) {
-      // This will be a function that renders the list of who the user following in the modal
-      renderFollowing(res);
-    });
-  }
 });
