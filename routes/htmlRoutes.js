@@ -69,6 +69,74 @@ module.exports = (db) => {
     }
   });
 
+  // Load other user's pages
+  router.get("/user/", (req, res) => {
+    if (req.isAuthenticated()) {
+      Promise.all([db.User.findOne({
+        where: {
+          id: req.params.id
+        },
+        raw: true,
+        include: [db.List]
+      }),
+      db.List.findAll({
+        where: {
+          UserId: req.params.id
+        },
+        raw: true
+      }),
+      db.Connection.findAll({
+        raw: true
+      })
+      ]).then(data => {
+        const followingUser = [];
+        const userFollowing = [];
+        const readPast = [];
+        const readCurrent = [];
+        const readFuture = [];
+        const createdRaw = new Date(data[0].createdAt);
+        const memberSince = createdRaw.toLocaleDateString();
+        for (let i = 0; i < data[1].length; i++) {
+          if (data[1][i].state === "past") {
+            readPast.push(data[1][i]);
+          } else if (data[1][i].state === "future") {
+            readFuture.push(data[1][i]);
+          } else {
+            readCurrent.push(data[1][i]);
+          }
+        };
+        db.User.findAll({
+          raw: true
+        }).then(allUsers => {
+          allUsers.forEach(user => {
+            data[2].forEach(fol => {
+              if (fol.followerId === user.id && fol.followeeId === req.params.id) {
+                followingUser.push(user);
+              } else if (fol.followeeId === user.id && fol.followerId === req.params.id) {
+                userFollowing.push(user);
+              }
+            });
+          });
+          console.log(`followers: ${followingUser} and im following ${userFollowing}`);
+          const userToSend = {
+            userInfo: data[0],
+            userFollowing: userFollowing,
+            followingUser: followingUser,
+            pastList: readPast,
+            currentList: readCurrent,
+            futureList: readFuture,
+            memberSince: memberSince,
+            isloggedin: req.isAuthenticated()
+          };
+          console.log(userToSend);
+          res.render("user", userToSend);
+        });
+      });
+    } else {
+      res.redirect("/");
+    }
+  });
+
   // Load login page
   router.get("/login", (req, res) => {
     res.render("login");
