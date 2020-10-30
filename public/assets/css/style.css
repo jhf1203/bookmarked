@@ -389,7 +389,7 @@ hr {
   overflow: hidden;
 }
 
-#placeholderUser{
+#userImage{
   margin-top: 15%;
   margin-bottom: 3%;
   border-radius: 50%;
@@ -411,6 +411,8 @@ hr {
     font-weight: bold;
     width: 100%;
     position: relative;
+    padding: 5px;
+    margin-top: 57px;
   }
   
   #addUserButtonNew:hover {
@@ -427,9 +429,28 @@ hr {
     font-weight: bold;
     width: 100%;
     position: relative;
+    padding: 5px;
+    margin-top: 15px;
   }
   
   #btnFollow:hover {
+    background-color: black;
+    border: 2px solid #aeb4b2;
+    color: #aeb4b2;
+  }
+
+  #submitButton{
+    background: white;
+    color: black;
+    border: 2px solid #617056;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 100%;
+    position: relative;
+    padding: 5px
+  }
+
+  #submitButton:hover {
     background-color: black;
     border: 2px solid #aeb4b2;
     color: #aeb4b2;

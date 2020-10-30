@@ -11,12 +11,26 @@
   <div class="card card-1 col-md-4 offset-lg-4">
     <div class="row">
       <div class="col-md-6">
-        <img id="placeholderUser" src="https://via.placeholder.com/1000x2000" class="card-img" alt="...">
+        <img id="userImage" src="https://via.placeholder.com/1000x2000" class="card-img" alt="userProfileImage">
         <!--POSSIBLE UPLOAD BUTTON HERE-->
-        <!-- <div class="custom-file">
-              <input type="file" class="custom-file-input" id="customFile">
-              <label class="custom-file-label" for="customFile"></label>
-            </div> -->
+         <form
+          class="mt-1"
+          action="/upload"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="form-group">
+            <input
+              type="file"
+              name="file"
+              id="input-files"
+              class="form-control-file border"
+            />
+          <button id="submitButton" type="submit" class="btn btn-default btn-sm">
+            <i class="fa fa-camera-retro">Submit</i>
+          </button>
+          </div>
+        </form>
       </div>
       <div class="col-md-6">
         <div class="card-body">
@@ -36,9 +50,13 @@
               <i class="fa fa-user-plus">Add Friend</i>
             </button>
             <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1"
-              type="button">Followers</button>
+              type="button">
+              <i class="fa fa-users">Followers</i>
+              </button>
             <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3"
-              type="button">Following</button>
+              type="button">
+              <i class="fa fa-users">Following</i>
+              </button>
             {{#each userInfo.followees}}
           <div>{{this.firstName}} {{this.lastName}}</div>
           {{/each}}
