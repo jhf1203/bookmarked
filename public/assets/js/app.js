@@ -25,11 +25,12 @@ $(document).ready(function () {
 
     const taCarry = $(this).parent().parent().siblings().html();
     const descCarry = $(this).parent().parent().siblings().next().html();
-    const photoCarry = $(this).parent().parent().parent().parent().siblings().html();
+    const photoStart = $(this).parent().parent().parent().parent().siblings().html();
     const isbnCarry = $(this).parent().parent().parent().parent().siblings().children().attr("id");
     const stateCarry = $(this).val();
     const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
     const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
+    const photoCarry = photoStart.substring(photoStart.indexOf("h"));
     console.log("isbn", isbnCarry);
     console.log("pic", photoCarry);
 
