@@ -1,102 +1,116 @@
 {{> nav/nav-block user=true register=false}}
 
-<!--Card for user Profile-->
-<section class="row userRow">
-  <div class="container-fluid">
-    <div class="col-8 mx-auto">
-      <div id="userCard" class="card mb-3" style="max-width: 900px;">
-        <div id="cardHeader" class="card-header">
-          <button id="addUserButton" type="button" class="btn btn-default btn-sm">
-            <i class="fa fa-user-plus">Add</i>
-            <h5> {{ userInfo.firstName}}</h5>
-          </button>
-        </div>
-        <div class="col-md-12">
-          <div class="card-body" id="cardBody1">
-            <div class="row">
-              <div id="imgGoesHere" class="col-md-12">
-                <div class="row">
-                  <div class="col-md-12">
-                    <p class="card-text id=""">Member since {{memberSince}}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <p class="card-text">{{userInfo.firstName}} is currently reading:
-                      {{#each currentList}}
-                      <p class={{id}}>{{title}}
-                        <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
-                          <span hidden>
-                            {{id}}</span></button></p><br>
-                      {{/each}}
-                    </p>
-                  </div>
-                </div>
-                <div class="flex">
-                  <button class="flex-item" id="btnFollow" data-toggle="modal" data-target="#myModal1"
-                    type="button">Followers</button>
-                  <button class="flex-item" id="btnFollow" data-toggle="modal" data-target="#myModal3"
-                    type="button">Following</button>
-                  {{#each userInfo.followees}}
-                  <div>{{this.firstName}} {{this.lastName}}</div>
-                  {{/each}}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!--container for page-->
+<div class="container">
 
-<!--Have read book card-->
-<section class="container-fluid">
-  <div class="row readRow">
-    <div class="col-8 mx-auto">
-      <div id="haveReadCard" class="card mb-3" style="max-width: 500px;">
-        <div class="card-block">
-          <div class="card-header">Have Read</div>
-          <div class="card-body" id="cardBody2">
-            <ul class='future-list'>
-              {{#each pastList}}
-              <p class={{id}}>{{title}}
-                <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
-                  <span hidden>
-                    {{id}}</span></button></p>
-              {{/each}}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- jumbotron with logo-->
+  <div id="jumbotronProfile" class="jumbotron">
   </div>
-</section>
 
-<!--Have want to read book card-->
-<section class="container-fluid">
-  <div class="row readRow">
-    <div class="col-8 mx-auto">
-      <div class="overflow-auto">
-        <div id="haveReadCard" class="card mb-3" style="max-width: 500px;">
-          <div class="card-block">
-            <div class="card-header">Want To Read</div>
-            <div class="card-body" id="cardBody2">
-              <ul class='future-list'>
-                {{#each futureList}}
-                <p class={{id}}>{{title}}
-                  <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
-                    <span hidden>
-                      {{id}}</span></button></p>
-                {{/each}}
-              </ul>
-            </div>
-          </div>
+  <!--user info card-->
+  <div class="card card-1 col-md-4 offset-lg-4">
+    <div class="row">
+      <div class="col-md-6">
+        <img id="placeholderUser" src="https://via.placeholder.com/1000x2000" class="card-img" alt="...">
+        <!--POSSIBLE UPLOAD BUTTON HERE-->
+        <!-- <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label" for="customFile"></label>
+            </div> -->
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h5 id="userName" class="card-title">{{ userInfo.firstName}}</h5>
+          <p class="card-text">Member Since: {{ memberSince }}</p>
+          <p>{{userInfo.firstName}} is currently reading:
+            {{#each currentList}}
+          <p class={{id}}>{{title}}
+            <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
+              <span hidden>
+                {{id}}</span></button></p><br>
+          {{/each}}
+          <!--Change title of currently reading to just the book image?-->
+          </p>
+          <!--Buttons for user interaction-->
+          <p> <button id="addUserButtonNew" type="button" class="btn btn-default btn-sm">
+              <i class="fa fa-user-plus">Add Friend</i>
+            </button>
+            <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1"
+              type="button">Followers</button>
+            <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3"
+              type="button">Following</button>
+            {{#each userInfo.followees}}
+          <div>{{this.firstName}} {{this.lastName}}</div>
+          {{/each}}
+          </p>
         </div>
       </div>
     </div>
   </div>
-</section>
+
+  <!--books area-->
+  <!--Have Read Card-->
+  <div class="row">
+    <div class="col-sm-6 mt-5">
+      <div class="card">
+        <div class="card-header">Have Read</div>
+        <div class="card-body" id="cardBody2">
+          <ul class='future-list'>
+            {{#each pastList}}
+            <p class={{id}}>{{title}}
+              <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
+                <span hidden>
+                  {{id}}</span></button></p>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--Want to Read Card-->
+    <div class="col-sm-6 mt-5">
+      <div class="card">
+        <div class="card-header">Want to Read</div>
+        <div class="card-body" id="cardBody2">
+          <ul class='future-list'>
+            {{#each futureList}}
+            <p class={{id}}>{{title}}
+              <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
+                <span hidden>
+                  {{id}}</span></button></p>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--blog/review area-->
+  <div class="row">
+    <div class="col md-12 mt-5">
+      <div class="card">
+        <div class="card-header">
+          Thoughts: <i class="fa fa-commenting-o"></i>
+        </div>
+        <div class="card-body">
+          <div class="form-group shadow-textarea">
+            <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3"
+              placeholder="Write something here..."></textarea>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          <hr>
+          <p class="card-text">this area will populate with posts?
+            <hr>
+          </p>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
 
 <!-- Followers Modal -->
 <div class="modal" id="myModal1">
@@ -172,8 +186,8 @@
 <script>
   var userId = {
     {
-      userInfo.id
-    }
+    userInfo.id
+  }
   };
 </script>
 

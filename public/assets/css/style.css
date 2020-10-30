@@ -223,28 +223,6 @@ hr {
 }
 
 
-#btnFollow {
-  margin-top: 15px;
-  background-color: #0066FF;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  background: white;
-  color: black;
-  border: 2px solid #617056;
-  border-radius: 5px;
-}
-
-#btnFollow:hover {
-  background-color: black;
-  border: 2px solid #aeb4b2;
-  color: #aeb4b2;
-}
 
 .flex {
   display: flex;
@@ -412,7 +390,7 @@ hr {
 }
 
 #placeholderUser{
-  margin-top: 3%;
+  margin-top: 15%;
   margin-bottom: 3%;
   border-radius: 50%;
 }
@@ -436,6 +414,22 @@ hr {
   }
   
   #addUserButtonNew:hover {
+    background-color: black;
+    border: 2px solid #aeb4b2;
+    color: #aeb4b2;
+  }
+
+  #btnFollow {
+    background: white;
+    color: black;
+    border: 2px solid #617056;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 100%;
+    position: relative;
+  }
+  
+  #btnFollow:hover {
     background-color: black;
     border: 2px solid #aeb4b2;
     color: #aeb4b2;
