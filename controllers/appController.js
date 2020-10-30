@@ -103,9 +103,6 @@ module.exports = function (db) {
     // },
     getUserConnections: function (req, res) {
       db.Connection.findAll({
-        where: {
-          followeeId: req.params.id
-        }
       }).then(data => {
         res.json(data);
       }).catch(error => {

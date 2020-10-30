@@ -20,7 +20,7 @@ module.exports = (passport, db) => {
   router.get("/books", AppController.getBookInfoInternal);
   router.get("/userInfo/:id", AppController.getUserInfo);
   router.get("/lists/:id", AppController.getUserList);
-  router.get("/connections/:id", AppController.getUserConnections);
+  router.get("/connections/", AppController.getUserConnections);
 
   // Project POST routes
   router.post("/books", AppController.addBookInternal);
