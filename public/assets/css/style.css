@@ -333,7 +333,7 @@ hr {
   border-radius: 5px
 }
 
-/*refresh button*/
+/* refresh button
 .btnRefresh {
   background: white;
   color: black;
@@ -347,7 +347,7 @@ hr {
   background-color: black;
   color: #aeb4b2;
   border: 2px solid #aeb4b2;
-}
+} */
 
 .card-footer {
   width: 100%;
@@ -451,6 +451,78 @@ hr {
   }
 
   #submitButton:hover {
+    background-color: black;
+    border: 2px solid #aeb4b2;
+    color: #aeb4b2;
+  }
+
+  /* new viewbooks page */ 
+
+  #searchTitle{
+    background: white;
+    color: black;
+    border: 2px solid #617056;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative;
+    padding: 5px
+  }
+
+  #searchTitle:hover {
+    background-color: black;
+    border: 2px solid #aeb4b2;
+    color: #aeb4b2;
+  }
+
+  #searchAuthor{
+    background: white;
+    color: black;
+    border: 2px solid #617056;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative;
+    padding: 5px
+  }
+
+  #searchAuthor:hover {
+    background-color: black;
+    border: 2px solid #aeb4b2;
+    color: #aeb4b2;
+  }
+
+  #searchKeyword{
+    background: white;
+    color: black;
+    border: 2px solid #617056;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative;
+    padding: 5px
+  }
+
+  #searchKeyword:hover {
+    background-color: black;
+    border: 2px solid #aeb4b2;
+    color: #aeb4b2;
+  }
+
+  #greatRead{
+    color: black;
+    margin-top: 5%;
+  }
+
+  #refreshBtn{
+    background: white;
+    color: black;
+    border: 2px solid #617056;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative;
+    padding: 5px;
+    width: 13%;
+  }
+
+  #refreshBtn:hover {
     background-color: black;
     border: 2px solid #aeb4b2;
     color: #aeb4b2;
