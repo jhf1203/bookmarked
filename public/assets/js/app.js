@@ -314,4 +314,20 @@ $(document).ready(function () {
       }
     });
   });
+
+  function imageUpload (file) {
+    $.ajax({
+      type: "POST",
+      url: "/api/upload",
+      data: file
+    }).then((data) => {
+      console.log(data);
+    });
+  }
+
+  $("#submitButton").on("click", function() {
+    const fileName = $("#input-files").val();
+    console.log(fileName);
+    imageUpload(fileName);
+  });
 });

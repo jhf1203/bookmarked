@@ -1,10 +1,14 @@
 const fs = require("fs");
-const db = require("../models");
-const Image = db.images;
+const path = require("path");
+const Image = require("../models/image");
 
-const uploadFiles = async (req, res) => {
+const filePath = path.join(__dirname, "/resources/static/assets/uploads/");
+const tmpPath = path.join(__dirname, "/resources/static/assets/tmp/");
+
+const uploadFiles = (req, res) => {
   try {
     console.log(req.file);
+    console.log(filePath + req.file.filename);
 
     if (req.file === undefined) {
       return res.send(`You must select a file.`);
@@ -14,11 +18,11 @@ const uploadFiles = async (req, res) => {
       type: req.file.mimetype,
       name: req.file.originalname,
       data: fs.readFileSync(
-        __basedir + "/resources/static/assets/uploads/" + req.file.filename
+        filePath + req.file.filename
       )
     }).then((image) => {
       fs.writeFileSync(
-        __basedir + "/resources/static/assets/tmp/" + image.name,
+        tmpPath + image.name,
         image.data
       );
 

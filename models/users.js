@@ -65,6 +65,9 @@ module.exports = function (sequelize, DataTypes) {
       as: "Followee",
       foreignKey: "followeeId"
     });
+    User.hasOne(models.Image, {
+      onDelete: "cascade"
+    });
   };
   // This will check if an unhashed password can be compared to the hashed password stored in our database
   User.prototype.validPassword = function (password) {

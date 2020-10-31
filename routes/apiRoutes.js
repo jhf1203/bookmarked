@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
-const homeController = require("../controllers/home");
+// const homeController = require("../controllers/home");
 const uploadController = require("../controllers/upload");
 const upload = require("../middlewares/upload");
 
@@ -26,6 +26,7 @@ module.exports = (passport, db) => {
   router.post("/books", AppController.addBookInternal);
   router.post("/connections", AppController.followUser);
   router.post("/lists", AppController.addToList);
+  router.post("/upload", upload.single("file"), uploadController.uploadFiles);
 
   // Project DELETE routes
   router.delete("/connections", AppController.unFollow);

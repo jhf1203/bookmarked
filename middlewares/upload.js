@@ -1,4 +1,4 @@
-// import multer 
+// import multer
 const multer = require("multer");
 
 // only allows images to pass
