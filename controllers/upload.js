@@ -2,8 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const Image = require("../models/image");
 
-const filePath = path.join(__dirname, "/resources/static/assets/uploads/");
-const tmpPath = path.join(__dirname, "/resources/static/assets/tmp/");
+const filePath = path.join("./", __dirname, "/resources/static/assets/uploads/");
+const tmpPath = path.join("./", __dirname, "/resources/static/assets/tmp/");
 
 const uploadFiles = (req, res) => {
   try {

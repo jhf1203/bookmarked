@@ -70,7 +70,7 @@ module.exports = (db) => {
   });
 
   // Load other user's pages
-  router.get("/user/", (req, res) => {
+  router.get("/user/:id", (req, res) => {
     if (req.isAuthenticated()) {
       Promise.all([db.User.findOne({
         where: {
