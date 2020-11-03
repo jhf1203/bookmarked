@@ -42,12 +42,10 @@ $(document).ready(function () {
       state: stateCarry,
       isbn: isbnCarry
     };
-    console.log(data, 'this is data right before checkduplicate')
     checkDuplicate(data);
   });
 
   function checkDuplicate (data) {
-    console.log("we are in check duplicate, here is its data", data);
     $.ajax({
       type: "GET",
       url: "/api/books"
@@ -58,14 +56,14 @@ $(document).ready(function () {
           dupArr.push(res[i]);
         };
       };
-      console.log(dupArr, "duparr");
       if (dupArr.length === 0) {
         addBookTwice(data);
       } else {
         addToList(data.state, data.title, data.id);
       }
     });
-  }
+  };
+
   function addBookTwice (data) {
     $.ajax({
       type: "POST",
@@ -152,6 +150,12 @@ $(document).ready(function () {
       const image5 = response.items[0].volumeInfo.imageLinks.thumbnail;
       const date5 = response.items[0].volumeInfo.publishedDate;
       const isbn5 = response.items[0].volumeInfo.industryIdentifiers[0].identifier;
+      console.log(bookTitle5);
+      console.log(author5);
+      console.log(description5);
+      console.log(image5);
+      console.log(date5);
+      console.log(isbn5);
 
       // Second Card
       const bookTitle6 = response.items[1].volumeInfo.title;
@@ -159,16 +163,26 @@ $(document).ready(function () {
       const description6 = response.items[1].volumeInfo.description;
       const image6 = response.items[1].volumeInfo.imageLinks.thumbnail;
       const date6 = response.items[1].volumeInfo.publishedDate;
-      const isbn6 = response.items[0].volumeInfo.industryIdentifiers[0].identifier;
-
+      const isbn6 = response.items[1].volumeInfo.industryIdentifiers[0].identifier;
+      console.log(bookTitle6);
+      console.log(author6);
+      console.log(description6);
+      console.log(image6);
+      console.log(date6);
+      console.log(isbn6);
       // Third Card
       const bookTitle7 = response.items[2].volumeInfo.title;
       const author7 = response.items[2].volumeInfo.authors[0];
       const description7 = response.items[2].volumeInfo.description;
       const image7 = response.items[2].volumeInfo.imageLinks.thumbnail;
       const date7 = response.items[2].volumeInfo.publishedDate;
-      const isbn7 = response.items[0].volumeInfo.industryIdentifiers[0].identifier;
-
+      const isbn7 = response.items[2].volumeInfo.industryIdentifiers[0].identifier;
+      console.log(bookTitle7);
+      console.log(author7);
+      console.log(description7);
+      console.log(image7);
+      console.log(date7);
+      console.log(isbn7);
       const titleAuthorSpace5 = $("<h5>").attr("class", `title-author`).attr("id", `${date5}`).html(`${bookTitle5} | ${author5}`);
       const titleAuthorSpace6 = $("<h5>").attr("class", `title-author`).attr("id", `${date6}`).html(`${bookTitle6} | ${author6}`);
       const titleAuthorSpace7 = $("<h5>").attr("class", `title-author`).attr("id", `${date7}`).html(`${bookTitle7} | ${author7}`);
