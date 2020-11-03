@@ -42,6 +42,31 @@ $(document).ready(function () {
       state: stateCarry,
       isbn: isbnCarry
     };
+    console.log(data, 'this is data right before checkduplicate')
+    checkDuplicate(data);
+  });
+
+  function checkDuplicate (data) {
+    console.log("we are in check duplicate, here is its data", data);
+    $.ajax({
+      type: "GET",
+      url: "/api/books"
+    }).then(function (res) {
+      const dupArr = [];
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].isbn === data.isbn) {
+          dupArr.push(res[i]);
+        };
+      };
+      console.log(dupArr, "duparr");
+      if (dupArr.length === 0) {
+        addBookTwice(data);
+      } else {
+        addToList(data.state, data.title, data.id);
+      }
+    });
+  }
+  function addBookTwice (data) {
     $.ajax({
       type: "POST",
       url: "/api/books",
@@ -50,7 +75,7 @@ $(document).ready(function () {
       console.log(res, res.state, window.userId);
       addToList(res.state, res.title, res.id);
     });
-  });
+  };
 
   $(".user-connection").on("click", function () {
     const userTarget = ($(this).attr("id"));
@@ -325,7 +350,7 @@ $(document).ready(function () {
     });
   }
 
-  $("#submitButton").on("click", function() {
+  $("#submitButton").on("click", function () {
     const fileName = $("#input-files").val();
     console.log(fileName);
     imageUpload(fileName);
