@@ -42,6 +42,29 @@ $(document).ready(function () {
       state: stateCarry,
       isbn: isbnCarry
     };
+    checkDuplicate(data);
+  });
+
+  function checkDuplicate (data) {
+    $.ajax({
+      type: "GET",
+      url: "/api/books"
+    }).then(function (res) {
+      const dupArr = [];
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].isbn === data.isbn) {
+          dupArr.push(res[i]);
+        };
+      };
+      if (dupArr.length === 0) {
+        addBookTwice(data);
+      } else {
+        addToList(data.state, data.title, data.id);
+      }
+    });
+  };
+
+  function addBookTwice (data) {
     $.ajax({
       type: "POST",
       url: "/api/books",
@@ -50,7 +73,7 @@ $(document).ready(function () {
       console.log(res, res.state, window.userId);
       addToList(res.state, res.title, res.id);
     });
-  });
+  };
 
   $(".user-connection").on("click", function () {
     const userTarget = ($(this).attr("id"));
@@ -127,6 +150,12 @@ $(document).ready(function () {
       const image5 = response.items[0].volumeInfo.imageLinks.thumbnail;
       const date5 = response.items[0].volumeInfo.publishedDate;
       const isbn5 = response.items[0].volumeInfo.industryIdentifiers[0].identifier;
+      console.log(bookTitle5);
+      console.log(author5);
+      console.log(description5);
+      console.log(image5);
+      console.log(date5);
+      console.log(isbn5);
 
       // Second Card
       const bookTitle6 = response.items[1].volumeInfo.title;
@@ -134,16 +163,26 @@ $(document).ready(function () {
       const description6 = response.items[1].volumeInfo.description;
       const image6 = response.items[1].volumeInfo.imageLinks.thumbnail;
       const date6 = response.items[1].volumeInfo.publishedDate;
-      const isbn6 = response.items[0].volumeInfo.industryIdentifiers[0].identifier;
-
+      const isbn6 = response.items[1].volumeInfo.industryIdentifiers[0].identifier;
+      console.log(bookTitle6);
+      console.log(author6);
+      console.log(description6);
+      console.log(image6);
+      console.log(date6);
+      console.log(isbn6);
       // Third Card
       const bookTitle7 = response.items[2].volumeInfo.title;
       const author7 = response.items[2].volumeInfo.authors[0];
       const description7 = response.items[2].volumeInfo.description;
       const image7 = response.items[2].volumeInfo.imageLinks.thumbnail;
       const date7 = response.items[2].volumeInfo.publishedDate;
-      const isbn7 = response.items[0].volumeInfo.industryIdentifiers[0].identifier;
-
+      const isbn7 = response.items[2].volumeInfo.industryIdentifiers[0].identifier;
+      console.log(bookTitle7);
+      console.log(author7);
+      console.log(description7);
+      console.log(image7);
+      console.log(date7);
+      console.log(isbn7);
       const titleAuthorSpace5 = $("<h5>").attr("class", `title-author`).attr("id", `${date5}`).html(`${bookTitle5} | ${author5}`);
       const titleAuthorSpace6 = $("<h5>").attr("class", `title-author`).attr("id", `${date6}`).html(`${bookTitle6} | ${author6}`);
       const titleAuthorSpace7 = $("<h5>").attr("class", `title-author`).attr("id", `${date7}`).html(`${bookTitle7} | ${author7}`);
@@ -325,7 +364,7 @@ $(document).ready(function () {
     });
   }
 
-  $("#submitButton").on("click", function() {
+  $("#submitButton").on("click", function () {
     const fileName = $("#input-files").val();
     console.log(fileName);
     imageUpload(fileName);
