@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 $(document).ready(function () {
   // ==================== Book Actions
 
@@ -192,6 +193,27 @@ $(document).ready(function () {
       const imgSpace5 = $("<img>").attr("src", image5).attr("class", "book-image").attr("id", `${isbn5}`);
       const imgSpace6 = $("<img>").attr("src", image6).attr("class", "book-image").attr("id", `${isbn6}`);
       const imgSpace7 = $("<img>").attr("src", image7).attr("class", "book-image").attr("id", `${isbn7}`);
+
+      console.log("5", descSpace5.text());
+      console.log("6", descSpace6.text());
+      console.log("7", descSpace7.text());
+
+      console.log("is it undefined?", descSpace5.text() == "undefined");
+      console.log("is it undefined?", descSpace6.text() == "undefined");
+      console.log("is it undefined?", descSpace7.text() == "undefined");
+
+
+      if (descSpace5.html() === "undefined") {
+        descSpace5.css("color", "#fff");
+      };
+
+      if (descSpace6.html() == "undefined") {
+        descSpace6.css("color", "#fff");
+      }
+
+      if (descSpace7.html() == "undefined") {
+        descSpace6.css("color", "#fff");
+      }
 
       $("#cardBody5").prepend(titleAuthorSpace5, descSpace5);
       $(".imgDiv5").append(imgSpace5);
