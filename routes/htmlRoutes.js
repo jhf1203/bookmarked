@@ -17,6 +17,18 @@ module.exports = (db) => {
         },
         raw: true
       }),
+      // db.Image.findOne({
+      //   where: {
+      //     UserId: req.session.passport.user.id
+      //   },
+      //   raw: true
+      // }),
+      // db.Rating.findAll({
+      //   where: {
+      //     BookId: req.session.passport.user.id
+      //   },
+      //   raw: true
+      // }),
       db.Connection.findAll({
         raw: true
       })
@@ -85,6 +97,18 @@ module.exports = (db) => {
         },
         raw: true
       }),
+      // db.Image.findOne({
+      //   where: {
+      //     UserId: req.params.id
+      //   },
+      //   raw: true
+      // }),
+      // db.Rating.findAll({
+      //   where: {
+      //     BookId: req.params.id
+      //   },
+      //   raw: true
+      // }),
       db.Connection.findAll({
         raw: true
       })

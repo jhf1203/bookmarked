@@ -39,9 +39,6 @@
           <p>{{userInfo.firstName}} is currently reading:
             {{#each currentList}}
           <p class={{id}}>{{title}}
-            <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
-              <span hidden>
-                {{id}}</span></button></p><br>
           {{/each}}
           <!--Change title of currently reading to just the book image?-->
           </p>
@@ -76,9 +73,6 @@
           <ul class='future-list'>
             {{#each pastList}}
             <p class={{id}}>{{title}}
-              <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
-                <span hidden>
-                  {{id}}</span></button></p>
             {{/each}}
           </ul>
         </div>
@@ -93,9 +87,6 @@
           <ul class='future-list'>
             {{#each futureList}}
             <p class={{id}}>{{title}}
-              <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
-                <span hidden>
-                  {{id}}</span></button></p>
             {{/each}}
           </ul>
         </div>
