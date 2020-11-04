@@ -10,9 +10,14 @@ $(document).ready(function () {
 
   // const searchTerm = $('#searchBook').val();
 
-  $(".submit-search").on("click", function () {
+  $("#searchTitle").on("click", function () {
     const param = $(".search-field").val();
     findBook("title", param);
+  });
+
+  $("#searchAuthor").on("click", function () {
+    const param = $(".search-field").val();
+    findBook("author", param);
   });
 
   $(".refreshBtn").on("click", function (event) {
@@ -201,7 +206,6 @@ $(document).ready(function () {
       console.log("is it undefined?", descSpace5.text() == "undefined");
       console.log("is it undefined?", descSpace6.text() == "undefined");
       console.log("is it undefined?", descSpace7.text() == "undefined");
-
 
       if (descSpace5.html() === "undefined") {
         descSpace5.css("color", "#fff");
