@@ -110,6 +110,15 @@ module.exports = function (db) {
       });
     },
 
+    getUserBlog: function (req, res) {
+      db.Blog.findAll({
+      }).then(data => {
+        res.json(data);
+      }).catch(error => {
+        console.log(error);
+      });
+    },
+
     // ========= POST ROUTES ========
 
     // updateUserTable: function (req, res) {
@@ -141,6 +150,15 @@ module.exports = function (db) {
       });
     },
 
+    addBlogPost: function (req, res) {
+      db.Blog.create({
+        title: req.body.title,
+        body: req.body.body,
+        createdAt: req.body.createdAt
+      }).then(function (blogData) {
+        res.json(blogData);
+      });
+    },
     // addToCurrent: function (req, res) {
     //   db.readCurrent.create(req.body).then(function (dbAddToCurrent) {
     //     res.json(dbAddToCurrent);
@@ -172,6 +190,14 @@ module.exports = function (db) {
       db.List.destroy({ where: { id: req.params.id }
       }).then(function (dbList) {
         res.json(dbList);
+      });
+    },
+
+    deleteBlogPost: function (req, res) {
+      db.Blog.destroy({
+        where: {
+          id: req.params.id
+        }
       });
     }
     // deleteExample: function (req, res) {
