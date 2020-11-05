@@ -1,0 +1,43 @@
+{{> nav/nav-block user=true register=false}}
+
+<!--container for page-->
+<div id="blogContainer" class="container">
+
+  <!-- jumbotron with logo-->
+  <div id="jumbotronProfile" class="jumbotron">
+  </div>
+
+  <div class="row">
+      <div id="blog" class="col-md-12 offset-md-0">
+        <form id="cms">
+          <div class="form-group">
+            <label for="heading">Title:</label>
+            <input type="text" class="form-control" id="title">
+            <br />
+            <label for="blurb">Body:</label>
+            <textarea class="form-control" rows="10" id="body"></textarea>
+            <br />
+            <button id="blogSubmit" class="btn btn-success submit btn-lg">Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 blog-container">
+      
+      </div>
+    </div>
+
+    </div>
+
+
+<script>
+  var userId = {
+    {
+    userInfo.id
+  }
+  };
+</script>
+
+{{> modal/login-block}}

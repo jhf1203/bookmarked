@@ -152,9 +152,8 @@ module.exports = function (db) {
 
     addBlogPost: function (req, res) {
       db.Blog.create({
-        title: req.body.title,
-        body: req.body.body,
-        createdAt: req.body.createdAt
+        heading: req.body.heading,
+        blurb: req.body.blurb
       }).then(function (blogData) {
         res.json(blogData);
       });

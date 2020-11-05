@@ -527,3 +527,18 @@ hr {
     border: 2px solid #aeb4b2;
     color: #aeb4b2;
   }
+
+  #blog {
+    color: Black;
+    border: 2px solid #617056;
+  }
+
+  #blogSubmit {
+    font-size: 18px;
+  }
+
+  .blog-container {
+    margin-top: 15px;
+    color: Black;
+    border: 2px solid #617056;
+  }

@@ -3,17 +3,13 @@ module.exports = (sequelize, DataTypes) => {
     type: {
       type: DataTypes.STRING
     },
-    title: {
+    heading: {
       type: DataTypes.STRING,
       required: true
     },
-    body: {
+    blurb: {
       type: DataTypes.STRING,
       required: true
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now
     }
   });
 
