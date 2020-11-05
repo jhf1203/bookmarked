@@ -21,16 +21,18 @@ module.exports = (passport, db) => {
   router.get("/userInfo/:id", AppController.getUserInfo);
   router.get("/lists/:id", AppController.getUserList);
   router.get("/connections/", AppController.getUserConnections);
+  router.get("/blog/:id", AppController.getUserBlog);
 
   // Project POST routes
   router.post("/books", AppController.addBookInternal);
   router.post("/connections", AppController.followUser);
   router.post("/lists", AppController.addToList);
   router.post("/upload", upload.single("file"), uploadController.uploadFiles);
+  router.post("/blog", AppController.addBlogPost);
 
   // Project DELETE routes
   router.delete("/connections", AppController.unFollow);
   router.delete("/lists/:id", AppController.deleteFromList);
-
+  router.delete("/blog/:id", AppController.deleteBlogPost);
   return router;
 };
