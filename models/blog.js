@@ -10,10 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     body: {
       type: DataTypes.STRING,
       required: true
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now
     }
   });
 
