@@ -7,6 +7,7 @@ $(document).ready(function () {
   const seedBooks = ["cat", "earth", "run", "fire", "hunger", "Winter", "world", "tomorrow", "the", "turn", "fly", "moon", "tales", "dog", "star", "power", "catch", "feel", "house", "event", "game", "valor", "war", "prince", "woman", "man", "pirate", "fish", "fantasy", "stories", "evil", "good", "truth"];
   const randomBook = seedBooks[Math.floor(Math.random() * seedBooks.length)];
   findBook("title", randomBook);
+  console.log("user!", window.userId);
 
   // const searchTerm = $('#searchBook').val();
 
@@ -246,6 +247,21 @@ $(document).ready(function () {
     });
   }
 
+  function addConnection (me, you) {
+    console.log($(this));
+    const data = {
+      followerId: me,
+      followeeId: you
+    };
+    $.ajax({
+      type: "POST",
+      url: "/api/connections",
+      data: data
+    }).then(function (res) {
+      console.log(res);
+    });
+  }
+
   // ===================  User Actions
 
   // ==========  Events
@@ -378,6 +394,12 @@ $(document).ready(function () {
         $("#user-info").modal("hide");
       }
     });
+  });
+
+  $(".follow-btn").on("click", function () {
+    const you = ($(this).attr("id"));
+    const me = (window.userId);
+    addConnection(me, you);
   });
 
   function imageUpload (file) {
