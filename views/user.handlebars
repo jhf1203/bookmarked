@@ -43,7 +43,7 @@
           <!--Change title of currently reading to just the book image?-->
           </p>
           <!--Buttons for user interaction-->
-          <p> <button id="addUserButtonNew" type="button" class="btn btn-default btn-sm">
+          <p> <button id={{userInfo.id}} type="button" class="btn btn-default btn-sm follow-btn">
               <i class="fa fa-user-plus">Add Friend</i>
             </button>
             <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1"
@@ -193,11 +193,7 @@
 
 
 <script>
-  var userId = {
-    {
-    userInfo.id
-  }
-  };
+  var userId = {{activeUser}};
 </script>
 
 {{> modal/login-block}}

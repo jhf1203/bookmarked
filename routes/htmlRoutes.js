@@ -33,6 +33,7 @@ module.exports = (db) => {
         raw: true
       })
       ]).then(data => {
+        console.log("all of the data: ", data);
         const followingUser = [];
         const userFollowing = [];
         const readPast = [];
@@ -61,7 +62,6 @@ module.exports = (db) => {
               }
             });
           });
-          console.log(`followers: ${followingUser} and im following ${userFollowing}`);
           const userToSend = {
             userInfo: data[0],
             userFollowing: userFollowing,
@@ -111,8 +111,15 @@ module.exports = (db) => {
       // }),
       db.Connection.findAll({
         raw: true
+      }),
+      db.User.findOne({
+        where: {
+          id: req.session.passport.user.id
+        },
+        raw: true
       })
       ]).then(data => {
+        console.log("DATATADA ", data[3]);
         const followingUser = [];
         const userFollowing = [];
         const readPast = [];
@@ -141,7 +148,6 @@ module.exports = (db) => {
               }
             });
           });
-          console.log(`followers: ${followingUser} and im following ${userFollowing}`);
           const userToSend = {
             userInfo: data[0],
             userFollowing: userFollowing,
@@ -150,7 +156,8 @@ module.exports = (db) => {
             currentList: readCurrent,
             futureList: readFuture,
             memberSince: memberSince,
-            isloggedin: req.isAuthenticated()
+            isloggedin: req.isAuthenticated(),
+            activeUser: data[3].id
           };
           console.log(userToSend);
           res.render("user", userToSend);
