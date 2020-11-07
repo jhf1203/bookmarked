@@ -112,6 +112,9 @@ module.exports = function (db) {
 
     getUserBlog: function (req, res) {
       db.Blog.findAll({
+        where: {
+          UserId: req.params.id
+        }
       }).then(data => {
         res.json(data);
       }).catch(error => {
@@ -197,6 +200,8 @@ module.exports = function (db) {
         where: {
           id: req.params.id
         }
+      }).then(function (dbList) {
+        res.json(dbList);
       });
     }
     // deleteExample: function (req, res) {

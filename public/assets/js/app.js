@@ -157,12 +157,12 @@ $(document).ready(function () {
       const image5 = response.items[0].volumeInfo.imageLinks.thumbnail;
       const date5 = response.items[0].volumeInfo.publishedDate;
       const isbn5 = response.items[0].volumeInfo.industryIdentifiers[0].identifier;
-      console.log(bookTitle5);
-      console.log(author5);
-      console.log(description5);
-      console.log(image5);
-      console.log(date5);
-      console.log(isbn5);
+      // console.log(bookTitle5);
+      // console.log(author5);
+      // console.log(description5);
+      // console.log(image5);
+      // console.log(date5);
+      // console.log(isbn5);
 
       // Second Card
       const bookTitle6 = response.items[1].volumeInfo.title;
@@ -171,12 +171,12 @@ $(document).ready(function () {
       const image6 = response.items[1].volumeInfo.imageLinks.thumbnail;
       const date6 = response.items[1].volumeInfo.publishedDate;
       const isbn6 = response.items[1].volumeInfo.industryIdentifiers[0].identifier;
-      console.log(bookTitle6);
-      console.log(author6);
-      console.log(description6);
-      console.log(image6);
-      console.log(date6);
-      console.log(isbn6);
+      // console.log(bookTitle6);
+      // console.log(author6);
+      // console.log(description6);
+      // console.log(image6);
+      // console.log(date6);
+      // console.log(isbn6);
       // Third Card
       const bookTitle7 = response.items[2].volumeInfo.title;
       const author7 = response.items[2].volumeInfo.authors[0];
@@ -184,12 +184,12 @@ $(document).ready(function () {
       const image7 = response.items[2].volumeInfo.imageLinks.thumbnail;
       const date7 = response.items[2].volumeInfo.publishedDate;
       const isbn7 = response.items[2].volumeInfo.industryIdentifiers[0].identifier;
-      console.log(bookTitle7);
-      console.log(author7);
-      console.log(description7);
-      console.log(image7);
-      console.log(date7);
-      console.log(isbn7);
+      // console.log(bookTitle7);
+      // console.log(author7);
+      // console.log(description7);
+      // console.log(image7);
+      // console.log(date7);
+      // console.log(isbn7);
       const titleAuthorSpace5 = $("<h5>").attr("class", `title-author`).attr("id", `${date5}`).html(`${bookTitle5} | ${author5}`);
       const titleAuthorSpace6 = $("<h5>").attr("class", `title-author`).attr("id", `${date6}`).html(`${bookTitle6} | ${author6}`);
       const titleAuthorSpace7 = $("<h5>").attr("class", `title-author`).attr("id", `${date7}`).html(`${bookTitle7} | ${author7}`);
@@ -200,9 +200,9 @@ $(document).ready(function () {
       const imgSpace6 = $("<img>").attr("src", image6).attr("class", "book-image").attr("id", `${isbn6}`);
       const imgSpace7 = $("<img>").attr("src", image7).attr("class", "book-image").attr("id", `${isbn7}`);
 
-      console.log("5", descSpace5.text());
-      console.log("6", descSpace6.text());
-      console.log("7", descSpace7.text());
+      // console.log("5", descSpace5.text());
+      // console.log("6", descSpace6.text());
+      // console.log("7", descSpace7.text());
 
       console.log("is it undefined?", descSpace5.text() == "undefined");
       console.log("is it undefined?", descSpace6.text() == "undefined");

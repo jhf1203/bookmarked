@@ -7,8 +7,8 @@ const tmpPath = path.join("./", __dirname, "/resources/static/assets/tmp/");
 
 const uploadFiles = (req, res) => {
   try {
-    console.log(req.file);
-    console.log(filePath + req.file.filename);
+    console.log("here is req.file", req.file);
+    console.log("here is filepath plus req.file.filename", filePath + req.file.filename);
 
     if (req.file === undefined) {
       return res.send(`You must select a file.`);

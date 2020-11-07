@@ -241,6 +241,7 @@ module.exports = (db) => {
         },
         raw: true
       }).then(function (dbBlog) {
+        console.log(dbBlog);
         res.render("blog", {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),

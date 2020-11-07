@@ -14,6 +14,7 @@ const cmsForm = $("#cms");
 // Adding an event listener for when the form is submitted
 $(cmsForm).on("click", function (event) {
   event.preventDefault();
+  console.log(window);
   console.log(event);
   // Wont submit the post if we are missing a body or a title
   if (!titleInput.val().trim() || !bodyInput.val().trim()) {
