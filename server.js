@@ -10,8 +10,6 @@ const PORT = process.env.PORT || 3334;
 const app = express();
 const db = require("./models");
 
-global.__basedir = __dirname;
-
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

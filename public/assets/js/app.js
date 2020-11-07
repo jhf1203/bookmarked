@@ -141,7 +141,7 @@ $(document).ready(function () {
 
   function findBook (val, query) {
     const queryURL = "https://www.googleapis.com/books/v1/volumes?q=in" + val + ":" + query + "&key=AIzaSyAGwS80on7Jfqi4kEejw10c-FfiMIUDj_I";
-    console.log(queryURL);
+    // console.log(queryURL);
     $.ajax({
       type: "GET",
       url: queryURL

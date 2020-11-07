@@ -232,6 +232,27 @@ module.exports = (db) => {
     }
   });
 
+  // load blog
+  router.get("/blog", function (req, res) {
+    if (req.isAuthenticated()) {
+      db.Blog.findAll({
+        where: {
+          UserId: req.session.passport.user.id
+        },
+        raw: true
+      }).then(function (dbBlog) {
+        res.render("blog", {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated(),
+          msg: "Welcome!",
+          examples: dbBlog
+        });
+      });
+    } else {
+      res.redirect("/");
+    }
+  });
+
   // Logout
   router.get("/logout", (req, res, next) => {
     req.logout();
