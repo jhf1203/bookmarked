@@ -13,22 +13,12 @@
       <div class="col-md-6">
         <img id="userImage" src="https://via.placeholder.com/1000x2000" class="card-img" alt="userProfileImage">
         <!--POSSIBLE UPLOAD BUTTON HERE-->
-         <form
-          class="mt-1"
-          action="api/upload"
-          method="POST"
-          enctype="multipart/form-data"
-        >
+        <form class="mt-1" action="api/upload" method="POST" enctype="multipart/form-data">
           <div class="form-group">
-            <input
-              type="file"
-              name="file"
-              id="input-files"
-              class="form-control-file border"
-            />
-          <button id="submitButton" type="submit" class="btn btn-default btn-sm">
-            <i class="fa fa-camera-retro">Submit</i>
-          </button>
+            <input type="file" name="file" id="input-files" class="form-control-file border" />
+            <button id="submitButton" type="submit" class="btn btn-default btn-sm">
+              <i class="fa fa-camera-retro">Submit</i>
+            </button>
           </div>
         </form>
       </div>
@@ -38,12 +28,12 @@
           <p class="card-text">Member Since: {{ memberSince }}</p>
           <p>{{userInfo.firstName}} is currently reading:
             {{#each currentList}}
-          <p class={{id}}>{{title}}
-            <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
-              <span hidden>
-                {{id}}</span></button></p><br>
-          {{/each}}
-          <!--Change title of currently reading to just the book image?-->
+            <p class={{id}}>{{title}}
+              <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
+                <span hidden>
+                  {{id}}</span></button></p><br>
+            {{/each}}
+            <!--Change title of currently reading to just the book image?-->
           </p>
           <!--Buttons for user interaction-->
           <p> <button id="addUserButtonNew" type="button" class="btn btn-default btn-sm">
@@ -52,14 +42,14 @@
             <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1"
               type="button">
               <i class="fa fa-users">Followers</i>
-              </button>
+            </button>
             <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3"
               type="button">
               <i class="fa fa-users">Following</i>
-              </button>
+            </button>
             {{#each userInfo.followees}}
-          <div>{{this.firstName}} {{this.lastName}}</div>
-          {{/each}}
+            <div>{{this.firstName}} {{this.lastName}}</div>
+            {{/each}}
           </p>
         </div>
       </div>
@@ -126,19 +116,23 @@
     </div>
   </div> --}}
   <div class="row mt-4">
-      <div class="col-md-4">
-        <div class="form-group">
-          
-        </div>
-      </div>
-      <div class="col-md-2">
-        <a class="btn btn-light" href="/cms">New Post</a>
+    <div class="col-md-4">
+      <div class="form-group">
+
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12 blog-container">
-      </div>
+    <div class="col-md-2">
+      <a class="btn btn-light" href="/blog">New Post</a>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-container">
+      {{#each userBlog}}
+      <h6 id={{id}} class="blog-head">{{heading}}</h6>
+      <p class="blog-body">{{blurb}}</p>
+      {{/each}}
+    </div>
+  </div>
 
 </div>
 

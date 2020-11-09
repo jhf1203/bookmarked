@@ -31,6 +31,12 @@ module.exports = (db) => {
       // }),
       db.Connection.findAll({
         raw: true
+      }),
+      db.Blog.findAll({
+        where: {
+          UserId: req.session.passport.user.id
+        },
+        raw: true
       })
       ]).then(data => {
         console.log("all of the data: ", data);
@@ -70,7 +76,8 @@ module.exports = (db) => {
             currentList: readCurrent,
             futureList: readFuture,
             memberSince: memberSince,
-            isloggedin: req.isAuthenticated()
+            isloggedin: req.isAuthenticated(),
+            userBlog: data[3]
           };
           console.log(userToSend);
           res.render("profile", userToSend);
@@ -117,6 +124,12 @@ module.exports = (db) => {
           id: req.session.passport.user.id
         },
         raw: true
+      }),
+      db.Blog.findAll({
+        where: {
+          UserId: req.params.id
+        },
+        raw: true
       })
       ]).then(data => {
         console.log("DATATADA ", data[3]);
@@ -157,7 +170,8 @@ module.exports = (db) => {
             futureList: readFuture,
             memberSince: memberSince,
             isloggedin: req.isAuthenticated(),
-            activeUser: data[3].id
+            activeUser: data[3].id,
+            userBlog: data[4]
           };
           console.log(userToSend);
           res.render("user", userToSend);

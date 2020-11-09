@@ -1,8 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
   const Blog = sequelize.define("Blog", {
-    type: {
-      type: DataTypes.STRING
-    },
     heading: {
       type: DataTypes.STRING,
       required: true
