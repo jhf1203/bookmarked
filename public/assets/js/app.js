@@ -262,6 +262,24 @@ $(document).ready(function () {
     });
   }
 
+  function addBlogPost (heading, blurb) {
+    console.log("we're starting addblogpostnow!");
+    console.log(`heading is ${heading} and blurb is ${blurb} and userid is ${window.userId}`);
+    const data = {
+      heading: heading,
+      blurb: blurb,
+      UserId: window.userId
+    };
+    console.log(`here is data! ${data}, and its subcomponents are its heading which is ${data.heading}, blurb which is ${data.blurb}, and userId which is ${data.UserId}`);
+    $.ajax({
+      type: "POST",
+      url: "/api/blog",
+      data: data
+    }).then(function (res) {
+      console.log(`res is ${res}`);
+    });
+  };
+
   // ===================  User Actions
 
   // ==========  Events
@@ -416,5 +434,13 @@ $(document).ready(function () {
     const fileName = $("#input-files").val();
     console.log(fileName);
     imageUpload(fileName);
+  });
+
+  $("#blogSubmit").on("click", function (event) {
+    const title = $("#blog-title").val();
+    const body = $("#blog-body").val();
+    console.log(`here is ${title} and now the body is ${body}`);
+    // alert(`title is ${title} and body is ${body}`);
+    addBlogPost(title, body);
   });
 });

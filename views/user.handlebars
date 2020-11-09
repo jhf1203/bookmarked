@@ -13,22 +13,12 @@
       <div class="col-md-6">
         <img id="userImage" src="https://via.placeholder.com/1000x2000" class="card-img" alt="userProfileImage">
         <!--POSSIBLE UPLOAD BUTTON HERE-->
-         <form
-          class="mt-1"
-          action="/upload"
-          method="POST"
-          enctype="multipart/form-data"
-        >
+        <form class="mt-1" action="/upload" method="POST" enctype="multipart/form-data">
           <div class="form-group">
-            <input
-              type="file"
-              name="file"
-              id="input-files"
-              class="form-control-file border"
-            />
-          <button id="submitButton" type="submit" class="btn btn-default btn-sm">
-            <i class="fa fa-camera-retro">Submit</i>
-          </button>
+            <input type="file" name="file" id="input-files" class="form-control-file border" />
+            <button id="submitButton" type="submit" class="btn btn-default btn-sm">
+              <i class="fa fa-camera-retro">Submit</i>
+            </button>
           </div>
         </form>
       </div>
@@ -38,26 +28,26 @@
           <p class="card-text">Member Since: {{ memberSince }}</p>
           <p>{{userInfo.firstName}} is currently reading:
             {{#each currentList}}
-          <p class={{id}}>{{title}}
-          {{/each}}
-          <!--Change title of currently reading to just the book image?-->
-          </p>
-          <!--Buttons for user interaction-->
-          <p> <button id={{userInfo.id}} type="button" class="btn btn-default btn-sm follow-btn">
-              <i class="fa fa-user-plus">Add Friend</i>
-            </button>
-            <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1"
-              type="button">
-              <i class="fa fa-users">Followers</i>
+            <p class={{id}}>{{title}}
+              {{/each}}
+              <!--Change title of currently reading to just the book image?-->
+            </p>
+            <!--Buttons for user interaction-->
+            <p> <button id={{userInfo.id}} type="button" class="btn btn-default btn-sm follow-btn">
+                <i class="fa fa-user-plus">Add Friend</i>
               </button>
-            <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3"
-              type="button">
-              <i class="fa fa-users">Following</i>
+              <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1"
+                type="button">
+                <i class="fa fa-users">Followers</i>
               </button>
-            {{#each userInfo.followees}}
-          <div>{{this.firstName}} {{this.lastName}}</div>
-          {{/each}}
-          </p>
+              <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3"
+                type="button">
+                <i class="fa fa-users">Following</i>
+              </button>
+              {{#each userInfo.followees}}
+              <div>{{this.firstName}} {{this.lastName}}</div>
+              {{/each}}
+            </p>
         </div>
       </div>
     </div>
@@ -73,7 +63,7 @@
           <ul class='future-list'>
             {{#each pastList}}
             <p class={{id}}>{{title}}
-            {{/each}}
+              {{/each}}
           </ul>
         </div>
       </div>
@@ -87,7 +77,7 @@
           <ul class='future-list'>
             {{#each futureList}}
             <p class={{id}}>{{title}}
-            {{/each}}
+              {{/each}}
           </ul>
         </div>
       </div>
@@ -95,7 +85,7 @@
   </div>
 
   <!--blog/review area-->
-  <div class="row">
+  {{!-- <div class="row">
     <div class="col md-12 mt-5">
       <div class="card">
         <div class="card-header">
@@ -114,6 +104,23 @@
           <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
         </div>
       </div>
+    </div>
+  </div> --}}
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="form-group">
+
+      </div>
+    </div>
+    <div class="col-md-2">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-container">
+      {{#each userBlog}}
+      <h6 id={{id}} class="blog-head">{{heading}}</h6>
+      <p class="blog-body">{{blurb}}</p>
+      {{/each}}
     </div>
   </div>
 
@@ -193,7 +200,11 @@
 
 
 <script>
-  var userId = {{activeUser}};
+  var userId = {
+    {
+      activeUser
+    }
+  };
 </script>
 
 {{> modal/login-block}}

@@ -154,11 +154,15 @@ module.exports = function (db) {
     },
 
     addBlogPost: function (req, res) {
+      console.log(req.body);
       db.Blog.create({
         heading: req.body.heading,
-        blurb: req.body.blurb
+        blurb: req.body.blurb,
+        UserId: req.body.UserId
       }).then(function (blogData) {
         res.json(blogData);
+        console.log("res", res);
+        console.log("blogdata", blogData);
       });
     },
     // addToCurrent: function (req, res) {
