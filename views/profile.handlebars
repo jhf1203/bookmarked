@@ -28,12 +28,12 @@
           <p class="card-text">Member Since: {{ memberSince }}</p>
           <p>{{userInfo.firstName}} is currently reading:
             {{#each currentList}}
-            <p class={{id}}>{{title}}
-              <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
-                <span hidden>
-                  {{id}}</span></button></p><br>
-            {{/each}}
-            <!--Change title of currently reading to just the book image?-->
+          <p class={{id}}>{{title}}
+            <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
+              <span hidden>
+                {{id}}</span></button></p><br>
+          {{/each}}
+          <!--Change title of currently reading to just the book image?-->
           </p>
           <!--Buttons for user interaction-->
           <p> <button id="addUserButtonNew" type="button" class="btn btn-default btn-sm">
@@ -48,8 +48,8 @@
               <i class="fa fa-users">Following</i>
             </button>
             {{#each userInfo.followees}}
-            <div>{{this.firstName}} {{this.lastName}}</div>
-            {{/each}}
+          <div>{{this.firstName}} {{this.lastName}}</div>
+          {{/each}}
           </p>
         </div>
       </div>
@@ -121,15 +121,21 @@
 
       </div>
     </div>
-    <div class="col-md-2">
+    {{!-- <div class="col-md-2">
       <a class="btn btn-light" href="/blog">New Post</a>
-    </div>
+    </div> --}}
   </div>
   <div class="row">
     <div class="col-md-12 blog-container">
       {{#each userBlog}}
-      <h6 id={{id}} class="blog-head">{{heading}}</h6>
+      <h6 id={{id}} class="blog-head">{{heading}}</hr>
+      </h6>
+      <hr>
       <p class="blog-body">{{blurb}}</p>
+      <hr>
+      <button id={{id}} class="removeBlogButton" {{id}}><i class="fa fa-times test-icon">Remove Post</i>
+        <span hidden>
+          {{id}}</span></button></p>
       {{/each}}
     </div>
   </div>
@@ -210,7 +216,7 @@
 
 
 <script>
-  var userId = {{userInfo.id}};
+  var userId = {{ userInfo.id }};
 </script>
 
 {{> modal/login-block}}

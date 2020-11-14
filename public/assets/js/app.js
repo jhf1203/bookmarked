@@ -443,4 +443,18 @@ $(document).ready(function () {
     // alert(`title is ${title} and body is ${body}`);
     addBlogPost(title, body);
   });
+
+  $(".removeBlogButton").on("click", function () {
+    const entryId = $(this).attr("id");
+    console.log($(this).parent());
+    console.log(entryId);
+    $.ajax({
+      type: "DELETE",
+      url: `api/Blog/${entryId}`,
+      data: entryId
+    }).then(function (result) {
+      location.reload();
+      console.log(result);
+    });
+  });
 });
