@@ -4,9 +4,9 @@ $(document).ready(function () {
 
   // ========== Events
 
-  const seedBooks = ["cat", "earth", "run", "fire", "hunger", "Winter", "world", "tomorrow", "the", "turn", "fly", "moon", "tales", "dog", "star", "power", "catch", "feel", "house", "event", "game", "valor", "war", "prince", "woman", "man", "pirate", "fish", "fantasy", "stories", "evil", "good", "truth"];
+  const seedBooks = ["jim", "victoria", "james", "mary", "john", "patricia", "robert", "jennifer", "michael", "linda", "william", "elizabeth", "david", "barbara", "richard", "susan", "joseph", "jessica", "thomas", "sarah", "charles", "karen", "chris", "nancy", "daniel", "lisa", "matthew", "margaret", "anthony", "betty", "donald", "sandra", "mark", "ashley", "paul", "dorothy", "steven", "kim", "andrew", "emily", "ken", "donna", "josh", "michelle", "kevin", "carol"];
   const randomBook = seedBooks[Math.floor(Math.random() * seedBooks.length)];
-  findBook("title", randomBook);
+  findBook("author", randomBook);
   console.log("user!", window.userId);
 
   // const searchTerm = $('#searchBook').val();
@@ -37,7 +37,8 @@ $(document).ready(function () {
     const stateCarry = $(this).val();
     const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
     const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
-    const photoCarry = photoStart.substring(photoStart.indexOf("h"));
+    const photoParsed = photoStart.substring(photoStart.indexOf("h"));
+    const photoCarry = photoParsed.replace(/amp;/g,"")
     console.log("isbn", isbnCarry);
     console.log("pic", photoCarry);
 
@@ -70,6 +71,10 @@ $(document).ready(function () {
       }
     });
   };
+
+  function callSuccess () {
+    location.reload()
+  }
 
   function addBookTwice (data) {
     $.ajax({
@@ -141,7 +146,7 @@ $(document).ready(function () {
 
   function findBook (val, query) {
     const queryURL = "https://www.googleapis.com/books/v1/volumes?q=in" + val + ":" + query + "&key=AIzaSyDWTm5Ri0oiuRWTkY3efShrFVhGS0UqNbI";
-    // console.log(queryURL);
+    console.log(queryURL)
     $.ajax({
       type: "GET",
       url: queryURL
@@ -231,10 +236,13 @@ $(document).ready(function () {
     });
   };
 
-  function addToList (state, name, book) {
+  function addToList (state, name, book, author, picture, desc) {
     const data = {
       state: state,
       title: name,
+      author: author,
+      photo: picture,
+      description: desc,
       UserId: window.userId,
       BookId: book
     };
@@ -244,6 +252,7 @@ $(document).ready(function () {
       data: data
     }).then(function (res) {
       console.log(res);
+      callSuccess()
     });
   }
 
@@ -263,14 +272,11 @@ $(document).ready(function () {
   }
 
   function addBlogPost (heading, blurb) {
-    console.log("we're starting addblogpostnow!");
-    console.log(`heading is ${heading} and blurb is ${blurb} and userid is ${window.userId}`);
     const data = {
       heading: heading,
       blurb: blurb,
       UserId: window.userId
     };
-    console.log(`here is data! ${data}, and its subcomponents are its heading which is ${data.heading}, blurb which is ${data.blurb}, and userId which is ${data.UserId}`);
     $.ajax({
       type: "POST",
       url: "/api/blog",

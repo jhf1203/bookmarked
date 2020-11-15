@@ -16,7 +16,6 @@ module.exports = (db) => {
           UserId: req.session.passport.user.id
         },
         raw: true,
-        include: [db.Book]
       }),
       // db.Image.findOne({
       //   where: {
