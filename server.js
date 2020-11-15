@@ -1,4 +1,4 @@
-require("dotenv").config();
+const dotenv = require("dotenv").config();
 const express = require("express");
 const exphbs = require("express-handlebars");
 const cookieParser = require("cookie-parser");
@@ -9,10 +9,14 @@ const helmet = require("helmet");
 const PORT = process.env.PORT || 3334;
 const app = express();
 const db = require("./models");
+// app.use(express.cookieParser('benny'));
+app.use(require('express-session')({ secret: 'benny', resave: true, saveUninitialized: true }));
 
+
+console.log(process.env)
 global.__basedir = __dirname;
 
-app.use(cookieParser());
+// app.use(express.cookieParser("benny"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));

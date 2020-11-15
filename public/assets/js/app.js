@@ -66,7 +66,7 @@ $(document).ready(function () {
       if (dupArr.length === 0) {
         addBookTwice(data);
       } else {
-        addToList(data.state, data.title, data.id);
+        addToList(data.state, data.title, data.id, data.author, data.photo, data.description);
       }
     });
   };
@@ -78,7 +78,7 @@ $(document).ready(function () {
       data: data
     }).then(function (res) {
       console.log(res, res.state, window.userId);
-      addToList(res.state, res.title, res.id);
+      addToList(res.state, res.title, res.id, res.author, res.photo, res.description);
     });
   };
 
@@ -140,7 +140,7 @@ $(document).ready(function () {
   });
 
   function findBook (val, query) {
-    const queryURL = "https://www.googleapis.com/books/v1/volumes?q=in" + val + ":" + query + "&key=AIzaSyAGwS80on7Jfqi4kEejw10c-FfiMIUDj_I";
+    const queryURL = "https://www.googleapis.com/books/v1/volumes?q=in" + val + ":" + query + "&key=AIzaSyDWTm5Ri0oiuRWTkY3efShrFVhGS0UqNbI";
     // console.log(queryURL);
     $.ajax({
       type: "GET",

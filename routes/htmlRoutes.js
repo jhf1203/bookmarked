@@ -15,7 +15,8 @@ module.exports = (db) => {
         where: {
           UserId: req.session.passport.user.id
         },
-        raw: true
+        raw: true,
+        include: [db.Book]
       }),
       // db.Image.findOne({
       //   where: {
@@ -39,7 +40,8 @@ module.exports = (db) => {
         raw: true
       })
       ]).then(data => {
-        console.log("all of the data: ", data);
+        console.log("all of the data: ", data[1]);
+        console.log("YAYAYAYA", data[1]["Book.title"])
         const followingUser = [];
         const userFollowing = [];
         const readPast = [];
