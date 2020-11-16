@@ -1,7 +1,7 @@
 module.exports = {
   development: {
-    username: process.env.SEQUELIZE_USER,
-    password: process.env.SEQUELIZE_PASSWORD,
+    username: "root",
+    password: "12345678",
     // profile picture???
     database: "project2_dev",
     dialect: "mysql",

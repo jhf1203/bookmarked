@@ -63,31 +63,30 @@
       <div class="card">
         <div class="card-header">Have Read</div>
         <div class="card-body" id="cardBody2">
-          <ul class='future-list'>
+          <div class="row">
             {{#each pastList}}
-            <p class={{id}}>{{title}}
-              <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
-                <span hidden>
-                  {{id}}</span></button></p>
+            <div class="col-md-4">
+              <img src={{photo}}>
+            </div>
             {{/each}}
-          </ul>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
     <!--Want to Read Card-->
     <div class="col-sm-6 mt-5">
       <div class="card">
         <div class="card-header">Want to Read</div>
         <div class="card-body" id="cardBody2">
-          <ul class='future-list'>
+          <div class="row">
             {{#each futureList}}
-            <p class={{id}}>{{title}}
-              <button id={{id}} class="remove-button" {{id}}><i class="fa fa-times test-icon"></i>
-                <span hidden>
-                  {{id}}</span></button></p>
+            <div class="col-md-4">
+              <img src={{photo}}>
+            </div>
             {{/each}}
-          </ul>
+          </div>
         </div>
       </div>
     </div>
