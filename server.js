@@ -1,6 +1,8 @@
+// eslint-disable-next-line no-unused-vars
 const dotenv = require("dotenv").config();
 const express = require("express");
 const exphbs = require("express-handlebars");
+// eslint-disable-next-line no-unused-vars
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const passport = require("passport");
@@ -10,10 +12,9 @@ const PORT = process.env.PORT || 3334;
 const app = express();
 const db = require("./models");
 // app.use(express.cookieParser('benny'));
-app.use(require('express-session')({ secret: 'benny', resave: true, saveUninitialized: true }));
+app.use(require("express-session")({ secret: "benny", resave: true, saveUninitialized: true }));
 
-
-console.log(process.env)
+console.log(process.env);
 global.__basedir = __dirname;
 
 // app.use(express.cookieParser("benny"));

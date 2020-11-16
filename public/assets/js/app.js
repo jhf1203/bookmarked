@@ -36,7 +36,7 @@ $(document).ready(function () {
     const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
     const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
     const photoParsed = photoStart.substring(photoStart.indexOf("h"));
-    const photoCarry = photoParsed.replace(/amp;/g,"");
+    const photoCarry = photoParsed.replace(/amp;/g, "");
 
     const data = {
       title: titleCarry,
@@ -69,7 +69,7 @@ $(document).ready(function () {
   };
 
   function callSuccess () {
-    location.reload()
+    location.reload();
   }
 
   function addBookTwice (data) {
@@ -142,70 +142,69 @@ $(document).ready(function () {
 
   function findBook (val, query) {
     const queryURL = "https://www.googleapis.com/books/v1/volumes?q=in" + val + ":" + query + "&key=AIzaSyDWTm5Ri0oiuRWTkY3efShrFVhGS0UqNbI";
-    console.log(queryURL)
+    console.log(queryURL);
     $.ajax({
       type: "GET",
       url: queryURL
     }).then((response) => {
-      $(".render-target").empty()
-      const infoArr = []
+      $(".render-target").empty();
+      const infoArr = [];
       for (let i = 0; i < response.items.length; i++) {
-        infoArr.push(response.items[i].volumeInfo)
+        infoArr.push(response.items[i].volumeInfo);
       }
-      resultFilter(infoArr)
-    })
+      resultFilter(infoArr);
+    });
   }
 
   function resultFilter (arr) {
-    const goodArr = []
+    const goodArr = [];
     for (let i = 0; i < arr.length; i++) {
-      let testArr = Object.keys(arr[i])
+      const testArr = Object.keys(arr[i]);
       if (
-        testArr.indexOf("title") >= 0 && 
-        testArr.indexOf("authors") >= 0 && 
-        testArr.indexOf("description") >=0 && 
-        testArr.indexOf("publishedDate") >=0 && 
-        testArr.indexOf("industryIdentifiers") >=0 && 
-        testArr.indexOf("imageLinks") >=0) {
-          goodArr.push(arr[i])
+        testArr.indexOf("title") >= 0 &&
+        testArr.indexOf("authors") >= 0 &&
+        testArr.indexOf("description") >= 0 &&
+        testArr.indexOf("publishedDate") >= 0 &&
+        testArr.indexOf("industryIdentifiers") >= 0 &&
+        testArr.indexOf("imageLinks") >= 0) {
+        goodArr.push(arr[i]);
       }
     }
-    renderContent(goodArr)
-  }    
+    renderContent(goodArr);
+  }
 
   function renderContent (arr) {
-    for (let i = 0; i < 3; i++){
-    const topDiv = $("<div>").addClass("col-12 offset-lg-2")
-    const h2Div = $("<h2>").attr("id", "greatRead").text("Your next great read")
-    const vbTopDiv = $("<div>").addClass("card mb-3").css("max-width", "740px")
-    topDiv.append(h2Div, vbTopDiv)
-    const secondDiv = $("<div>").addClass("row no-gutters")
-    vbTopDiv.append(secondDiv)
-    const imgDiv = $("<div>").addClass("col-md-3 imgDiv")
-    secondDiv.append(imgDiv)
-    const bookImg = $("<img>").attr("src", arr[i].imageLinks.thumbnail).addClass("book-image").attr("id", arr[i].industryIdentifiers[0].identifier)
-    const contentDiv = $("<div>").addClass("col-md-9")
-    secondDiv.append(imgDiv, contentDiv)
-    imgDiv.append(bookImg)
-    const cardBody = $("<div>").addClass("card-body")
-    contentDiv.append(cardBody)
-    const authorTitle = $("<h5>").addClass("title-author").attr("id", arr[i].publishedDate).html(`${arr[i].title} | ${arr[i].authors[0]}`)
-    const description = $("<p>").addClass("book-description").html(arr[i].description)
-    cardBody.prepend(authorTitle, description)
-    const cardFooter = $("<div>").addClass("card-footer text-muted")
-    cardBody.append(cardFooter)
-    const dropDownDiv = $("<div>").addClass("dropdown")
-    cardFooter.append(dropDownDiv)
-    const selectBook = $("<select>").addClass("selectBook")
-    dropDownDiv.append(selectBook)
-    const optionPlaceholder = $("<option selected>").text("Pick Me!")
-    const optionPast = $("<option>").addClass("past").attr("value", "past").text("Have Read")
-    const optionFuture = $("<option>").addClass("future").attr("value", "future").text("To Read")
-    const optionCurrent = $("<option>").addClass("current").attr("value", "current").text("Currently Reading")
-    selectBook.append(optionPlaceholder, optionPast, optionFuture, optionCurrent);
+    for (let i = 0; i < 3; i++) {
+      const topDiv = $("<div>").addClass("col-12 offset-lg-2");
+      const h2Div = $("<h2>").attr("id", "greatRead").text("Your next great read");
+      const vbTopDiv = $("<div>").addClass("card mb-3").css("max-width", "740px");
+      topDiv.append(h2Div, vbTopDiv);
+      const secondDiv = $("<div>").addClass("row no-gutters");
+      vbTopDiv.append(secondDiv);
+      const imgDiv = $("<div>").addClass("col-md-3 imgDiv");
+      secondDiv.append(imgDiv);
+      const bookImg = $("<img>").attr("src", arr[i].imageLinks.thumbnail).addClass("book-image").attr("id", arr[i].industryIdentifiers[0].identifier);
+      const contentDiv = $("<div>").addClass("col-md-9");
+      secondDiv.append(imgDiv, contentDiv);
+      imgDiv.append(bookImg);
+      const cardBody = $("<div>").addClass("card-body");
+      contentDiv.append(cardBody);
+      const authorTitle = $("<h5>").addClass("title-author").attr("id", arr[i].publishedDate).html(`${arr[i].title} | ${arr[i].authors[0]}`);
+      const description = $("<p>").addClass("book-description").html(arr[i].description);
+      cardBody.prepend(authorTitle, description);
+      const cardFooter = $("<div>").addClass("card-footer text-muted");
+      cardBody.append(cardFooter);
+      const dropDownDiv = $("<div>").addClass("dropdown");
+      cardFooter.append(dropDownDiv);
+      const selectBook = $("<select>").addClass("selectBook");
+      dropDownDiv.append(selectBook);
+      const optionPlaceholder = $("<option selected>").text("Pick Me!");
+      const optionPast = $("<option>").addClass("past").attr("value", "past").text("Have Read");
+      const optionFuture = $("<option>").addClass("future").attr("value", "future").text("To Read");
+      const optionCurrent = $("<option>").addClass("current").attr("value", "current").text("Currently Reading");
+      selectBook.append(optionPlaceholder, optionPast, optionFuture, optionCurrent);
 
-    $(".render-target").append(topDiv)
-    
+      $(".render-target").append(topDiv);
     }
   };
 
@@ -225,7 +224,7 @@ $(document).ready(function () {
       data: data
     }).then(function (res) {
       console.log(res);
-      callSuccess()
+      callSuccess();
     });
   }
 
@@ -399,21 +398,21 @@ $(document).ready(function () {
     addConnection(me, you);
   });
 
-  function imageUpload (file) {
-    $.ajax({
-      type: "POST",
-      url: "/api/upload",
-      data: file
-    }).then((data) => {
-      console.log(data);
-    });
-  }
+  // function imageUpload (file) {
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/api/upload",
+  //     data: file
+  //   }).then((data) => {
+  //     console.log(data);
+  //   });
+  // }
 
-  $("#submitButton").on("click", function () {
-    const fileName = $("#input-files").val();
-    console.log(fileName);
-    imageUpload(fileName);
-  });
+  // $("#submitButton").on("click", function () {
+  //   const fileName = $("#input-files").val();
+  //   console.log(fileName);
+  //   imageUpload(fileName);
+  // });
 
   $("#blogSubmit").on("click", function (event) {
     const title = $("#blog-title").val();
@@ -434,6 +433,35 @@ $(document).ready(function () {
     }).then(function (result) {
       location.reload();
       console.log(result);
+    });
+  });
+
+  // cloudinary Image upload-- hello problem child -
+  const cloudinaryURL = "https://api.cloudinary.com/v1_1/victoria-greenfield/image/upload";
+  const cloudinaryUploadPresent = "gkkjcgbg";
+
+  const imgPreview = document.getElementById("img-preview");
+  const fileUpload = document.getElementById("file-upload");
+
+  fileUpload.addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    console.log(file);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", cloudinaryUploadPresent);
+
+    $.ajax({
+      type: "POST",
+      url: cloudinaryURL,
+      data: formData,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    }).then(function (res) {
+      console.log(res);
+      imgPreview.src = res.data.secure_url;
+    }).catch(function (err) {
+      console.log(err);
     });
   });
 });
