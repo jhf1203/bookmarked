@@ -7,9 +7,6 @@ $(document).ready(function () {
   const seedBooks = ["victoria", "james", "mary", "john", "patricia", "robert", "jennifer", "michael", "linda", "william", "elizabeth", "david", "barbara", "richard", "susan", "joseph", "jessica", "thomas", "sarah", "charles", "karen", "chris", "nancy", "daniel", "lisa", "matthew", "margaret", "anthony", "betty", "donald", "sandra", "mark", "ashley", "paul", "dorothy", "steven", "kim", "andrew", "emily", "ken", "donna", "josh", "michelle", "kevin", "carol"];
   const randomBook = seedBooks[Math.floor(Math.random() * seedBooks.length)];
   findBook("author", randomBook);
-  console.log("user!", window.userId);
-
-  // const searchTerm = $('#searchBook').val();
 
   $("#searchTitle").on("click", function () {
     const param = $(".search-field").val();
@@ -23,11 +20,11 @@ $(document).ready(function () {
 
   $(".refreshBtn").on("click", function (event) {
     event.preventDefault();
-    findBook("title", randomBook);
+    findBook("author", randomBook);
   });
 
-  $("select").on("change", function (event) {
-    console.log("this is selectbook")
+  $(document).on("change", ".selectBook", function (event) {
+    console.log("this is selectbook");
     event.preventDefault();
     console.log($(this).val());
 
@@ -39,9 +36,7 @@ $(document).ready(function () {
     const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
     const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
     const photoParsed = photoStart.substring(photoStart.indexOf("h"));
-    const photoCarry = photoParsed.replace(/amp;/g,"")
-    console.log("isbn", isbnCarry);
-    console.log("pic", photoCarry);
+    const photoCarry = photoParsed.replace(/amp;/g,"");
 
     const data = {
       title: titleCarry,
@@ -152,9 +147,7 @@ $(document).ready(function () {
       type: "GET",
       url: queryURL
     }).then((response) => {
-      $(".title-author").remove();
-      $(".book-description").remove();
-      $(".book-image").remove();
+      $(".render-target").empty()
       const infoArr = []
       for (let i = 0; i < response.items.length; i++) {
         infoArr.push(response.items[i].volumeInfo)
@@ -165,7 +158,6 @@ $(document).ready(function () {
 
   function resultFilter (arr) {
     const goodArr = []
-    console.log("we're in result filter")
     for (let i = 0; i < arr.length; i++) {
       let testArr = Object.keys(arr[i])
       if (
@@ -182,7 +174,6 @@ $(document).ready(function () {
   }    
 
   function renderContent (arr) {
-console.log("we're in render content")
     for (let i = 0; i < 3; i++){
     const topDiv = $("<div>").addClass("col-12 offset-lg-2")
     const h2Div = $("<h2>").attr("id", "greatRead").text("Your next great read")
