@@ -437,8 +437,8 @@ $(document).ready(function () {
   });
 
   // cloudinary Image upload-- hello problem child -
-  const cloudinaryURL = "https://api.cloudinary.com/v1_1/victoria-greenfield/image/upload";
-  const cloudinaryUploadPresent = "gkkjcgbg";
+  const cloudinaryURL = "https://api.cloudinary.com/v1_1/victoria-greenfield/image/upload"; // will get hidden when I move to server side
+  const cloudinaryUploadPresent = "gkkjcgbg"; // will get hidden when I move to server side
 
   const imgPreview = document.getElementById("img-preview");
   const fileUpload = document.getElementById("file-upload");
@@ -453,10 +453,13 @@ $(document).ready(function () {
     $.ajax({
       type: "POST",
       url: cloudinaryURL,
-      data: formData,
+      // processData: false,
+      // contentType: false,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
-      }
+      }, // multipart/form-data also doesn't work in place of application/x-www-form-urlencoded
+      // https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
+      data: formData
     }).then(function (res) {
       console.log(res);
       imgPreview.src = res.data.secure_url;
