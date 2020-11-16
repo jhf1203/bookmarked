@@ -4,7 +4,7 @@ $(document).ready(function () {
 
   // ========== Events
 
-  const seedBooks = ["jim", "victoria", "james", "mary", "john", "patricia", "robert", "jennifer", "michael", "linda", "william", "elizabeth", "david", "barbara", "richard", "susan", "joseph", "jessica", "thomas", "sarah", "charles", "karen", "chris", "nancy", "daniel", "lisa", "matthew", "margaret", "anthony", "betty", "donald", "sandra", "mark", "ashley", "paul", "dorothy", "steven", "kim", "andrew", "emily", "ken", "donna", "josh", "michelle", "kevin", "carol"];
+  const seedBooks = ["victoria", "james", "mary", "john", "patricia", "robert", "jennifer", "michael", "linda", "william", "elizabeth", "david", "barbara", "richard", "susan", "joseph", "jessica", "thomas", "sarah", "charles", "karen", "chris", "nancy", "daniel", "lisa", "matthew", "margaret", "anthony", "betty", "donald", "sandra", "mark", "ashley", "paul", "dorothy", "steven", "kim", "andrew", "emily", "ken", "donna", "josh", "michelle", "kevin", "carol"];
   const randomBook = seedBooks[Math.floor(Math.random() * seedBooks.length)];
   findBook("author", randomBook);
   console.log("user!", window.userId);
@@ -27,6 +27,7 @@ $(document).ready(function () {
   });
 
   $("select").on("change", function (event) {
+    console.log("this is selectbook")
     event.preventDefault();
     console.log($(this).val());
 
@@ -154,87 +155,112 @@ $(document).ready(function () {
       $(".title-author").remove();
       $(".book-description").remove();
       $(".book-image").remove();
+      const infoArr = []
+      for (let i = 0; i < response.items.length; i++) {
+        infoArr.push(response.items[i].volumeInfo)
+      }
+      resultFilter(infoArr)
+    })
+  }
+
+  function resultFilter (arr) {
+    const goodArr = []
+    console.log("we're in result filter")
+    for (let i = 0; i < arr.length; i++) {
+      let testArr = Object.keys(arr[i])
+      if (
+        testArr.indexOf("title") >= 0 && 
+        testArr.indexOf("authors") >= 0 && 
+        testArr.indexOf("description") >=0 && 
+        testArr.indexOf("publishedDate") >=0 && 
+        testArr.indexOf("industryIdentifiers") >=0 && 
+        testArr.indexOf("imageLinks") >=0) {
+          goodArr.push(arr[i])
+      }
+    }
+    renderContent(goodArr)
+  }    
+
+  function renderContent (arr) {
+console.log("we're in render content")
+    for (let i = 0; i < 3; i++){
+    const topDiv = $("<div>").addClass("col-12 offset-lg-2")
+    const h2Div = $("<h2>").attr("id", "greatRead").text("Your next great read")
+    const vbTopDiv = $("<h2>").addClass("card mb-3").css("max-width", "740px")
+    topDiv.append(h2Div, vbTopDiv)
+    const secondDiv = $("<div>").addClass("row no-gutters")
+    vbTopDiv.append(secondDiv)
+    const imgDiv = $("<div>").addClass("col-md-3 imgDiv")
+    secondDiv.append(imgDiv)
+    const bookImg = $("<img>").attr("src", arr[i].imageLinks.thumbnail).addClass("book-image").attr("id", arr[i].industryIdentifiers[0].identifier)
+    const contentDiv = $("<div>").addClass("col-md-9")
+    secondDiv.append(imgDiv, contentDiv)
+    imgDiv.append(bookImg)
+    const cardBody = $("<div>").addClass("card-body")
+    contentDiv.append(cardBody)
+    const authorTitle = $("<h5>").addClass("title-author").attr("id", arr[i].publishedDate).html(`${arr[i].title} | ${arr[i].authors[0]}`)
+    const description = $("<p>").addClass("book-description").html(arr[i].description)
+    cardBody.prepend(authorTitle, description)
+    const cardFooter = $("<div>").addClass("card-footer text-muted")
+    cardBody.append(cardFooter)
+    const dropDownDiv = $("<div>").addClass("dropdown")
+    cardFooter.append(dropDownDiv)
+    const selectBook = $("<select>").addClass("selectBook")
+    dropDownDiv.append(selectBook)
+    const optionPlaceholder = $("<option selected>").text("Pick Me!")
+    const optionPast = $("<option>").addClass("past").attr("value", "past").text("Have Read")
+    const optionFuture = $("<option>").addClass("future").attr("value", "future").text("To Read")
+    const optionCurrent = $("<option>").addClass("current").attr("value", "current").text("Currently Reading")
+    selectBook.append(optionPlaceholder, optionPast, optionFuture, optionCurrent);
+
+    $(".render-target").append(topDiv)
+    
+    }
+  };
 
       // First Card
-      const bookTitle5 = response.items[0].volumeInfo.title;
-      const author5 = response.items[0].volumeInfo.authors[0];
-      const description5 = response.items[0].volumeInfo.description;
-      const image5 = response.items[0].volumeInfo.imageLinks.thumbnail;
-      const date5 = response.items[0].volumeInfo.publishedDate;
-      const isbn5 = response.items[0].volumeInfo.industryIdentifiers[0].identifier;
-      // console.log(bookTitle5);
-      // console.log(author5);
-      // console.log(description5);
-      // console.log(image5);
-      // console.log(date5);
-      // console.log(isbn5);
+      // const bookTitle5 = response.items[0].volumeInfo.title;
+      // const author5 = response.items[0].volumeInfo.authors[0];
+      // const description5 = response.items[0].volumeInfo.description;
+      // const image5 = response.items[0].volumeInfo.imageLinks.thumbnail;
+      // const date5 = response.items[0].volumeInfo.publishedDate;
+      // const isbn5 = response.items[0].volumeInfo.industryIdentifiers[0].identifier;
+     
 
-      // Second Card
-      const bookTitle6 = response.items[1].volumeInfo.title;
-      const author6 = response.items[1].volumeInfo.authors[0];
-      const description6 = response.items[1].volumeInfo.description;
-      const image6 = response.items[1].volumeInfo.imageLinks.thumbnail;
-      const date6 = response.items[1].volumeInfo.publishedDate;
-      const isbn6 = response.items[1].volumeInfo.industryIdentifiers[0].identifier;
-      // console.log(bookTitle6);
-      // console.log(author6);
-      // console.log(description6);
-      // console.log(image6);
-      // console.log(date6);
-      // console.log(isbn6);
-      // Third Card
-      const bookTitle7 = response.items[2].volumeInfo.title;
-      const author7 = response.items[2].volumeInfo.authors[0];
-      const description7 = response.items[2].volumeInfo.description;
-      const image7 = response.items[2].volumeInfo.imageLinks.thumbnail;
-      const date7 = response.items[2].volumeInfo.publishedDate;
-      const isbn7 = response.items[2].volumeInfo.industryIdentifiers[0].identifier;
-      // console.log(bookTitle7);
-      // console.log(author7);
-      // console.log(description7);
-      // console.log(image7);
-      // console.log(date7);
-      // console.log(isbn7);
-      const titleAuthorSpace5 = $("<h5>").attr("class", `title-author`).attr("id", `${date5}`).html(`${bookTitle5} | ${author5}`);
-      const titleAuthorSpace6 = $("<h5>").attr("class", `title-author`).attr("id", `${date6}`).html(`${bookTitle6} | ${author6}`);
-      const titleAuthorSpace7 = $("<h5>").attr("class", `title-author`).attr("id", `${date7}`).html(`${bookTitle7} | ${author7}`);
-      const descSpace5 = $("<p>").attr("class", "book-description desc5").html(`${description5}`);
-      const descSpace6 = $("<p>").attr("class", "book-description desc6").html(`${description6}`);
-      const descSpace7 = $("<p>").attr("class", "book-description desc7").html(`${description7}`);
-      const imgSpace5 = $("<img>").attr("src", image5).attr("class", "book-image").attr("id", `${isbn5}`);
-      const imgSpace6 = $("<img>").attr("src", image6).attr("class", "book-image").attr("id", `${isbn6}`);
-      const imgSpace7 = $("<img>").attr("src", image7).attr("class", "book-image").attr("id", `${isbn7}`);
+      // // Second Card
+      // const bookTitle6 = response.items[1].volumeInfo.title;
+      // const author6 = response.items[1].volumeInfo.authors[0];
+      // const description6 = response.items[1].volumeInfo.description;
+      // const image6 = response.items[1].volumeInfo.imageLinks.thumbnail;
+      // const date6 = response.items[1].volumeInfo.publishedDate;
+      // const isbn6 = response.items[1].volumeInfo.industryIdentifiers[0].identifier;
+      
+      // // Third Card
+      // const bookTitle7 = response.items[2].volumeInfo.title;
+      // const author7 = response.items[2].volumeInfo.authors[0];
+      // const description7 = response.items[2].volumeInfo.description;
+      // const image7 = response.items[2].volumeInfo.imageLinks.thumbnail;
+      // const date7 = response.items[2].volumeInfo.publishedDate;
+      // const isbn7 = response.items[2].volumeInfo.industryIdentifiers[0].identifier;
+     
+      // const titleAuthorSpace5 = $("<h5>").attr("class", `title-author`).attr("id", `${date5}`).html(`${bookTitle5} | ${author5}`);
+      // const titleAuthorSpace6 = $("<h5>").attr("class", `title-author`).attr("id", `${date6}`).html(`${bookTitle6} | ${author6}`);
+      // const titleAuthorSpace7 = $("<h5>").attr("class", `title-author`).attr("id", `${date7}`).html(`${bookTitle7} | ${author7}`);
+      // const descSpace5 = $("<p>").attr("class", "book-description desc5").html(`${description5}`);
+      // const descSpace6 = $("<p>").attr("class", "book-description desc6").html(`${description6}`);
+      // const descSpace7 = $("<p>").attr("class", "book-description desc7").html(`${description7}`);
+      // const imgSpace5 = $("<img>").attr("src", image5).attr("class", "book-image").attr("id", `${isbn5}`);
+      // const imgSpace6 = $("<img>").attr("src", image6).attr("class", "book-image").attr("id", `${isbn6}`);
+      // const imgSpace7 = $("<img>").attr("src", image7).attr("class", "book-image").attr("id", `${isbn7}`);
 
-      // console.log("5", descSpace5.text());
-      // console.log("6", descSpace6.text());
-      // console.log("7", descSpace7.text());
-
-      console.log("is it undefined?", descSpace5.text() == "undefined");
-      console.log("is it undefined?", descSpace6.text() == "undefined");
-      console.log("is it undefined?", descSpace7.text() == "undefined");
-
-      if (descSpace5.html() === "undefined") {
-        descSpace5.css("color", "#fff");
-      };
-
-      if (descSpace6.html() == "undefined") {
-        descSpace6.css("color", "#fff");
-      }
-
-      if (descSpace7.html() == "undefined") {
-        descSpace6.css("color", "#fff");
-      }
-
-      $("#cardBody5").prepend(titleAuthorSpace5, descSpace5);
-      $(".imgDiv5").append(imgSpace5);
-      $("#cardBody6").prepend(titleAuthorSpace6, descSpace6);
-      $(".imgDiv6").append(imgSpace6);
-      $("#cardBody7").prepend(titleAuthorSpace7, descSpace7);
-      $(".imgDiv7").append(imgSpace7);
-    }).catch(error => {
-      console.log(error);
-    });
-  };
+      // $("#cardBody5").prepend(titleAuthorSpace5, descSpace5);
+      // $(".imgDiv5").append(imgSpace5);
+      // $("#cardBody6").prepend(titleAuthorSpace6, descSpace6);
+      // $(".imgDiv6").append(imgSpace6);
+      // $("#cardBody7").prepend(titleAuthorSpace7, descSpace7);
+      // $(".imgDiv7").append(imgSpace7);
+   
+    
 
   function addToList (state, name, book, author, picture, desc) {
     const data = {
