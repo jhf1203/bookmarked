@@ -186,7 +186,7 @@ console.log("we're in render content")
     for (let i = 0; i < 3; i++){
     const topDiv = $("<div>").addClass("col-12 offset-lg-2")
     const h2Div = $("<h2>").attr("id", "greatRead").text("Your next great read")
-    const vbTopDiv = $("<h2>").addClass("card mb-3").css("max-width", "740px")
+    const vbTopDiv = $("<div>").addClass("card mb-3").css("max-width", "740px")
     topDiv.append(h2Div, vbTopDiv)
     const secondDiv = $("<div>").addClass("row no-gutters")
     vbTopDiv.append(secondDiv)
