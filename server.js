@@ -15,7 +15,6 @@ const db = require("./models");
 app.use(require("express-session")({ secret: "benny", resave: true, saveUninitialized: true }));
 
 console.log(process.env);
-global.__basedir = __dirname;
 
 // app.use(express.cookieParser("benny"));
 app.use(express.urlencoded({ extended: false }));

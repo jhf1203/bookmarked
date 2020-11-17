@@ -438,7 +438,7 @@ $(document).ready(function () {
 
   // cloudinary Image upload-- hello problem child -
   const cloudinaryURL = "https://api.cloudinary.com/v1_1/victoria-greenfield/image/upload"; // will get hidden when I move to server side
-  const cloudinaryUploadPresent = "gkkjcgbg"; // will get hidden when I move to server side
+  const cloudinaryUploadPreset = "gkkjcgbg"; // will get hidden when I move to server side
 
   const imgPreview = document.getElementById("img-preview");
   const fileUpload = document.getElementById("file-upload");
@@ -448,13 +448,13 @@ $(document).ready(function () {
     console.log(file);
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", cloudinaryUploadPresent);
+    formData.append("upload_preset", cloudinaryUploadPreset);
 
     $.ajax({
       type: "POST",
       url: cloudinaryURL,
-      // processData: false,
-      // contentType: false,
+      processData: false,
+      contentType: false,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       }, // multipart/form-data also doesn't work in place of application/x-www-form-urlencoded
