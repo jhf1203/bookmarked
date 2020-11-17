@@ -1,26 +1,26 @@
 {{> nav/nav-block}}
 
-  <!--container for page-->
-  <div id="home" class="container">
+<!--container for page-->
+<div id="home" class="container">
 
-    <!-- jumbotron with logo-->
-    <div id="jumbotronProfile" class="jumbotron">
+  <!-- jumbotron with logo-->
+  <div id="jumbotronProfile" class="jumbotron">
+  </div>
+
+  <div class="col-12 offset-lg-3">
+    <div class="row">
+      <input class="search-field" type="text" placeholder="Search" autocomplete="off" size="60">
     </div>
 
-    <div class="col-12 offset-lg-3">
-      <div class="row">
-        <input class="search-field" type="text" placeholder="Search" autocomplete="off" size="60">
-      </div>
-
-      <div class="mx-auto" style="width: 870px;">
-        <button type="button" id="searchTitle" class="btn btn-default mt-4 btn-sm submit-search">
-          Search Title
-        </button>
-        <button type="button" id="searchAuthor" class="btn btn-default mt-4 btn-sm submit-search">
-          Search Author
-        </button>
-      </div>
+    <div class="mx-auto" style="width: 870px;">
+      <button type="button" id="searchTitle" class="btn btn-default mt-4 btn-sm submit-search">
+        Search Title
+      </button>
+      <button type="button" id="searchAuthor" class="btn btn-default mt-4 btn-sm submit-search">
+        Search Author
+      </button>
     </div>
+  </div>
 
     <!--finding some new reads-->
     <!--Card One of View Books-->
@@ -48,71 +48,69 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <!--Card Two of View Books-->
-      <div class="col-12 offset-lg-2">
-        <h2 id="greatRead">Your next great read:</h2>
-        <div id="viewBooksTop" class="card mb-3" style="max-width: 740px;">
-          <div class="row no-gutters">
-            <div class="col-md-3 imgDiv6">
-            </div>
-            <div class="col-md-9">
-              <div class="card-body" id="cardBody6">
-                <div class="card-footer text-muted">
-                  <div class="dropdown">
-                    <select class="selectBook" id="bookInput">
-                      <option selected>Pick me!</option>
-                      <option class='past6' value='past'>Read</option>
-                      <option class='future6' value='future'>To Read</option>
-                      <option class='current6' value='current'>Currently Reading</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <!--Card Two of View Books-->
+    <div class="col-12 offset-lg-2">
+      <h2 id="greatRead">Your next great read:</h2>
+      <div id="viewBooksTop" class="card mb-3" style="max-width: 740px;">
+        <div class="row no-gutters">
+          <div class="col-md-3 imgDiv6">
           </div>
-        </div>
-      </div>
-
-      <!--Card Three of View Books-->
-      <div class="col-12 offset-lg-2">
-        <h2 id="greatRead">Your next great read:</h2>
-        <div id="viewBooksTop" class="card mb-3" style="max-width: 740px;">
-          <div class="row no-gutters">
-            <div class="col-md-3 imgDiv7">
-            </div>
-            <div class="col-md-9">
-              <div class="card-body" id="cardBody7">
-                <div id="cardFooter" class="card-footer text-muted">
+          <div class="col-md-9">
+            <div class="card-body" id="cardBody6">
+              <div class="card-footer text-muted">
+                <div class="dropdown">
                   <select class="selectBook" id="bookInput">
                     <option selected>Pick me!</option>
-                    <option class='past7' value='past'>Read</option>
-                    <option class='future7' value='future'>To Read</option>
-                    <option class='current7' value='current'>Currently Reading</option>
+                    <option class='past6' value='past'>Read</option>
+                    <option class='future6' value='future'>To Read</option>
+                    <option class='current6' value='current'>Currently Reading</option>
                   </select>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div> --}}
-    </div>
-
-    <!--button to refresh books-->
-    <div class="col-12 offset-lg-5">
-      <div class="refreshBtn">
-        <button 
-        onClick="window.location.reload();" 
-        type="reload" 
-        id="refreshBtn" 
-        class="btnRefresh btn btn-default mt-4 btn-sm"> 
-        Refresh Books <i class="fa fa-book"> </i>
-        </button>
       </div>
     </div>
-  
+
+    <!--Card Three of View Books-->
+    <div class="col-12 offset-lg-2">
+      <h2 id="greatRead">Your next great read:</h2>
+      <div id="viewBooksTop" class="card mb-3" style="max-width: 740px;">
+        <div class="row no-gutters">
+          <div class="col-md-3 imgDiv7">
+          </div>
+          <div class="col-md-9">
+            <div class="card-body" id="cardBody7">
+              <div id="cardFooter" class="card-footer text-muted">
+                <select class="selectBook" id="bookInput">
+                  <option selected>Pick me!</option>
+                  <option class='past7' value='past'>Read</option>
+                  <option class='future7' value='future'>To Read</option>
+                  <option class='current7' value='current'>Currently Reading</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> --}}
+    </div>
+  </div>
+
+  <!--button to refresh books-->
+  <div class="col-12 offset-lg-5">
+    <div class="refreshBtn">
+      <button onClick="window.location.reload();" type="reload" id="refreshBtn"
+        class="btnRefresh btn btn-default mt-4 btn-sm">
+        Refresh Books <i class="fa fa-book"> </i>
+      </button>
+    </div>
+  </div>
+
 </div>
 
 <script>
-  var userId = {{userInfo.id}};
+  var userId = {{ userInfo.id }};
 </script>

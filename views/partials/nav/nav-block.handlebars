@@ -18,23 +18,23 @@
 
     {{#if isloggedin}}
       <li class="nav-item">
-        <a class="nav-link profile" href="/profile">My Profile</a>
+        <a class="nav-link profile" href="/profile">- My Profile -</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/blog">My Blog</a>
+        <a class="nav-link" href="/blog">- Write Blog Post -</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link view-books" href="/example">View Books</a>
+        <a class="nav-link view-books" href="/example">- View Books -</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
+        <a class="nav-link" href="/logout">- Logout -</a>
       </li>
     {{else}}
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="login-modal">Login</a>
+      <li id="userop" class="nav-item">
+        <a class="nav-link" href="#" id="login-modal">- Login -</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/register" data-register={{register}}>Register</a>
+        <a class="nav-link" href="/register" data-register={{register}}>- Register -</a>
       </li>
     {{/if}}
   </ul>
