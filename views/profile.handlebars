@@ -70,8 +70,13 @@
         <div class="card-body" id="cardBody2">
           <div class="row">
             {{#each pastList}}
-            <div class="col-md-4">
-              <img src={{photo}}>
+            <div class="col-md-4 list-img" id={{id}}>
+                <div class="card list-card" id={{id}} style="background-image: url('{{photo}}')">
+                  <div class="card-body list-card-body">
+                    <p>Click for more info</p>
+                    <p class="card-list-close-text">Remove from list <i class="fa fa-times remove-icon"></i></p>
+                  </div>
+                </div>
             </div>
             {{/each}}
           </div>
@@ -87,8 +92,13 @@
         <div class="card-body" id="cardBody2">
           <div class="row">
             {{#each futureList}}
-            <div class="col-md-4">
-              <img src={{photo}}>
+            <div class="col-md-4 list-img" id={{id}}>
+                <div class="card list-card" id={{id}} style="background-image: url('{{photo}}')">
+                  <div class="card-body list-card-body">
+                    <p>Click for more info</p>
+                    <p class="card-list-close-text">Remove from list <i class="fa fa-times remove-icon"></i></p>
+                  </div>
+                </div>
             </div>
             {{/each}}
           </div>
