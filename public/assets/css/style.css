@@ -248,6 +248,34 @@ hr {
   text-align: center;
 }
 
+.card-list-close-text {
+  color: white;
+  font-size: 11px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+  margin-top: 100%;
+  margin-bottom: 0%
+}
+
+.list-card {
+height: 200px;
+width: 90%;
+background-size: cover;
+margin-bottom: 30px
+}
+
+.list-card-body {
+  opacity: 0%;
+  background-color: #68aaa2;
+  color: white
+}
+
+.list-card-body:hover {
+  opacity: 0.9;
+  transition: opacity 0.25s ease;
+}
+
 .scroll {
   max-height: 100px;
   overflow-y: auto;

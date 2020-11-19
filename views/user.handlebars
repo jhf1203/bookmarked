@@ -62,8 +62,14 @@
         <div class="card-body" id="cardBody2">
           <ul class='future-list'>
             {{#each pastList}}
-            <p class={{id}}>{{title}}
-              {{/each}}
+              <div class="col-md-4 list-img" id={{id}}>
+                <div class="card list-card" id={{id}} style="background-image: url('{{photo}}')">
+                  <div class="card-body list-card-body">
+                    <p>Click for more info</p>
+                  </div>
+                </div>
+            </div>              
+            {{/each}}
           </ul>
         </div>
       </div>
@@ -76,8 +82,14 @@
         <div class="card-body" id="cardBody2">
           <ul class='future-list'>
             {{#each futureList}}
-            <p class={{id}}>{{title}}
-              {{/each}}
+              <div class="col-md-4 list-img" id={{id}}>
+                <div class="card list-card" id={{id}} style="background-image: url('{{photo}}')">
+                  <div class="card-body list-card-body">
+                    <p>Click for more info</p>
+                  </div>
+                </div>
+            </div>              
+            {{/each}}
           </ul>
         </div>
       </div>
