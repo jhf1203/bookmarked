@@ -31,12 +31,26 @@ $(document).ready(function () {
     const taCarry = $(this).parent().parent().siblings().html();
     const descCarry = $(this).parent().parent().siblings().next().html();
     const photoStart = $(this).parent().parent().parent().parent().siblings().html();
+    
+    // trimming excess text off of the captured image url
+    const photoClipFront = photoStart.substring(photoStart.indexOf("="));
+    const photoToArr = photoClipFront.split(" ")
+    const photoToLetters = photoToArr[0].split("")
+    console.log(photoToLetters)
+    const trimmedArr = []
+
+    for (let i = 2; i < (photoToLetters.length-1); i++) {
+      trimmedArr.push(photoToLetters[i])
+    }
+    const imgStringCommas = trimmedArr.toString();
+    const imgStringCorrect = imgStringCommas.replace(/,/g, "")
+    
     const isbnCarry = $(this).parent().parent().parent().parent().siblings().children().attr("id");
     const stateCarry = $(this).val();
     const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
     const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
-    const photoParsed = photoStart.substring(photoStart.indexOf("h"));
-    const photoCarry = photoParsed.replace(/amp;/g, "");
+    // const photoParsed = photoStart.substring(photoStart.indexOf("h"));
+    const photoCarry = imgStringCorrect.replace(/amp;/g, "");
 
     const data = {
       title: titleCarry,
@@ -78,10 +92,32 @@ $(document).ready(function () {
       url: "/api/books",
       data: data
     }).then(function (res) {
-      console.log(res, res.state, window.userId);
       addToList(res.state, res.title, res.id, res.author, res.photo, res.description);
     });
   };
+
+  function singleBookInfo (bookId) {
+    $.ajax({
+      type: "GET",
+      url: `api/lists/${bookId}`
+    }).then(response => {
+      $(".modal-title-author-text").remove()
+      $(".modal-img").remove()
+      $(".modal-desc-text").remove()
+
+      const modalTitleAuthor = $("<p>").attr("class", "modal-title-author-text").html(`${response.title} | ${response.author}`)
+      $(".modal-title-author-row").append(modalTitleAuthor);
+      const modalImg = $("<img>").attr("src", response.photo).attr("class", "modal-img")
+      $(".modal-img-row").append(modalImg);
+      const modalDescription = $("<p>").attr("class", "modal-desc-text").html(response.description);
+      $(".modal-desc-col").append(modalDescription)
+    })
+  }
+
+  $(".list-card").on("click", function () {
+    const internalBook = ($(this).attr("id"))
+    singleBookInfo(internalBook)
+  })
 
   $(".user-connection").on("click", function () {
     const userTarget = ($(this).attr("id"));
@@ -198,7 +234,7 @@ $(document).ready(function () {
       cardFooter.append(dropDownDiv);
       const selectBook = $("<select>").addClass("selectBook");
       dropDownDiv.append(selectBook);
-      const optionPlaceholder = $("<option selected>").text("Pick Me!");
+      const optionPlaceholder = $("<option selected>").text("Add To My List");
       const optionPast = $("<option>").addClass("past").attr("value", "past").text("Have Read");
       const optionFuture = $("<option>").addClass("future").attr("value", "future").text("To Read");
       const optionCurrent = $("<option>").addClass("current").attr("value", "current").text("Currently Reading");

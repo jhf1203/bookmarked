@@ -276,6 +276,12 @@ margin-bottom: 30px
   transition: opacity 0.25s ease;
 }
 
+.modal-list-close-text,
+.modal-desc-text,
+.moda-title-author-text {
+  color: black
+}
+
 .scroll {
   max-height: 100px;
   overflow-y: auto;
