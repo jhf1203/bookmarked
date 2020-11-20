@@ -71,7 +71,7 @@
           <div class="row">
             {{#each pastList}}
             <div class="col-md-4 list-img" id={{id}}>
-                <div class="card list-card" id={{id}} style="background-image: url('{{photo}}')">
+                <div class="card list-card" id={{id}} data-toggle="modal" data-target="#myModal2" style="background-image: url('{{photo}}')">
                   <div class="card-body list-card-body">
                     <p>Click for more info</p>
                     <p class="card-list-close-text">Remove from list <i class="fa fa-times remove-icon"></i></p>
@@ -93,7 +93,7 @@
           <div class="row">
             {{#each futureList}}
             <div class="col-md-4 list-img" id={{id}}>
-                <div class="card list-card" id={{id}} style="background-image: url('{{photo}}')">
+                <div class="card list-card" id={{id}} data-toggle="modal" data-target="#myModal2" style="background-image: url('{{photo}}')">
                   <div class="card-body list-card-body">
                     <p>Click for more info</p>
                     <p class="card-list-close-text">Remove from list <i class="fa fa-times remove-icon"></i></p>
@@ -171,7 +171,7 @@
           <ul>
             {{#each followingUser}}
             <p class='user-connection' id={{id}}>{{this.firstName}} {{this.lastName}} | <a data-toggle='modal'
-                class='user-books' href='#myModal2'> {{this.firstName}}'s books <i class="fa fa-book"></i></a> | <a
+                class='user-books' > {{this.firstName}}'s books <i class="fa fa-book"></i></a> | <a
                 class='user-follow'> Follow {{this.firstName}} <i class="fa fa-times test-icon"></i></a></p>
             {{/each}}
           </ul>
@@ -197,7 +197,7 @@
           <ul>
             {{#each userFollowing}}
             <p class='user-connection' id={{id}}>{{this.firstName}} {{this.lastName}} | <a data-toggle='modal'
-                class='user-books' href='#myModal2'> {{this.firstName}}'s books <i class="fa fa-book"></i></a> | <a
+                class='user-books'> {{this.firstName}}'s books <i class="fa fa-book"></i></a> | <a
                 class='user-follow'> Follow {{this.firstName}} <i class="fa fa-times test-icon"></i></a></p>
             {{/each}}
           </ul>
@@ -211,14 +211,32 @@
 </div>
 
 <!--pop out modal for both followers and following. This will show the users books-->
-<div class="modal" id="myModal2" data-backdrop="static">
+<div class="modal fade" id="myModal2" data-backdrop="static">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
       <div class="modalContainer">
-        <div class="modal-body modal-books">
+        
+
+        <div class="modal-body modal-books row">
+          <div class="col-md-4 book-info">
+            <div class="row modal-title-author-row">
+
+            </div>
+            <div class="row modal-img-row">
+
+            </div>
+            <div class="row modal-action-row">
+              <p class="modal-list-close-text">Remove from list 
+                <i class="fa fa-times remove-icon"></i>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-8 modal-desc-col">
+
+          </div>
         </div>
       </div>
       <div class="modal-footer">
