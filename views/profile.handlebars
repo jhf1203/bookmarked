@@ -11,11 +11,12 @@
   <div class="card card-1 col-md-4 offset-lg-4">
     <div class="row">
       <div class="col-md-6">
-         <img src="https://via.placeholder.com/200x200" id="img-preview" />
-      <label class="file-upload-container" for="file-upload">
-        <input id="file-upload" type="file" style="display:none;">
-        Select an Image
-      </label>
+          <input type="file" name="image" id="image" class="custom-file-input" value="fileupload">
+        <label for="file" class="custom-file-label">Choose File</label>
+      <input type="submit" value="Submit" class="btn btn-primary btn-block">
+      <input value="Upload with Cloudinary Widget" id="upload_widget_opener"
+class="btn btn-primary btn-block">
+    </form>
         {{!-- <img id="userImage" src="https://via.placeholder.com/1000x2000" class="card-img" alt="userProfileImage">
         <!--POSSIBLE UPLOAD BUTTON HERE-->
         <form class="mt-1" action="api/upload" method="POST" enctype="multipart/form-data">

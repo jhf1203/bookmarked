@@ -11,6 +11,8 @@ const helmet = require("helmet");
 const PORT = process.env.PORT || 3334;
 const app = express();
 const db = require("./models");
+const upload = require("./middlewares/upload");
+const cloudinary = require("cloudinary");
 // app.use(express.cookieParser('benny'));
 app.use(require("express-session")({ secret: "benny", resave: true, saveUninitialized: true }));
 
@@ -38,6 +40,13 @@ app.use(require("./routes/htmlRoutes")(db));
 app.use(helmet.hsts({
   maxAge: moment.duration(1, "years").asMilliseconds()
 }));
+
+app.post("/uploads", upload.single("image"), (req, res) => { res.send(req.file); });
+
+app.post("/uploads", upload.single("image"), async (req, res) => {
+  const result = await cloudinary.v2.uploader.upload(req.file.path);
+  res.send(result);
+});
 
 // catch 404 and forward to error handler
 if (app.get("env") !== "development") {

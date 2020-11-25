@@ -31,20 +31,20 @@ $(document).ready(function () {
     const taCarry = $(this).parent().parent().siblings().html();
     const descCarry = $(this).parent().parent().siblings().next().html();
     const photoStart = $(this).parent().parent().parent().parent().siblings().html();
-    
+
     // trimming excess text off of the captured image url
     const photoClipFront = photoStart.substring(photoStart.indexOf("="));
-    const photoToArr = photoClipFront.split(" ")
-    const photoToLetters = photoToArr[0].split("")
-    console.log(photoToLetters)
-    const trimmedArr = []
+    const photoToArr = photoClipFront.split(" ");
+    const photoToLetters = photoToArr[0].split("");
+    console.log(photoToLetters);
+    const trimmedArr = [];
 
-    for (let i = 2; i < (photoToLetters.length-1); i++) {
-      trimmedArr.push(photoToLetters[i])
+    for (let i = 2; i < (photoToLetters.length - 1); i++) {
+      trimmedArr.push(photoToLetters[i]);
     }
     const imgStringCommas = trimmedArr.toString();
-    const imgStringCorrect = imgStringCommas.replace(/,/g, "")
-    
+    const imgStringCorrect = imgStringCommas.replace(/,/g, "");
+
     const isbnCarry = $(this).parent().parent().parent().parent().siblings().children().attr("id");
     const stateCarry = $(this).val();
     const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
@@ -101,23 +101,23 @@ $(document).ready(function () {
       type: "GET",
       url: `api/lists/${bookId}`
     }).then(response => {
-      $(".modal-title-author-text").remove()
-      $(".modal-img").remove()
-      $(".modal-desc-text").remove()
+      $(".modal-title-author-text").remove();
+      $(".modal-img").remove();
+      $(".modal-desc-text").remove();
 
-      const modalTitleAuthor = $("<p>").attr("class", "modal-title-author-text").html(`${response.title} | ${response.author}`)
+      const modalTitleAuthor = $("<p>").attr("class", "modal-title-author-text").html(`${response.title} | ${response.author}`);
       $(".modal-title-author-row").append(modalTitleAuthor);
-      const modalImg = $("<img>").attr("src", response.photo).attr("class", "modal-img")
+      const modalImg = $("<img>").attr("src", response.photo).attr("class", "modal-img");
       $(".modal-img-row").append(modalImg);
       const modalDescription = $("<p>").attr("class", "modal-desc-text").html(response.description);
-      $(".modal-desc-col").append(modalDescription)
-    })
+      $(".modal-desc-col").append(modalDescription);
+    });
   }
 
   $(".list-card").on("click", function () {
-    const internalBook = ($(this).attr("id"))
-    singleBookInfo(internalBook)
-  })
+    const internalBook = ($(this).attr("id"));
+    singleBookInfo(internalBook);
+  });
 
   $(".user-connection").on("click", function () {
     const userTarget = ($(this).attr("id"));
@@ -472,35 +472,20 @@ $(document).ready(function () {
     });
   });
 
-  // cloudinary Image upload-- hello problem child -
-  const cloudinaryURL = "https://api.cloudinary.com/v1_1/victoria-greenfield/image/upload"; // will get hidden when I move to server side
-  const cloudinaryUploadPreset = "gkkjcgbg"; // will get hidden when I move to server side
-
-  const imgPreview = document.getElementById("img-preview");
-  const fileUpload = document.getElementById("file-upload");
-
-  fileUpload.addEventListener("change", function (event) {
-    const file = event.target.files[0];
-    console.log(file);
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", cloudinaryUploadPreset);
-
-    $.ajax({
-      type: "POST",
-      url: cloudinaryURL,
-      processData: false,
-      contentType: false,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }, // multipart/form-data also doesn't work in place of application/x-www-form-urlencoded
-      // https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
-      data: formData
-    }).then(function (res) {
-      console.log(res);
-      imgPreview.src = res.data.secure_url;
-    }).catch(function (err) {
-      console.log(err);
+  document.getElementById("upload_widget_opener").addEventListener("click", function () {
+    // eslint-disable-next-line no-undef
+    cloudinary.openUploadWidget({
+      cloud_name: "victoria-greenfield",
+      upload_preset: "gkkjcgbg",
+      max_image_width: 300,
+      max_image_height: 300,
+      crop: "limit"
+    },
+    function (error, result) {
+      console.log(error, result);
+      // Push URL into text input
+      document.getElementById("url_text").value = result[0].url;
+      result.redirect("/files");
     });
-  });
+  }, false);
 });
