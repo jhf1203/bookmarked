@@ -41,11 +41,37 @@ app.use(helmet.hsts({
   maxAge: moment.duration(1, "years").asMilliseconds()
 }));
 
+// for cloudinary
 app.post("/uploads", upload.single("image"), (req, res) => { res.send(req.file); });
 
 app.post("/uploads", upload.single("image"), async (req, res) => {
   const result = await cloudinary.v2.uploader.upload(req.file.path);
   res.send(result);
+});
+
+app.get("/api/files", async (req, res) => {
+  const images = await cloudinary.v2.api.resources({
+    type: "upload",
+    prefix: "image"
+  });
+  return res.json(images);
+});
+
+app.get("/files", async (req, res) => {
+  const images = await cloudinary.v2.api.resources({
+    type: "upload",
+    prefix: "image"
+  });
+  // Check if files
+  if (!images || images.length === 0) {
+    return res.status(404).json({
+      err: "No files exist"
+    });
+  }
+  // Files exist
+  res.render("files", {
+    images: images
+  });
 });
 
 // catch 404 and forward to error handler

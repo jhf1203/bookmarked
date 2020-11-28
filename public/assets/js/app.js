@@ -482,10 +482,14 @@ $(document).ready(function () {
       crop: "limit"
     },
     function (error, result) {
-      console.log(error, result);
+      if (error) throw error;
+      console.log(result);
+      console.log(result[0].url);
+      // console.log(userImage);
       // Push URL into text input
-      document.getElementById("url_text").value = result[0].url;
-      result.redirect("/files");
+      $("#userImage").attr("src", result[0].url);
+      // document.getElementById('url_text').value = result[0].url;
+      // result.redirect("/files");
     });
   }, false);
 });
