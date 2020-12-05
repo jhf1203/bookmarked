@@ -15,14 +15,14 @@ module.exports = (db) => {
         where: {
           UserId: req.session.passport.user.id
         },
-        raw: true,
+        raw: true
       }),
-      // db.Image.findOne({
-      //   where: {
-      //     UserId: req.session.passport.user.id
-      //   },
-      //   raw: true
-      // }),
+      db.Image.findOne({
+        where: {
+          UserId: req.session.passport.user.id
+        },
+        raw: true
+      }),
       // db.Rating.findAll({
       //   where: {
       //     BookId: req.session.passport.user.id

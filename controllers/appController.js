@@ -207,6 +207,18 @@ module.exports = function (db) {
       }).then(function (dbList) {
         res.json(dbList);
       });
+    },
+
+    updateImage: function (req, res) {
+      db.Image.findOne({
+        where: {
+          id: req.params.id
+        }
+      }).then(data => {
+        res.json(data);
+      }).catch(error => {
+        console.log(error);
+      });
     }
     // deleteExample: function (req, res) {
     //   db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {

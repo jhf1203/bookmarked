@@ -477,9 +477,10 @@ $(document).ready(function () {
     cloudinary.openUploadWidget({
       cloud_name: "victoria-greenfield",
       upload_preset: "gkkjcgbg",
-      max_image_width: 300,
-      max_image_height: 300,
-      crop: "limit"
+      max_image_width: 200,
+      max_image_height: 200,
+      crop: "limit",
+      gravity: "faces"
     },
     function (error, result) {
       if (error) throw error;

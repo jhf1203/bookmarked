@@ -8,19 +8,19 @@
   </div>
 
   <!--user info card-->
-  <div class="card card-1 col-md-4 offset-lg-4">
+  <div id="infoCard" class="card card-1 col-md-4 offset-lg-4">
     <div class="row">
-      <div class="col-md-6">
-        <input type="file" name="image" id="image" class="custom-file-input" value="fileupload">
-        <input value="Upload with Cloudinary Widget" id="upload_widget_opener" class="btn btn-primary btn-block">
-        <form action="/uploads" method="POST" enctype="multipart/form-data">
-          <div>
-            <div class='d-inline-flex pb-4'>
+      <div>
+            <div  id="imageSection" class='d-inline-flex pb-4'>
               <div class="card mx-auto">
-                <img class="card-img-top" id="userImage" src={{url}} />
+                <img class="card-img-top" id="userImage" src="../public/assets/images/person-placeholder-200x200.png" />
               </div>
             </div>
           </div>
+      <div class="col-md-6">
+        <input type="file" name="image" id="image" class="custom-file-input" value="fileupload">
+        <input value="Upload Image" id="upload_widget_opener" class="btn btn-primary btn-block">
+        <form action="/uploads" method="POST" enctype="multipart/form-data">
           {{!-- <img id="userImage" src="https://via.placeholder.com/1000x2000" class="card-img" alt="userProfileImage">
         <!--POSSIBLE UPLOAD BUTTON HERE-->
         <form class="mt-1" action="api/upload" method="POST" enctype="multipart/form-data">
