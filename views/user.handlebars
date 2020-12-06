@@ -62,13 +62,13 @@
         <div class="card-body" id="cardBody2">
           <ul class='future-list'>
             {{#each pastList}}
-              <div class="col-md-4 list-img" id={{id}}>
-                <div class="card list-card" id={{id}} style="background-image: url('{{photo}}')">
-                  <div class="card-body list-card-body">
-                    <p>Click for more info</p>
-                  </div>
+            <div class="col-md-4 list-img" id={{id}}>
+              <div class="card list-card" data-toggle="modal" data-target="#myModal2" id={{id}} style="background-image: url('{{photo}}')">
+                <div class="card-body list-card-body">
+                  <p>Click for more info</p>
                 </div>
-            </div>              
+              </div>
+            </div>
             {{/each}}
           </ul>
         </div>
@@ -82,13 +82,13 @@
         <div class="card-body" id="cardBody2">
           <ul class='future-list'>
             {{#each futureList}}
-              <div class="col-md-4 list-img" id={{id}}>
-                <div class="card list-card" id={{id}} style="background-image: url('{{photo}}')">
-                  <div class="card-body list-card-body">
-                    <p>Click for more info</p>
-                  </div>
+            <div class="col-md-4 list-img" id={{id}}>
+              <div class="card list-card" data-toggle="modal" data-target="#myModal2" id={{id}} style="background-image: url('{{photo}}')">
+                <div class="card-body list-card-body">
+                  <p>Click for more info</p>
                 </div>
-            </div>              
+              </div>
+            </div>
             {{/each}}
           </ul>
         </div>
@@ -193,14 +193,34 @@
 </div>
 
 <!--pop out modal for both followers and following. This will show the users books-->
-<div class="modal" id="myModal2" data-backdrop="static">
+<div class="modal fade" id="myModal2" data-backdrop="static">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
       <div class="modalContainer">
-        <div class="modal-body modal-books">
+
+
+        <div class="modal-body modal-books row">
+          <div class="col-md-4 book-info">
+            <div class="row modal-title-author-row">
+            </div>
+            <div class="row modal-img-row">
+            </div>
+            <div class="row modal-action-row">
+              <select class="selectBook">
+                <option selected>Add To My List</option>
+                <option class="past" value="past">Have Read</option>
+                <option class="future" value="future">To Read</option>
+                <option class="current" value="current">Currently Reading</option>
+              </select>
+              <i class="fa fa-times remove-icon"></i>
+            </div>
+          </div>
+          <div class="col-md-8 modal-desc-col">
+
+          </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -212,11 +232,7 @@
 
 
 <script>
-  var userId = {
-    {
-      activeUser
-    }
-  };
+  var userId = {{activeUser}};
 </script>
 
 {{> modal/login-block}}

@@ -34,24 +34,23 @@
                 {{id}}</span></button></p><br>
           {{/each}}
           <!--Change title of currently reading to just the book image?-->
-          </p>
-          <!--Buttons for user interaction-->
-          <p> <button id="addUserButtonNew" type="button" class="btn btn-default btn-sm">
-              <i class="fa fa-user-plus">Add Friend</i>
-            </button>
-            <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1"
-              type="button">
-              <i class="fa fa-users">Followers</i>
-            </button>
-            <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3"
-              type="button">
-              <i class="fa fa-users">Following</i>
-            </button>
-            {{#each userInfo.followees}}
+        </p>
+        <!--Buttons for user interaction-->
+        <p> <button id="addUserButtonNew" type="button" class="btn btn-default btn-sm">
+            <i class="fa fa-user-plus">Add Friend</i>
+          </button>
+          <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1"
+            type="button">
+            <i class="fa fa-users">Followers</i>
+          </button>
+          <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3"
+            type="button">
+            <i class="fa fa-users">Following</i>
+          </button>
+          {{#each userInfo.followees}}
           <div>{{this.firstName}} {{this.lastName}}</div>
           {{/each}}
-          </p>
-        </div>
+        </p>
       </div>
       </div>
     </div>
@@ -67,6 +66,7 @@
         {{id}}</span></button> <br><hr class="line_break">
     {{/each}}
   </div>
+</div>
 
     
 
@@ -88,12 +88,13 @@
                 </div>
               </div>
             </div>
-            {{/each}}
           </div>
+          {{/each}}
         </div>
       </div>
     </div>
   </div>
+</div>
 
   <!--Want to Read Card-->
   <div class="col-sm-6 mt-5">
@@ -113,9 +114,12 @@
           </div>
           {{/each}}
         </div>
+        {{/each}}
       </div>
     </div>
   </div>
+</div>
+</div>
 
 <!--blog/review area-->
 {{!-- <div class="row">
@@ -231,10 +235,8 @@
         <div class="modal-body modal-books row">
           <div class="col-md-4 book-info">
             <div class="row modal-title-author-row">
-
             </div>
             <div class="row modal-img-row">
-
             </div>
             <div class="row modal-action-row">
               <p class="modal-list-close-text">Remove from list
@@ -243,7 +245,6 @@
             </div>
           </div>
           <div class="col-md-8 modal-desc-col">
-
           </div>
         </div>
       </div>
@@ -256,7 +257,11 @@
 
 
 <script>
-  var userId = {{ userInfo.id }};
+  var userId = {
+    {
+      userInfo.id
+    }
+  };
 </script>
 
 {{> modal/login-block}}

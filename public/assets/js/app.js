@@ -25,32 +25,30 @@ $(document).ready(function () {
 
   $(document).on("change", ".selectBook", function (event) {
     console.log("this is selectbook");
+    console.log(location.pathname === "/example");
     event.preventDefault();
     console.log($(this).val());
 
     const taCarry = $(this).parent().parent().siblings().html();
     const descCarry = $(this).parent().parent().siblings().next().html();
     const photoStart = $(this).parent().parent().parent().parent().siblings().html();
+    const isbnCarry = $(this).parent().parent().parent().parent().siblings().children().attr("id");
+    const stateCarry = $(this).val();
+    const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
+    const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
 
     // trimming excess text off of the captured image url
     const photoClipFront = photoStart.substring(photoStart.indexOf("="));
     const photoToArr = photoClipFront.split(" ");
     const photoToLetters = photoToArr[0].split("");
-    console.log(photoToLetters);
     const trimmedArr = [];
-
     for (let i = 2; i < (photoToLetters.length - 1); i++) {
       trimmedArr.push(photoToLetters[i]);
     }
     const imgStringCommas = trimmedArr.toString();
     const imgStringCorrect = imgStringCommas.replace(/,/g, "");
-
-    const isbnCarry = $(this).parent().parent().parent().parent().siblings().children().attr("id");
-    const stateCarry = $(this).val();
-    const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
-    const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
-    // const photoParsed = photoStart.substring(photoStart.indexOf("h"));
     const photoCarry = imgStringCorrect.replace(/amp;/g, "");
+    console.log("description length is ", descCarry.length);
 
     const data = {
       title: titleCarry,
@@ -60,15 +58,19 @@ $(document).ready(function () {
       state: stateCarry,
       isbn: isbnCarry
     };
+    console.log("data is here", data);
     checkDuplicate(data);
   });
 
   function checkDuplicate (data) {
+    console.log("we're checking for duplicates for ", data);
     $.ajax({
       type: "GET",
       url: "/api/books"
     }).then(function (res) {
       const dupArr = [];
+      console.log("data: ", data);
+      console.log("res: ", res);
       for (let i = 0; i < res.length; i++) {
         if (res[i].isbn === data.isbn) {
           dupArr.push(res[i]);
@@ -96,11 +98,14 @@ $(document).ready(function () {
     });
   };
 
-  function singleBookInfo (bookId) {
+  function singleBookInfo (listId) {
+    console.log("listId", listId);
     $.ajax({
       type: "GET",
-      url: `api/lists/${bookId}`
+      // Temporary fix below, change upon deployment.
+      url: `http://localhost:3334/api/lists/${listId}`
     }).then(response => {
+      console.log("response from req", response);
       $(".modal-title-author-text").remove();
       $(".modal-img").remove();
       $(".modal-desc-text").remove();
@@ -116,6 +121,7 @@ $(document).ready(function () {
 
   $(".list-card").on("click", function () {
     const internalBook = ($(this).attr("id"));
+    console.log("i clicked on list-card, and internalbook is ", internalBook);
     singleBookInfo(internalBook);
   });
 
@@ -211,7 +217,7 @@ $(document).ready(function () {
 
   function renderContent (arr) {
     for (let i = 0; i < 3; i++) {
-      const topDiv = $("<div>").addClass("col-12 offset-lg-2");
+      const topDiv = $("<div>").addClass("col-12 offset-lg-2").attr("id", `testId${i}`);
       const h2Div = $("<h2>").attr("id", "greatRead").text("Your next great read");
       const vbTopDiv = $("<div>").addClass("card mb-3").css("max-width", "740px");
       topDiv.append(h2Div, vbTopDiv);
@@ -219,20 +225,20 @@ $(document).ready(function () {
       vbTopDiv.append(secondDiv);
       const imgDiv = $("<div>").addClass("col-md-3 imgDiv");
       secondDiv.append(imgDiv);
-      const bookImg = $("<img>").attr("src", arr[i].imageLinks.thumbnail).addClass("book-image").attr("id", arr[i].industryIdentifiers[0].identifier);
+      const bookImg = $("<img>").attr("src", arr[i].imageLinks.thumbnail).addClass(`book-image imgDiv${i}`).attr("id", arr[i].industryIdentifiers[0].identifier);
       const contentDiv = $("<div>").addClass("col-md-9");
       secondDiv.append(imgDiv, contentDiv);
       imgDiv.append(bookImg);
       const cardBody = $("<div>").addClass("card-body");
       contentDiv.append(cardBody);
-      const authorTitle = $("<h5>").addClass("title-author").attr("id", arr[i].publishedDate).html(`${arr[i].title} | ${arr[i].authors[0]}`);
-      const description = $("<p>").addClass("book-description").html(arr[i].description);
+      const authorTitle = $("<h5>").addClass(`title-author title-author${i}`).attr("id", arr[i].publishedDate).html(`${arr[i].title} | ${arr[i].authors[0]}`);
+      const description = $("<p>").addClass("book-description").attr("id", `desc${i}`).html(arr[i].description);
       cardBody.prepend(authorTitle, description);
       const cardFooter = $("<div>").addClass("card-footer text-muted");
       cardBody.append(cardFooter);
       const dropDownDiv = $("<div>").addClass("dropdown");
       cardFooter.append(dropDownDiv);
-      const selectBook = $("<select>").addClass("selectBook");
+      const selectBook = $("<select>").addClass("selectBook").attr("id", `select${i}`);
       dropDownDiv.append(selectBook);
       const optionPlaceholder = $("<option selected>").text("Add To My List");
       const optionPast = $("<option>").addClass("past").attr("value", "past").text("Have Read");
@@ -254,12 +260,13 @@ $(document).ready(function () {
       UserId: window.userId,
       BookId: book
     };
+    console.log("here's who's logged in", data.userId);
     $.ajax({
       type: "POST",
       url: "/api/lists",
       data: data
     }).then(function (res) {
-      console.log(res);
+      console.log("and here's the resulte!", res);
       callSuccess();
     });
   }
@@ -472,15 +479,15 @@ $(document).ready(function () {
     });
   });
 
-  // function imageUpload (file) {
-  //   $.ajax({
-  //     type: "POST",
-  //     url: "/api/image",
-  //     data: file
-  //   }).then((data) => {
-  //     console.log(data);
-  //   });
-  // }
+  function imageUpload (file) {
+    $.ajax({
+      type: "POST",
+      url: "/api/image/:id",
+      data: file
+    }).then((data) => {
+      console.log(data);
+    });
+  }
 
   document.getElementById("upload_widget_opener").addEventListener("click", function () {
     // eslint-disable-next-line no-undef
