@@ -8,33 +8,23 @@
   </div>
 
   <!--user info card-->
-  <div id="infoCard" class="card card-1 col-md-4 offset-lg-4">
+  <div id="infoCard" class="card card-1 col-md-10">
     <div class="row">
+
       <div>
-            <div  id="imageSection" class='d-inline-flex pb-4'>
+        <div id="thisSucks" class="col-md-10">
+          <form action="/uploads" method="POST" enctype="multipart/form-data">
               <div class="card mx-auto">
-                <img class="card-img-top" id="userImage" src="../public/assets/images/person-placeholder-200x200.png" />
+                <img class="card-img-top" id="userImage" src="https://via.placeholder.com/200x200" />
+                <input value="Upload" id="upload_widget_opener" class="btn btn-primary btn-block">
               </div>
             </div>
-          </div>
-      <div class="col-md-6">
-        <input type="file" name="image" id="image" class="custom-file-input" value="fileupload">
-        <input value="Upload Image" id="upload_widget_opener" class="btn btn-primary btn-block">
-        <form action="/uploads" method="POST" enctype="multipart/form-data">
-          {{!-- <img id="userImage" src="https://via.placeholder.com/1000x2000" class="card-img" alt="userProfileImage">
-        <!--POSSIBLE UPLOAD BUTTON HERE-->
-        <form class="mt-1" action="api/upload" method="POST" enctype="multipart/form-data">
-          <div class="form-group">
-            <input type="file" name="file" id="input-files" class="form-control-file border" />
-            <button id="submitButton" type="submit" class="btn btn-default btn-sm">
-              <i class="fa fa-camera-retro">Submit</i>
-            </button> --}}
-          {{!-- </div> --}}
+        </div>
         </form>
-      </div>
-      <div class="col-md-6">
-        <div class="card-body">
-          <h5 id="userName" class="card-title">{{ userInfo.firstName}}</h5>
+        
+      <div class="col-md-12">
+        <div id="cardText" class="card-body">
+          <h4>{{ userInfo.firstName}} {{userInfo.lastName}}</h4>
           <p class="card-text">Member Since: {{ memberSince }}</p>
           <p>{{userInfo.firstName}} is currently reading:
             {{#each currentList}}
@@ -63,8 +53,22 @@
           </p>
         </div>
       </div>
+      </div>
     </div>
+
+  <div class="col-md-12 blog-container">
+    <h1 class="bookNotes">Booknotes <i class="fa fa-pencil-square"></i> </h1>
+    <hr class="line_break">
+    {{#each userBlog}}
+    <h5 id={{id}} class="blog-head"> &#8608; {{heading}} &#8606; </h6>
+    <p class="blog-body">{{blurb}}</p>
+    <button id={{id}} class="removeBlogButton" {{id}}><i class="fa fa-times test-icon">Remove Post</i>
+      <span hidden>
+        {{id}}</span></button> <br><hr class="line_break">
+    {{/each}}
   </div>
+
+    
 
   <!--books area-->
   <!--Have Read Card-->
@@ -112,7 +116,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <!--blog/review area-->
 {{!-- <div class="row">
@@ -146,7 +149,7 @@
       <a class="btn btn-light" href="/blog">New Post</a>
     </div> --}}
 </div>
-<div class="row">
+{{!-- <div class="row">
   <div class="col-md-12 blog-container">
     {{#each userBlog}}
     <h6 id={{id}} class="blog-head">{{heading}}</hr>
@@ -159,9 +162,7 @@
         {{id}}</span></button></p>
     {{/each}}
   </div>
-</div>
-
-</div>
+</div> --}}
 
 </div>
 

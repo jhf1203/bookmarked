@@ -26,7 +26,7 @@ module.exports = (passport, db) => {
   router.post("/lists", AppController.addToList);
   router.post("/blog", AppController.addBlogPost);
 
-  router.post("/image/:id", AppController.updateImage);
+  router.put("/image/:id", AppController.updateImage);
 
   // Project DELETE routes
   router.delete("/connections", AppController.unFollow);

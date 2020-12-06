@@ -477,10 +477,10 @@ $(document).ready(function () {
     cloudinary.openUploadWidget({
       cloud_name: "victoria-greenfield",
       upload_preset: "gkkjcgbg",
-      max_image_width: 200,
-      max_image_height: 200,
-      crop: "limit",
-      gravity: "faces"
+      cropping: true,
+      croppingCoordinatesMode: "face",
+      croppingAspectRatio: 1,
+      showSkipCropButton: false
     },
     function (error, result) {
       if (error) throw error;
@@ -492,5 +492,5 @@ $(document).ready(function () {
       // document.getElementById('url_text').value = result[0].url;
       // result.redirect("/files");
     });
-  }, false);
+  });
 });

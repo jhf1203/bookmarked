@@ -122,6 +122,18 @@ module.exports = function (db) {
       });
     },
 
+    // getUserImage: function (req, res) {
+    //   db.Image.findOne({
+    //     where: {
+    //       UserId: req.params.id
+    //     }
+    //   }).then(data => {
+    //     res.json(data);
+    //   }).catch(error => {
+    //     console.log(error);
+    //   });
+    // },
+
     // ========= POST ROUTES ========
 
     // updateUserTable: function (req, res) {
@@ -215,6 +227,7 @@ module.exports = function (db) {
           id: req.params.id
         }
       }).then(data => {
+        console.log(data);
         res.json(data);
       }).catch(error => {
         console.log(error);

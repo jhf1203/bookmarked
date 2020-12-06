@@ -17,12 +17,12 @@ module.exports = (db) => {
         },
         raw: true
       }),
-      db.Image.findOne({
-        where: {
-          UserId: req.session.passport.user.id
-        },
-        raw: true
-      }),
+      // db.Image.findOne({
+      //   where: {
+      //     UserId: req.session.passport.user.id
+      //   },
+      //   raw: true
+      // }),
       // db.Rating.findAll({
       //   where: {
       //     BookId: req.session.passport.user.id
@@ -40,7 +40,7 @@ module.exports = (db) => {
       })
       ]).then(data => {
         console.log("all of the data: ", data[1]);
-        console.log("YAYAYAYA", data[1]["Book.title"])
+        console.log("YAYAYAYA", data[1]["Book.title"]);
         const followingUser = [];
         const userFollowing = [];
         const readPast = [];
@@ -174,7 +174,7 @@ module.exports = (db) => {
             activeUser: data[3].id,
             userBlog: data[4]
           };
-          console.log(userToSend);
+          console.log("USER TO SEND", userToSend);
           res.render("user", userToSend);
         });
       });
