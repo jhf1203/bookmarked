@@ -81,9 +81,9 @@ $(document).ready(function () {
     });
   };
 
-  function callSuccess () {
-    location.reload();
-  }
+  // function callSuccess () {
+  //   location.reload();
+  // }
 
   function addBookTwice (data) {
     $.ajax({
@@ -265,7 +265,7 @@ $(document).ready(function () {
       data: data
     }).then(function (res) {
       console.log("and here's the resulte!", res);
-      callSuccess();
+      // callSuccess();
     });
   }
 

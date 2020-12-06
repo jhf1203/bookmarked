@@ -229,11 +229,11 @@ module.exports = (db) => {
   // Load View Books page
   router.get("/example", function (req, res) {
     if (req.isAuthenticated()) {
-      db.Example.findAll({
+      db.User.findOne({
         where: {
-          UserId: req.session.passport.user.id
+          id: req.session.passport.user.id
         },
-        raw: true
+        raw: true,
       }).then(function (dbExamples) {
         res.render("example", {
           userInfo: req.session.passport.user,
