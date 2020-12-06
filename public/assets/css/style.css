@@ -23,8 +23,10 @@ body {
   color: black;
 }
 
-.navbar{
-  background-color: #dcf1ec; ; /* For browsers that do not support gradients */
+.navbar {
+  background-color: #dcf1ec;
+  ;
+  /* For browsers that do not support gradients */
   background-image: linear-gradient(to left, #dcf1ec, #4d8071);
 }
 
@@ -68,7 +70,8 @@ body {
   height: 30px;
   padding: 7px;
   color: #7d807f;
-  background-color: #dcf1ec; /* For browsers that do not support gradients */
+  background-color: #dcf1ec;
+  /* For browsers that do not support gradients */
   background-image: linear-gradient(to left, #dcf1ec, #4d8071);
 }
 
@@ -78,9 +81,13 @@ body {
 }
 
 .modal-header {
-  background-image: url("../images/bgop1.jpg");
-  background-size: 850px;
-  color: #617056;
+  /* background-image: url("../images/bgop1.jpg");
+  background-size: 850px; */
+  background-color: #dcf1ec;
+  ;
+  /* For browsers that do not support gradients */
+  background-image: linear-gradient(to left, #dcf1ec, #4d8071);
+  color: black;
 }
 
 .modal-title {
@@ -183,6 +190,10 @@ hr {
   display: inline-block;
   margin-left: 25%;
   padding: 0;
+  border-style: solid;
+  border-radius: 9px;
+  border-width: 2px;
+  border-color: #617056;
 }
 
 #container1 {
@@ -253,17 +264,18 @@ hr {
 
 #cardBody4,
 #cardBody2 {
-  /* text-align: center; */
-  display: flex;
-  /* justify-content: flex-end; */
-  align-items: center;
+  display: -webkit-inline-box;
+  position: inherit;
+  background: white;
+  height: 280px;
   width: 100%;
-  height: 300px;
-  margin-top: auto;
-  border-top-left-radius: 0px !important;
-  border-top-right-radius: 0px !important;
-  border-bottom-left-radius: 20px !important;
-  border-bottom-right-radius: 20px !important;
+  color: Black;
+  /* overflow-y: scroll; */
+
+}
+
+#booksOnBooks {
+  padding: 50px;
 }
 
 .card-list-close-text {
@@ -277,10 +289,12 @@ hr {
 }
 
 .list-card {
-  height: 200px;
-  width: 90%;
-  background-size: cover;
-  margin-bottom: 30px
+  /* height: 200px;
+  width: 55%; */
+  background-size: contain;
+  background: no-repeat;
+  align-items: center;
+  /* margin-bottom: 30px */
 }
 
 .list-card-body {
@@ -306,25 +320,31 @@ hr {
 }
 
 .card-header {
-  background-color: #d8e0de;
-  color: #617056;
+  background-color: #dcf1ec;
+  ;
+  /* For browsers that do not support gradients */
+  background-image: linear-gradient(to left, #dcf1ec, #4d8071);
+  color: black;
   font-family: 'Antic Slab', serif;
   font-weight: bold;
   text-align: center;
 }
 
-.card {
-  border: 2px solid #253831;
-  border-radius: 8px;
+.cardAll {
+  background-color: white;
+  border-style: solid;
+  border-radius: 7px;
+  border-width: 2px;
+  border-color: #617056;
   font-family: 'Antic Slab', serif;
   font-weight: bold;
-  /* box-shadow:
+  box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),
     0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072),
     0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12) */
+    0 100px 80px rgba(0, 0, 0, 0.12)
 }
 
 /*close button for books*/
@@ -458,16 +478,16 @@ hr {
   overflow: hidden;
 }
 
- /* #userImage {
+/* #userImage {
     width: 100%;
     height: 100%;
     max-width: 200px;
     max-height: 200px;
     /* border-radius: 50%; */
-    /* margin-bottom: 20px;
+/* margin-bottom: 20px;
 }  */
 
- /* #imageSection {
+/* #imageSection {
   padding: 15px;
   margin-left: 15%;
 } */
@@ -486,10 +506,10 @@ hr {
   border: 2px solid #617056;
   border-radius: 5px;
   font-weight: bold;
-  width: 100%;
+  /* width: 50%; */
   position: relative;
   padding: 5px;
-  margin-top: 57px;
+  /* margin-top: 30px; */
 }
 
 #addUserButtonNew:hover {
@@ -645,7 +665,7 @@ hr {
   text-align: center;
 }
 
-.bookNotes{
+.bookNotes {
   text-align: center;
   font-family: 'Fredericka the Great', cursive;
 }
@@ -700,14 +720,22 @@ hr {
   text-align: center;
 }
 
-#sectionTitleBlog{
+#sectionTitleBlog {
   text-align: center;
 }
 
 .line_break {
-    width:1000px;
-    height: 5px;
-    color: black;
-    padding-top: 3px;
-    background-color: rgba(255,255,255,.5);
+  width: 1000px;
+  height: 5px;
+  color: black;
+  padding-top: 3px;
+  background-color: rgba(255, 255, 255, .5);
+}
+
+#currentlyReadingBook{
+  background-size: contain;
+  background: no-repeat;
+  width: 45%;
+  margin-left: 25%;
+  margin-top: 5px;
 }

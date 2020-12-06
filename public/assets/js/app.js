@@ -219,7 +219,7 @@ $(document).ready(function () {
     for (let i = 0; i < 3; i++) {
       const topDiv = $("<div>").addClass("col-12 offset-lg-2").attr("id", `testId${i}`);
       const h2Div = $("<h2>").attr("id", "greatRead").text("Your next great read");
-      const vbTopDiv = $("<div>").addClass("card mb-3").css("max-width", "740px");
+      const vbTopDiv = $("<div>").addClass("cardAll mb-3").css("max-width", "740px");
       topDiv.append(h2Div, vbTopDiv);
       const secondDiv = $("<div>").addClass("row no-gutters");
       vbTopDiv.append(secondDiv);
@@ -479,15 +479,15 @@ $(document).ready(function () {
     });
   });
 
-  function imageUpload (file) {
-    $.ajax({
-      type: "POST",
-      url: "/api/image/:id",
-      data: file
-    }).then((data) => {
-      console.log(data);
-    });
-  }
+  // function imageUpload (file) {
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/api/image/:id",
+  //     data: file
+  //   }).then((data) => {
+  //     console.log(data);
+  //   });
+  // }
 
   document.getElementById("upload_widget_opener").addEventListener("click", function () {
     // eslint-disable-next-line no-undef

@@ -233,7 +233,7 @@ module.exports = (db) => {
         where: {
           id: req.session.passport.user.id
         },
-        raw: true,
+        raw: true
       }).then(function (dbExamples) {
         res.render("example", {
           userInfo: req.session.passport.user,
