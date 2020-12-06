@@ -42,12 +42,12 @@ app.use(helmet.hsts({
 }));
 
 // for cloudinary
-// app.post("/uploads", upload.single("image"), (req, res) => { res.send(req.file); });
+app.post("/image", upload.single("image"), (req, res) => { res.send(req.file); });
 
-app.post("/uploads", upload.single("image"), async (req, res) => {
-  const result = await cloudinary.v2.uploader.upload(req.file.path);
-  res.send(result);
-});
+// app.post("/uploads", upload.single("image"), async (req, res) => {
+//   const result = await cloudinary.v2.uploader.upload(req.file.path);
+//   res.send(result);
+// });
 
 app.get("/api/files", async (req, res) => {
   const images = await cloudinary.v2.api.resources({

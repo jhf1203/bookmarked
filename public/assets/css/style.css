@@ -688,7 +688,7 @@ hr {
 
 #thisSucks {
   margin-left: 3em;
-  margin-right: 3em;
+  margin-right: 1em;
   justify-content: center;
   align-items: center;
   flex-direction: column;

@@ -472,6 +472,16 @@ $(document).ready(function () {
     });
   });
 
+  // function imageUpload (file) {
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/api/image",
+  //     data: file
+  //   }).then((data) => {
+  //     console.log(data);
+  //   });
+  // }
+
   document.getElementById("upload_widget_opener").addEventListener("click", function () {
     // eslint-disable-next-line no-undef
     cloudinary.openUploadWidget({

@@ -222,15 +222,8 @@ module.exports = function (db) {
     },
 
     updateImage: function (req, res) {
-      db.Image.findOne({
-        where: {
-          id: req.params.id
-        }
-      }).then(data => {
-        console.log(data);
-        res.json(data);
-      }).catch(error => {
-        console.log(error);
+      db.Image.create(req.body).then(function (dbImage) {
+        res.json(dbImage);
       });
     }
     // deleteExample: function (req, res) {
