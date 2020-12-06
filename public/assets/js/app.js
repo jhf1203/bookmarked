@@ -100,8 +100,8 @@ $(document).ready(function () {
     console.log("listId", listId)
     $.ajax({
       type: "GET",
-      // The error is HERE.  Since I'm on /lists it's writing to localhost/user/2/api/lists/:id instead of localhost/api/lists/:id
-      url: `api/lists/${listId}`
+      // Temporary fix below, change upon deployment.
+      url: `http://localhost:3334/api/lists/${listId}`
     }).then(response => {
       console.log("response from req", response)
       $(".modal-title-author-text").remove()
