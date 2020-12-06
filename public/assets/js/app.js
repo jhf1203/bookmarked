@@ -48,6 +48,7 @@ $(document).ready(function () {
     const imgStringCommas = trimmedArr.toString();
     const imgStringCorrect = imgStringCommas.replace(/,/g, "")
     const photoCarry = imgStringCorrect.replace(/amp;/g, "");
+    console.log("description length is ", descCarry.length)
 
     const data = {
       title: titleCarry,
@@ -68,6 +69,8 @@ $(document).ready(function () {
       url: "/api/books"
     }).then(function (res) {
       const dupArr = [];
+      console.log("data: ", data);
+      console.log("res: ", res)
       for (let i = 0; i < res.length; i++) {
         if (res[i].isbn === data.isbn) {
           dupArr.push(res[i]);
@@ -81,9 +84,9 @@ $(document).ready(function () {
     });
   };
 
-  // function callSuccess () {
-  //   location.reload();
-  // }
+  function callSuccess () {
+    location.reload();
+  }
 
   function addBookTwice (data) {
     $.ajax({
@@ -265,7 +268,7 @@ $(document).ready(function () {
       data: data
     }).then(function (res) {
       console.log("and here's the resulte!", res);
-      // callSuccess();
+      callSuccess();
     });
   }
 
