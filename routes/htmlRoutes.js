@@ -39,6 +39,13 @@ module.exports = (db) => {
         raw: true
       })
       ]).then(data => {
+        const defaultImg = "https://res.cloudinary.com/bookmarked/image/upload/v1607383426/person-reading-icon-17_hkhwyf.png"
+        const profileArr = []
+        if (data[4] === null) {
+          profileArr.push(defaultImg)
+        } else {
+          profileArr.push(data[4].data)
+        }
         const followingUser = [];
         const userFollowing = [];
         const readPast = [];
@@ -76,7 +83,8 @@ module.exports = (db) => {
             futureList: readFuture,
             memberSince: memberSince,
             isloggedin: req.isAuthenticated(),
-            userBlog: data[3]
+            userBlog: data[3],
+            userPic: profileArr[0]
           };
           res.render("profile", userToSend);
         });
@@ -130,6 +138,13 @@ module.exports = (db) => {
         raw: true
       })
       ]).then(data => {
+        const defaultImg = "https://res.cloudinary.com/bookmarked/image/upload/v1607383426/person-reading-icon-17_hkhwyf.png"
+        const profileArr = []
+        if (data[5] === null) {
+          profileArr.push(defaultImg)
+        } else {
+          profileArr.push(data[5].data)
+        }
         const followingUser = [];
         const userFollowing = [];
         const readPast = [];
@@ -168,7 +183,8 @@ module.exports = (db) => {
             memberSince: memberSince,
             isloggedin: req.isAuthenticated(),
             activeUser: data[3].id,
-            userBlog: data[4]
+            userBlog: data[4],
+            userPic: profileArr[0]
           };
           res.render("user", userToSend);
         });

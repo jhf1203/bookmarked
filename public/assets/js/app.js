@@ -452,7 +452,7 @@ $(document).ready(function () {
   document.getElementById("upload_widget_opener").addEventListener("click", function () {
     // eslint-disable-next-line no-undef
     cloudinary.openUploadWidget({
-      cloud_name: "victoria-greenfield",
+      cloud_name: "bookmarked",
       upload_preset: "gkkjcgbg",
       cropping: true,
       croppingCoordinatesMode: "face",
