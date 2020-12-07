@@ -3,7 +3,6 @@ $(document).ready(function () {
   // ==================== Book Actions
 
   // ========== Events
-  console.log("logged in is: ", window.userId)
 
   const seedBooks = ["victoria", "james", "mary", "john", "patricia", "robert", "jennifer", "michael", "linda", "william", "elizabeth", "david", "barbara", "richard", "susan", "joseph", "jessica", "thomas", "sarah", "charles", "karen", "chris", "nancy", "daniel", "lisa", "matthew", "margaret", "anthony", "betty", "donald", "sandra", "mark", "ashley", "paul", "dorothy", "steven", "kim", "andrew", "emily", "ken", "donna", "josh", "michelle", "kevin", "carol"];
   const randomBook = seedBooks[Math.floor(Math.random() * seedBooks.length)];
@@ -25,18 +24,13 @@ $(document).ready(function () {
   });
 
   $(document).on("change", ".selectBook", function (event) {
-    console.log("this is selectbook");
-    console.log("conditional", location.pathname === "/example");
     event.preventDefault();
-    console.log($(this).val());
-    const state = $(this).val()
+    const state = $(this).val();
 
     if (location.pathname.substring(0, 5) === "/user") {
-      console.log("hey!  Here comes bookId!")
-      const bookId = $(this).parent().parent().siblings().children().attr("id")
-      findFromModal(bookId, state)
+      const bookId = $(this).parent().parent().siblings().children().attr("id");
+      findFromModal(bookId, state);
     } else {
-
       const taCarry = $(this).parent().parent().siblings().html();
       const descCarry = $(this).parent().parent().siblings().next().html();
       const photoStart = $(this).parent().parent().parent().parent().siblings().html();
@@ -65,30 +59,25 @@ $(document).ready(function () {
         state: stateCarry,
         isbn: isbnCarry
       };
-      console.log("data is here", data);
       checkDuplicate(data);
     }
   });
 
   function findFromModal (id, state) {
-    console.log(id)
     $.ajax({
       type: "GET",
-      url: `/api/books/${id}` 
+      url: `/api/books/${id}`
     }).then(function (res) {
-      addToList(state, res.title, res.id, res.author, res.photo, res.description, res.isbn)
-    })
+      addToList(state, res.title, res.id, res.author, res.photo, res.description, res.isbn);
+    });
   }
 
   function checkDuplicate (data) {
-    console.log("we're checking for duplicates for ", data);
     $.ajax({
       type: "GET",
       url: "/api/books"
     }).then(function (res) {
       const dupArr = [];
-      console.log("data: ", data);
-      console.log("res: ", res);
       for (let i = 0; i < res.length; i++) {
         if (res[i].isbn === data.isbn) {
           dupArr.push(res[i]);
@@ -123,7 +112,6 @@ $(document).ready(function () {
       // Temporary fix below, change upon deployment.
       url: `http://localhost:3334/api/lists/${listId}`
     }).then(response => {
-      console.log("response from req", response);
       $(".modal-title-author-text").remove();
       $(".modal-img").remove();
       $(".modal-desc-text").remove();
@@ -139,13 +127,11 @@ $(document).ready(function () {
 
   $(".list-card").on("click", function () {
     const internalBook = ($(this).attr("id"));
-    console.log("i clicked on list-card, and internalbook is ", internalBook);
     singleBookInfo(internalBook);
   });
 
   $(".user-connection").on("click", function () {
     const userTarget = ($(this).attr("id"));
-    console.log("user target", userTarget);
     const pastArr = [];
     const currentArr = [];
     const futureArr = [];
@@ -154,7 +140,6 @@ $(document).ready(function () {
       url: "api/lists"
     }).then(function (res) {
       $(".modal-books").empty();
-      console.log(res);
       for (let i = 0; i < res.length; i++) {
         if (res[i].UserId.toString() === userTarget && res[i].state === "past") {
           pastArr.push(res[i]);
@@ -164,7 +149,6 @@ $(document).ready(function () {
           futureArr.push(res[i]);
         }
       };
-      console.log("pastArr length is ", pastArr.length, "current is ", currentArr.length, "and future is ", futureArr.length);
       const pastHeading = $("<ul>").attr("class", "connection-book-header").text("Books I have read");
       const currentHeading = $("<ul>").attr("class", "connection-book-header").text("Books I am currently reading");
       const futureHeading = $("<ul>").attr("class", "connection-book-header").text("Books I would like to read");
@@ -187,20 +171,18 @@ $(document).ready(function () {
   });
 
   $(".remove-button").on("click", function () {
-    const entryId = $(this).parent().parent().siblings(".modal-img-row").children().attr("id")  
+    const entryId = $(this).parent().parent().siblings(".modal-img-row").children().attr("id");
     $.ajax({
       type: "DELETE",
       url: `api/lists/${entryId}`,
       data: entryId
     }).then(function (result) {
       location.reload();
-      console.log(result);
     });
   });
 
   function findBook (val, query) {
     const queryURL = "https://www.googleapis.com/books/v1/volumes?q=in" + val + ":" + query + "&key=AIzaSyDWTm5Ri0oiuRWTkY3efShrFVhGS0UqNbI";
-    console.log(queryURL);
     $.ajax({
       type: "GET",
       url: queryURL
@@ -283,13 +265,11 @@ $(document).ready(function () {
       url: "/api/lists",
       data: data
     }).then(function (res) {
-      console.log("and here's the resulte!", res);
       callSuccess();
     });
   }
 
   function addConnection (me, you) {
-    console.log($(this));
     const data = {
       followerId: me,
       followeeId: you
@@ -299,7 +279,6 @@ $(document).ready(function () {
       url: "/api/connections",
       data: data
     }).then(function (res) {
-      console.log(res);
     });
   }
 
@@ -314,7 +293,6 @@ $(document).ready(function () {
       url: "/api/blog",
       data: data
     }).then(function (res) {
-      console.log(`res is ${res}`);
     });
   };
 
@@ -341,7 +319,6 @@ $(document).ready(function () {
         window.location.href = "/";
       });
     } else {
-      console.log("**Please fill out entire form**");
       $("#create-err-msg").empty("").text("**Please fill out entire form**");
     }
   });
@@ -368,12 +345,10 @@ $(document).ready(function () {
         url: `/api/user/${id}`,
         data: changeUser
       }).then((result) => {
-        console.log("Updated user:", result);
         // Reload the page to get the updated list
         window.location.href = "/logout";
       });
     } else {
-      console.log("**Please fill out entire form**");
       $("#update-err-msg").empty("").text("**Please fill out entire form**");
     }
   });
@@ -404,7 +379,6 @@ $(document).ready(function () {
           $.ajax(`/api/user/${id}`, {
             type: "DELETE"
           }).then(() => {
-            console.log("Deleted user", deleteUser);
             // Reload the page to get the updated list
             window.location.href = "/logout";
           });
@@ -413,7 +387,6 @@ $(document).ready(function () {
         }
       });
     } else {
-      console.log("fill out entire form");
       $("#err-msg").empty("").text("fill out entire form");
     }
   });
@@ -442,7 +415,6 @@ $(document).ready(function () {
     };
 
     $.post("/api/login", user, (result) => {
-      // console.log(result);
       if (result.loggedIn) {
         $(document.location).attr("href", "/dashboard");
       } else {
@@ -458,53 +430,24 @@ $(document).ready(function () {
     addConnection(me, you);
   });
 
-  // function imageUpload (file) {
-  //   $.ajax({
-  //     type: "POST",
-  //     url: "/api/upload",
-  //     data: file
-  //   }).then((data) => {
-  //     console.log(data);
-  //   });
-  // }
-
-  // $("#submitButton").on("click", function () {
-  //   const fileName = $("#input-files").val();
-  //   console.log(fileName);
-  //   imageUpload(fileName);
-  // });
-
   $("#blogSubmit").on("click", function (event) {
     const title = $("#blog-title").val();
     const body = $("#blog-body").val();
-    console.log(`here is ${title} and now the body is ${body}`);
     // alert(`title is ${title} and body is ${body}`);
     addBlogPost(title, body);
   });
 
   $(".removeBlogButton").on("click", function () {
     const entryId = $(this).attr("id");
-    console.log($(this).parent());
-    console.log(entryId);
+
     $.ajax({
       type: "DELETE",
       url: `api/Blog/${entryId}`,
       data: entryId
     }).then(function (result) {
       location.reload();
-      console.log(result);
     });
   });
-
-  // function imageUpload (file) {
-  //   $.ajax({
-  //     type: "POST",
-  //     url: "/api/image/:id",
-  //     data: file
-  //   }).then((data) => {
-  //     console.log(data);
-  //   });
-  // }
 
   document.getElementById("upload_widget_opener").addEventListener("click", function () {
     // eslint-disable-next-line no-undef
@@ -518,33 +461,28 @@ $(document).ready(function () {
     },
     function (error, result) {
       if (error) throw error;
-      console.log(result);
-      console.log(result[0].url);
-      // console.log(userImage);
-      // Push URL into text input
+
       $("#userImage").attr("src", result[0].url);
-      // document.getElementById('url_text').value = result[0].url;
-      // result.redirect("/files");
-      const profilePic = result[0].url
-      addPhoto(profilePic)
+
+      const profilePic = result[0].url;
+      addPhoto(profilePic);
     });
   });
 
-  function addPhoto(url) {
+  function addPhoto (url) {
     const data = {
       type: "jpg",
       name: window.userId,
       data: url,
       UserId: window.userId
-    }
-    console.log("data is: ", data)
+    };
+
     $.ajax({
       type: "POST",
       url: "/api/images",
       data: data
     }).then((res) => {
-      console.log("WE POSTED", res)
-    })
-  }
 
+    });
+  }
 });

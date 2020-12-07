@@ -70,8 +70,8 @@ body {
   height: 30px;
   padding: 7px;
   color: #7d807f;
+    /* For browsers that do not support gradients */
   background-color: #dcf1ec;
-  /* For browsers that do not support gradients */
   background-image: linear-gradient(to left, #dcf1ec, #4d8071);
 }
 
@@ -81,11 +81,8 @@ body {
 }
 
 .modal-header {
-  /* background-image: url("../images/bgop1.jpg");
-  background-size: 850px; */
-  background-color: #dcf1ec;
-  ;
   /* For browsers that do not support gradients */
+  background-color: #dcf1ec;
   background-image: linear-gradient(to left, #dcf1ec, #4d8071);
   color: black;
 }
@@ -270,7 +267,6 @@ hr {
   height: 280px;
   width: 100%;
   color: Black;
-  /* overflow-y: scroll; */
 
 }
 
@@ -289,19 +285,25 @@ hr {
 }
 
 .list-card {
-  /* height: 200px;
-  width: 55%; */
   background-size: contain;
   background: no-repeat;
   align-items: center;
-  /* margin-bottom: 30px */
+}
+
+.list-img{
+background-size: contain;
+background: no-repeat;
+display: -webkit-inline-box;
+background: white;
+color: Black;
+margin-bottom: 15px;
 }
 
 .list-card-body {
   opacity: 0%;
   background-color: #68aaa2;
   color: white;
-  height: 200px
+  height: 200px;
 }
 
 .list-card-body:hover {
@@ -315,15 +317,10 @@ hr {
   color: black
 }
 
-.scroll {
-  max-height: 100px;
-  overflow-y: auto;
-}
 
 .card-header {
+   /* For browsers that do not support gradients */
   background-color: #dcf1ec;
-  ;
-  /* For browsers that do not support gradients */
   background-image: linear-gradient(to left, #dcf1ec, #4d8071);
   color: black;
   font-family: 'Antic Slab', serif;
@@ -332,6 +329,7 @@ hr {
 }
 
 .cardAll {
+  margin-top: 3em;
   background-color: white;
   border-style: solid;
   border-radius: 7px;
@@ -339,13 +337,6 @@ hr {
   border-color: #617056;
   font-family: 'Antic Slab', serif;
   font-weight: bold;
-  box-shadow:
-    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12)
 }
 
 /*close button for books*/
@@ -414,61 +405,11 @@ hr {
   border-radius: 5px
 }
 
-/* refresh button
-.btnRefresh {
-  background: white;
-  color: black;
-  border: 2px solid #617056;
-  border-radius: 5px;
-  font-weight: bold;
-  width: 100%;
-}
-
-.btnRefresh:hover {
-  background-color: black;
-  color: #aeb4b2;
-  border: 2px solid #aeb4b2;
-} */
 
 .card-footer {
   width: 100%;
   background-color: white;
   border-top: white;
-}
-
-@media screen and (max-width: 1050px) {
-
-  body {
-    background-repeat: no-repeat;
-    max-height: 100%;
-  }
-
-  .userRow {
-    margin-top: 15%;
-  }
-
-  #addUserButton {
-    width: fit-content;
-  }
-
-  .readRow {
-    position: relative;
-    margin-right: 15%;
-  }
-}
-
-@media only screen and (max-device-width: 480px) {
-
-  #cardBody5,
-  #cardBody6,
-  #cardBody7 {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  body {
-    background-repeat: no-repeat;
-  }
 }
 
 /*new profile*/
@@ -478,20 +419,6 @@ hr {
   margin-bottom: 2%;
   overflow: hidden;
 }
-
-/* #userImage {
-    width: 100%;
-    height: 100%;
-    max-width: 200px;
-    max-height: 200px;
-    /* border-radius: 50%; */
-/* margin-bottom: 20px;
-}  */
-
-/* #imageSection {
-  padding: 15px;
-  margin-left: 15%;
-} */
 
 #jumbotronProfile {
   background: rgba(0, 0, 0, 0);
@@ -524,10 +451,8 @@ hr {
   border: 2px solid #617056;
   border-radius: 5px;
   font-weight: bold;
-  width: 100%;
-  position: relative;
   padding: 5px;
-  margin-top: 15px;
+  width: 49%
 }
 
 #btnFollow:hover {
@@ -692,30 +617,19 @@ hr {
 }
 
 #infoCard {
-  max-width: 400px;
+  width: 80%;
   background-color: white;
   border-style: solid;
   border-radius: 20px;
   border-width: 2px;
   border-color: #617056;
   padding: 2em;
+  color: black;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-left: 22em;
-  margin-right: 22em;
+  flex-direction: row;
+  margin-left: 20%;
 }
 
-#thisSucks {
-  margin-left: 3em;
-  margin-right: 1em;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-}
 
 #cardText {
   text-align: center;
@@ -739,4 +653,43 @@ hr {
   width: 45%;
   margin-left: 25%;
   margin-top: 5px;
+}
+
+#movingNames{
+  margin-left: 15px;
+}
+
+@media screen and (max-width: 1050px) {
+
+  body {
+    background-repeat: no-repeat;
+    max-height: 100%;
+  }
+
+  .userRow {
+    margin-top: 15%;
+  }
+
+  #addUserButton {
+    width: fit-content;
+  }
+
+  .readRow {
+    position: relative;
+    margin-right: 15%;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+
+  #cardBody5,
+  #cardBody6,
+  #cardBody7 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  body {
+    background-repeat: no-repeat;
+  }
 }

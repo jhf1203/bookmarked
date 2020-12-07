@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3334;
 const app = express();
 const db = require("./models");
 const upload = require("./controllers/upload");
-const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary").v2;
 // app.use(express.cookieParser('benny'));
 app.use(require("express-session")({ secret: "benny", resave: true, saveUninitialized: true }));
 
@@ -44,12 +44,12 @@ app.use(helmet.hsts({
 // for cloudinary
 app.post("/image", upload.single("image"), (req, res) => { res.send(req.file); });
 
-// app.post("/uploads", upload.single("image"), async (req, res) => {
-//   const result = await cloudinary.v2.uploader.upload(req.file.path);
-//   res.send(result);
-// });
+app.post("/image", upload.single("image"), async (req, res) => {
+  const result = await cloudinary.v2.uploader.upload(req.file.path);
+  res.send(result);
+});
 
-app.get("/api/files", async (req, res) => {
+app.get("/api/image", async (req, res) => {
   const images = await cloudinary.v2.api.resources({
     type: "upload",
     prefix: "image"
@@ -57,7 +57,7 @@ app.get("/api/files", async (req, res) => {
   return res.json(images);
 });
 
-// app.get("/files", async (req, res) => {
+// app.get("/image", async (req, res) => {
 //   const images = await cloudinary.v2.api.resources({
 //     type: "upload",
 //     prefix: "image"
