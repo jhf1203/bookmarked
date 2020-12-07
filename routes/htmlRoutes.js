@@ -17,18 +17,6 @@ module.exports = (db) => {
         },
         raw: true
       }),
-      // db.Image.findOne({
-      //   where: {
-      //     UserId: req.session.passport.user.id
-      //   },
-      //   raw: true
-      // }),
-      // db.Rating.findAll({
-      //   where: {
-      //     BookId: req.session.passport.user.id
-      //   },
-      //   raw: true
-      // }),
       db.Connection.findAll({
         raw: true
       }),
@@ -37,7 +25,19 @@ module.exports = (db) => {
           UserId: req.session.passport.user.id
         },
         raw: true
-      })
+      }),
+      db.Image.findOne({
+        where: {
+          UserId: req.session.passport.user.id
+        },
+        raw: true
+      }),
+      db.Rating.findAll({
+        where: {
+          BookId: req.session.passport.user.id
+        },
+        raw: true
+      }),
       ]).then(data => {
         // console.log("all of the data: ", data);
         // console.log("YAYAYAYA", data[1]["Book.title"]);
@@ -105,18 +105,6 @@ module.exports = (db) => {
         },
         raw: true
       }),
-      // db.Image.findOne({
-      //   where: {
-      //     UserId: req.params.id
-      //   },
-      //   raw: true
-      // }),
-      // db.Rating.findAll({
-      //   where: {
-      //     BookId: req.params.id
-      //   },
-      //   raw: true
-      // }),
       db.Connection.findAll({
         raw: true
       }),
@@ -131,7 +119,19 @@ module.exports = (db) => {
           UserId: req.params.id
         },
         raw: true
-      })
+      }),
+      db.Image.findOne({
+        where: {
+          UserId: req.params.id
+        },
+        raw: true
+      }),
+      db.Rating.findAll({
+        where: {
+          BookId: req.params.id
+        },
+        raw: true
+      }),
       ]).then(data => {
         console.log("DATATADA ", data);
         const followingUser = [];
