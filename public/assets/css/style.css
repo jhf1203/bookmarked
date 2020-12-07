@@ -70,8 +70,8 @@ body {
   height: 30px;
   padding: 7px;
   color: #7d807f;
+    /* For browsers that do not support gradients */
   background-color: #dcf1ec;
-  /* For browsers that do not support gradients */
   background-image: linear-gradient(to left, #dcf1ec, #4d8071);
 }
 
@@ -81,11 +81,8 @@ body {
 }
 
 .modal-header {
-  /* background-image: url("../images/bgop1.jpg");
-  background-size: 850px; */
-  background-color: #dcf1ec;
-  ;
   /* For browsers that do not support gradients */
+  background-color: #dcf1ec;
   background-image: linear-gradient(to left, #dcf1ec, #4d8071);
   color: black;
 }
@@ -270,7 +267,6 @@ hr {
   height: 280px;
   width: 100%;
   color: Black;
-  /* overflow-y: scroll; */
 
 }
 
@@ -289,12 +285,9 @@ hr {
 }
 
 .list-card {
-  /* height: 200px;
-  width: 55%; */
   background-size: contain;
   background: no-repeat;
   align-items: center;
-  /* margin-bottom: 30px */
 }
 
 .list-img{
@@ -324,15 +317,10 @@ margin-bottom: 15px;
   color: black
 }
 
-.scroll {
-  max-height: 100px;
-  overflow-y: auto;
-}
 
 .card-header {
+   /* For browsers that do not support gradients */
   background-color: #dcf1ec;
-  ;
-  /* For browsers that do not support gradients */
   background-image: linear-gradient(to left, #dcf1ec, #4d8071);
   color: black;
   font-family: 'Antic Slab', serif;
@@ -349,13 +337,6 @@ margin-bottom: 15px;
   border-color: #617056;
   font-family: 'Antic Slab', serif;
   font-weight: bold;
-  /* box-shadow:
-    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12) */
 }
 
 /*close button for books*/
@@ -429,41 +410,6 @@ margin-bottom: 15px;
   width: 100%;
   background-color: white;
   border-top: white;
-}
-
-@media screen and (max-width: 1050px) {
-
-  body {
-    background-repeat: no-repeat;
-    max-height: 100%;
-  }
-
-  .userRow {
-    margin-top: 15%;
-  }
-
-  #addUserButton {
-    width: fit-content;
-  }
-
-  .readRow {
-    position: relative;
-    margin-right: 15%;
-  }
-}
-
-@media only screen and (max-device-width: 480px) {
-
-  #cardBody5,
-  #cardBody6,
-  #cardBody7 {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  body {
-    background-repeat: no-repeat;
-  }
 }
 
 /*new profile*/
@@ -711,4 +657,39 @@ margin-bottom: 15px;
 
 #movingNames{
   margin-left: 15px;
+}
+
+@media screen and (max-width: 1050px) {
+
+  body {
+    background-repeat: no-repeat;
+    max-height: 100%;
+  }
+
+  .userRow {
+    margin-top: 15%;
+  }
+
+  #addUserButton {
+    width: fit-content;
+  }
+
+  .readRow {
+    position: relative;
+    margin-right: 15%;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+
+  #cardBody5,
+  #cardBody6,
+  #cardBody7 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  body {
+    background-repeat: no-repeat;
+  }
 }

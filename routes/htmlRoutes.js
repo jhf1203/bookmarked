@@ -37,10 +37,8 @@ module.exports = (db) => {
           BookId: req.session.passport.user.id
         },
         raw: true
-      }),
+      })
       ]).then(data => {
-        // console.log("all of the data: ", data);
-        // console.log("YAYAYAYA", data[1]["Book.title"]);
         const followingUser = [];
         const userFollowing = [];
         const readPast = [];
@@ -80,7 +78,6 @@ module.exports = (db) => {
             isloggedin: req.isAuthenticated(),
             userBlog: data[3]
           };
-          // console.log(userToSend);
           res.render("profile", userToSend);
         });
       });
@@ -131,9 +128,8 @@ module.exports = (db) => {
           BookId: req.params.id
         },
         raw: true
-      }),
+      })
       ]).then(data => {
-        console.log("DATATADA ", data);
         const followingUser = [];
         const userFollowing = [];
         const readPast = [];
@@ -174,7 +170,6 @@ module.exports = (db) => {
             activeUser: data[3].id,
             userBlog: data[4]
           };
-          // console.log("USER TO SEND", userToSend);
           res.render("user", userToSend);
         });
       });
@@ -256,7 +251,6 @@ module.exports = (db) => {
         },
         raw: true
       }).then(function (dbBlog) {
-        // console.log(dbBlog);
         res.render("blog", {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
