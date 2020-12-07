@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.TEXT,
       allowNull: true
+    },
+    isbn: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   });
 

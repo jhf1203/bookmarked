@@ -42,6 +42,17 @@ module.exports = function (db) {
       });
     },
 
+    getOneBook: function (req, res) {
+      db.Book.findOne({
+        where: {
+          id: req.params.id
+        }
+      }).then(data => {
+        res.json(data)
+        console.log("data from getone", data)
+      })
+    },
+
     getUserList: function (req, res) {
       db.List.findOne({
         where: {

@@ -25,42 +25,59 @@ $(document).ready(function () {
 
   $(document).on("change", ".selectBook", function (event) {
     console.log("this is selectbook");
-    console.log(location.pathname === "/example");
+    console.log("conditional", location.pathname === "/example");
     event.preventDefault();
     console.log($(this).val());
+    const state = $(this).val()
 
-    const taCarry = $(this).parent().parent().siblings().html();
-    const descCarry = $(this).parent().parent().siblings().next().html();
-    const photoStart = $(this).parent().parent().parent().parent().siblings().html();
-    const isbnCarry = $(this).parent().parent().parent().parent().siblings().children().attr("id");
-    const stateCarry = $(this).val();
-    const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
-    const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
+    if (location.pathname.substring(0, 5) === "/user") {
+      console.log("hey!  Here comes bookId!")
+      const bookId = $(this).parent().parent().siblings().children().attr("id")
+      findFromModal(bookId, state)
+    } else {
 
-    // trimming excess text off of the captured image url
-    const photoClipFront = photoStart.substring(photoStart.indexOf("="));
-    const photoToArr = photoClipFront.split(" ");
-    const photoToLetters = photoToArr[0].split("");
-    const trimmedArr = [];
-    for (let i = 2; i < (photoToLetters.length - 1); i++) {
-      trimmedArr.push(photoToLetters[i]);
+      const taCarry = $(this).parent().parent().siblings().html();
+      const descCarry = $(this).parent().parent().siblings().next().html();
+      const photoStart = $(this).parent().parent().parent().parent().siblings().html();
+      const isbnCarry = $(this).parent().parent().parent().parent().siblings().children().attr("id");
+      const stateCarry = $(this).val();
+      const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
+      const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
+
+      // trimming excess text off of the captured image url
+      const photoClipFront = photoStart.substring(photoStart.indexOf("="));
+      const photoToArr = photoClipFront.split(" ");
+      const photoToLetters = photoToArr[0].split("");
+      const trimmedArr = [];
+      for (let i = 2; i < (photoToLetters.length - 1); i++) {
+        trimmedArr.push(photoToLetters[i]);
+      }
+      const imgStringCommas = trimmedArr.toString();
+      const imgStringCorrect = imgStringCommas.replace(/,/g, "");
+      const photoCarry = imgStringCorrect.replace(/amp;/g, "");
+
+      const data = {
+        title: titleCarry,
+        author: authorCarry,
+        photo: photoCarry,
+        description: descCarry,
+        state: stateCarry,
+        isbn: isbnCarry
+      };
+      console.log("data is here", data);
+      checkDuplicate(data);
     }
-    const imgStringCommas = trimmedArr.toString();
-    const imgStringCorrect = imgStringCommas.replace(/,/g, "");
-    const photoCarry = imgStringCorrect.replace(/amp;/g, "");
-    console.log("description length is ", descCarry.length);
-
-    const data = {
-      title: titleCarry,
-      author: authorCarry,
-      photo: photoCarry,
-      description: descCarry,
-      state: stateCarry,
-      isbn: isbnCarry
-    };
-    console.log("data is here", data);
-    checkDuplicate(data);
   });
+
+  function findFromModal (id, state) {
+    console.log(id)
+    $.ajax({
+      type: "GET",
+      url: `/api/books/${id}` 
+    }).then(function (res) {
+      addToList(state, res.title, res.id, res.author, res.photo, res.description, res.isbn)
+    })
+  }
 
   function checkDuplicate (data) {
     console.log("we're checking for duplicates for ", data);
@@ -79,7 +96,7 @@ $(document).ready(function () {
       if (dupArr.length === 0) {
         addBookTwice(data);
       } else {
-        addToList(data.state, data.title, data.id, data.author, data.photo, data.description);
+        addToList(data.state, data.title, data.id, data.author, data.photo, data.description, data.isbn);
       }
     });
   };
@@ -94,7 +111,7 @@ $(document).ready(function () {
       url: "/api/books",
       data: data
     }).then(function (res) {
-      addToList(res.state, res.title, res.id, res.author, res.photo, res.description);
+      addToList(res.state, res.title, res.id, res.author, res.photo, res.description, res.isbn);
     });
   };
 
@@ -114,7 +131,7 @@ $(document).ready(function () {
       $(".modal-title-author-row").append(modalTitleAuthor);
       const modalImg = $("<img>").attr("src", response.photo).attr("class", "modal-img").attr("id", listId);
       $(".modal-img-row").append(modalImg);
-      const modalDescription = $("<p>").attr("class", "modal-desc-text").html(response.description);
+      const modalDescription = $("<p>").attr("class", "modal-desc-text").attr("id", response.BookId).html(response.description);
       $(".modal-desc-col").append(modalDescription);
     });
   }
@@ -248,10 +265,11 @@ $(document).ready(function () {
     }
   };
 
-  function addToList (state, name, book, author, picture, desc) {
+  function addToList (state, name, book, author, picture, desc, isbn) {
     const data = {
       state: state,
       title: name,
+      isbn: isbn,
       author: author,
       photo: picture,
       description: desc,
