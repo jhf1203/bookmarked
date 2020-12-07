@@ -39,6 +39,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "bcrypt": "^5.0.0",
+    "cloudinary": "^1.23.0",
     "concat-stream": "^2.0.0",
     "connect-session-sequelize": "^7.0.4",
     "cookie-parser": "^1.4.5",

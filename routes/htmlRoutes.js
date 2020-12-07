@@ -15,7 +15,7 @@ module.exports = (db) => {
         where: {
           UserId: req.session.passport.user.id
         },
-        raw: true,
+        raw: true
       }),
       // db.Image.findOne({
       //   where: {
@@ -39,8 +39,8 @@ module.exports = (db) => {
         raw: true
       })
       ]).then(data => {
-        console.log("all of the data: ", data[1]);
-        console.log("YAYAYAYA", data[1]["Book.title"])
+        console.log("all of the data: ", data);
+        console.log("YAYAYAYA", data[1]["Book.title"]);
         const followingUser = [];
         const userFollowing = [];
         const readPast = [];
@@ -105,12 +105,12 @@ module.exports = (db) => {
         },
         raw: true
       }),
-      // db.Image.findOne({
-      //   where: {
-      //     UserId: req.params.id
-      //   },
-      //   raw: true
-      // }),
+      db.Image.findOne({
+        where: {
+          UserId: req.params.id
+        },
+        raw: true
+      }),
       // db.Rating.findAll({
       //   where: {
       //     BookId: req.params.id
@@ -174,7 +174,7 @@ module.exports = (db) => {
             activeUser: data[3].id,
             userBlog: data[4]
           };
-          console.log(userToSend);
+          console.log("USER TO SEND", userToSend);
           res.render("user", userToSend);
         });
       });
@@ -233,7 +233,7 @@ module.exports = (db) => {
         where: {
           id: req.session.passport.user.id
         },
-        raw: true,
+        raw: true
       }).then(function (dbExamples) {
         res.render("example", {
           userInfo: req.session.passport.user,

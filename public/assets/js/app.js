@@ -25,7 +25,7 @@ $(document).ready(function () {
 
   $(document).on("change", ".selectBook", function (event) {
     console.log("this is selectbook");
-    console.log(location.pathname === "/example")
+    console.log(location.pathname === "/example");
     event.preventDefault();
     console.log($(this).val());
 
@@ -36,19 +36,19 @@ $(document).ready(function () {
     const stateCarry = $(this).val();
     const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
     const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
-    
+
     // trimming excess text off of the captured image url
     const photoClipFront = photoStart.substring(photoStart.indexOf("="));
-    const photoToArr = photoClipFront.split(" ")
-    const photoToLetters = photoToArr[0].split("")
-    const trimmedArr = []
-    for (let i = 2; i < (photoToLetters.length-1); i++) {
-      trimmedArr.push(photoToLetters[i])
+    const photoToArr = photoClipFront.split(" ");
+    const photoToLetters = photoToArr[0].split("");
+    const trimmedArr = [];
+    for (let i = 2; i < (photoToLetters.length - 1); i++) {
+      trimmedArr.push(photoToLetters[i]);
     }
     const imgStringCommas = trimmedArr.toString();
-    const imgStringCorrect = imgStringCommas.replace(/,/g, "")
+    const imgStringCorrect = imgStringCommas.replace(/,/g, "");
     const photoCarry = imgStringCorrect.replace(/amp;/g, "");
-    console.log("description length is ", descCarry.length)
+    console.log("description length is ", descCarry.length);
 
     const data = {
       title: titleCarry,
@@ -58,19 +58,19 @@ $(document).ready(function () {
       state: stateCarry,
       isbn: isbnCarry
     };
-    console.log("data is here", data)
+    console.log("data is here", data);
     checkDuplicate(data);
   });
 
   function checkDuplicate (data) {
-    console.log("we're checking for duplicates for ", data)
+    console.log("we're checking for duplicates for ", data);
     $.ajax({
       type: "GET",
       url: "/api/books"
     }).then(function (res) {
       const dupArr = [];
       console.log("data: ", data);
-      console.log("res: ", res)
+      console.log("res: ", res);
       for (let i = 0; i < res.length; i++) {
         if (res[i].isbn === data.isbn) {
           dupArr.push(res[i]);
@@ -98,33 +98,32 @@ $(document).ready(function () {
     });
   };
 
-  
   function singleBookInfo (listId) {
-    console.log("listId", listId)
+    console.log("listId", listId);
     $.ajax({
       type: "GET",
       // Temporary fix below, change upon deployment.
       url: `http://localhost:3334/api/lists/${listId}`
     }).then(response => {
-      console.log("response from req", response)
-      $(".modal-title-author-text").remove()
-      $(".modal-img").remove()
-      $(".modal-desc-text").remove()
+      console.log("response from req", response);
+      $(".modal-title-author-text").remove();
+      $(".modal-img").remove();
+      $(".modal-desc-text").remove();
 
-      const modalTitleAuthor = $("<p>").attr("class", "modal-title-author-text").html(`${response.title} | ${response.author}`)
+      const modalTitleAuthor = $("<p>").attr("class", "modal-title-author-text").html(`${response.title} | ${response.author}`);
       $(".modal-title-author-row").append(modalTitleAuthor);
-      const modalImg = $("<img>").attr("src", response.photo).attr("class", "modal-img")
+      const modalImg = $("<img>").attr("src", response.photo).attr("class", "modal-img");
       $(".modal-img-row").append(modalImg);
       const modalDescription = $("<p>").attr("class", "modal-desc-text").html(response.description);
-      $(".modal-desc-col").append(modalDescription)
-    })
+      $(".modal-desc-col").append(modalDescription);
+    });
   }
 
   $(".list-card").on("click", function () {
-    const internalBook = ($(this).attr("id"))
-    console.log("i clicked on list-card, and internalbook is ", internalBook)
-    singleBookInfo(internalBook)
-  })
+    const internalBook = ($(this).attr("id"));
+    console.log("i clicked on list-card, and internalbook is ", internalBook);
+    singleBookInfo(internalBook);
+  });
 
   $(".user-connection").on("click", function () {
     const userTarget = ($(this).attr("id"));
@@ -220,7 +219,7 @@ $(document).ready(function () {
     for (let i = 0; i < 3; i++) {
       const topDiv = $("<div>").addClass("col-12 offset-lg-2").attr("id", `testId${i}`);
       const h2Div = $("<h2>").attr("id", "greatRead").text("Your next great read");
-      const vbTopDiv = $("<div>").addClass("card mb-3").css("max-width", "740px");
+      const vbTopDiv = $("<div>").addClass("cardAll mb-3").css("max-width", "740px");
       topDiv.append(h2Div, vbTopDiv);
       const secondDiv = $("<div>").addClass("row no-gutters");
       vbTopDiv.append(secondDiv);
@@ -261,7 +260,7 @@ $(document).ready(function () {
       UserId: window.userId,
       BookId: book
     };
-    console.log("here's who's logged in", data.userId)
+    console.log("here's who's logged in", data.userId);
     $.ajax({
       type: "POST",
       url: "/api/lists",
@@ -480,35 +479,35 @@ $(document).ready(function () {
     });
   });
 
-  // cloudinary Image upload-- hello problem child -
-  const cloudinaryURL = "https://api.cloudinary.com/v1_1/victoria-greenfield/image/upload"; // will get hidden when I move to server side
-  const cloudinaryUploadPreset = "gkkjcgbg"; // will get hidden when I move to server side
+  // function imageUpload (file) {
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/api/image/:id",
+  //     data: file
+  //   }).then((data) => {
+  //     console.log(data);
+  //   });
+  // }
 
-  const imgPreview = document.getElementById("img-preview");
-  const fileUpload = document.getElementById("file-upload");
-
-  fileUpload.addEventListener("change", function (event) {
-    const file = event.target.files[0];
-    console.log(file);
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", cloudinaryUploadPreset);
-
-    $.ajax({
-      type: "POST",
-      url: cloudinaryURL,
-      processData: false,
-      contentType: false,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }, // multipart/form-data also doesn't work in place of application/x-www-form-urlencoded
-      // https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
-      data: formData
-    }).then(function (res) {
-      console.log(res);
-      imgPreview.src = res.data.secure_url;
-    }).catch(function (err) {
-      console.log(err);
+  document.getElementById("upload_widget_opener").addEventListener("click", function () {
+    // eslint-disable-next-line no-undef
+    cloudinary.openUploadWidget({
+      cloud_name: "victoria-greenfield",
+      upload_preset: "gkkjcgbg",
+      cropping: true,
+      croppingCoordinatesMode: "face",
+      croppingAspectRatio: 1,
+      showSkipCropButton: false
+    },
+    function (error, result) {
+      if (error) throw error;
+      console.log(result);
+      console.log(result[0].url);
+      // console.log(userImage);
+      // Push URL into text input
+      $("#userImage").attr("src", result[0].url);
+      // document.getElementById('url_text').value = result[0].url;
+      // result.redirect("/files");
     });
   });
 });
