@@ -112,7 +112,7 @@ $(document).ready(function () {
 
       const modalTitleAuthor = $("<p>").attr("class", "modal-title-author-text").html(`${response.title} | ${response.author}`);
       $(".modal-title-author-row").append(modalTitleAuthor);
-      const modalImg = $("<img>").attr("src", response.photo).attr("class", "modal-img");
+      const modalImg = $("<img>").attr("src", response.photo).attr("class", "modal-img").attr("id", listId);
       $(".modal-img-row").append(modalImg);
       const modalDescription = $("<p>").attr("class", "modal-desc-text").html(response.description);
       $(".modal-desc-col").append(modalDescription);
@@ -169,9 +169,7 @@ $(document).ready(function () {
   });
 
   $(".remove-button").on("click", function () {
-    const entryId = $(this).attr("id");
-    console.log($(this).parent());
-    console.log(entryId);
+    const entryId = $(this).parent().parent().siblings(".modal-img-row").children().attr("id")  
     $.ajax({
       type: "DELETE",
       url: `api/lists/${entryId}`,
