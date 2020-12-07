@@ -3,6 +3,7 @@ $(document).ready(function () {
   // ==================== Book Actions
 
   // ========== Events
+  console.log("logged in is: ", window.userId)
 
   const seedBooks = ["victoria", "james", "mary", "john", "patricia", "robert", "jennifer", "michael", "linda", "william", "elizabeth", "david", "barbara", "richard", "susan", "joseph", "jessica", "thomas", "sarah", "charles", "karen", "chris", "nancy", "daniel", "lisa", "matthew", "margaret", "anthony", "betty", "donald", "sandra", "mark", "ashley", "paul", "dorothy", "steven", "kim", "andrew", "emily", "ken", "donna", "josh", "michelle", "kevin", "carol"];
   const randomBook = seedBooks[Math.floor(Math.random() * seedBooks.length)];
@@ -524,6 +525,26 @@ $(document).ready(function () {
       $("#userImage").attr("src", result[0].url);
       // document.getElementById('url_text').value = result[0].url;
       // result.redirect("/files");
+      const profilePic = result[0].url
+      addPhoto(profilePic)
     });
   });
+
+  function addPhoto(url) {
+    const data = {
+      type: "jpg",
+      name: window.userId,
+      data: url,
+      UserId: window.userId
+    }
+    console.log("data is: ", data)
+    $.ajax({
+      type: "POST",
+      url: "/api/images",
+      data: data
+    }).then((res) => {
+      console.log("WE POSTED", res)
+    })
+  }
+
 });
