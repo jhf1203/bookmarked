@@ -105,12 +105,12 @@ module.exports = (db) => {
         },
         raw: true
       }),
-      db.Image.findOne({
-        where: {
-          UserId: req.params.id
-        },
-        raw: true
-      }),
+      // db.Image.findOne({
+      //   where: {
+      //     UserId: req.params.id
+      //   },
+      //   raw: true
+      // }),
       // db.Rating.findAll({
       //   where: {
       //     BookId: req.params.id
@@ -133,7 +133,7 @@ module.exports = (db) => {
         raw: true
       })
       ]).then(data => {
-        console.log("DATATADA ", data[3]);
+        console.log("DATATADA ", data);
         const followingUser = [];
         const userFollowing = [];
         const readPast = [];
