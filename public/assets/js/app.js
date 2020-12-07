@@ -24,53 +24,69 @@ $(document).ready(function () {
   });
 
   $(document).on("change", ".selectBook", function (event) {
-    // console.log("this is selectbook");
-    // console.log(location.pathname === "/example");
+    console.log("this is selectbook");
+    console.log("conditional", location.pathname === "/example");
     event.preventDefault();
-    // console.log($(this).val());
+    console.log($(this).val());
+    const state = $(this).val();
 
-    const taCarry = $(this).parent().parent().siblings().html();
-    const descCarry = $(this).parent().parent().siblings().next().html();
-    const photoStart = $(this).parent().parent().parent().parent().siblings().html();
-    const isbnCarry = $(this).parent().parent().parent().parent().siblings().children().attr("id");
-    const stateCarry = $(this).val();
-    const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
-    const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
+    if (location.pathname.substring(0, 5) === "/user") {
+      console.log("hey!  Here comes bookId!");
+      const bookId = $(this).parent().parent().siblings().children().attr("id");
+      findFromModal(bookId, state);
+    } else {
+      const taCarry = $(this).parent().parent().siblings().html();
+      const descCarry = $(this).parent().parent().siblings().next().html();
+      const photoStart = $(this).parent().parent().parent().parent().siblings().html();
+      const isbnCarry = $(this).parent().parent().parent().parent().siblings().children().attr("id");
+      const stateCarry = $(this).val();
+      const titleCarry = taCarry.substring(0, taCarry.indexOf("|")).trim();
+      const authorCarry = taCarry.substring(taCarry.indexOf("|") + 1, taCarry.length).trim();
 
-    // trimming excess text off of the captured image url
-    const photoClipFront = photoStart.substring(photoStart.indexOf("="));
-    const photoToArr = photoClipFront.split(" ");
-    const photoToLetters = photoToArr[0].split("");
-    const trimmedArr = [];
-    for (let i = 2; i < (photoToLetters.length - 1); i++) {
-      trimmedArr.push(photoToLetters[i]);
+      // trimming excess text off of the captured image url
+      const photoClipFront = photoStart.substring(photoStart.indexOf("="));
+      const photoToArr = photoClipFront.split(" ");
+      const photoToLetters = photoToArr[0].split("");
+      const trimmedArr = [];
+      for (let i = 2; i < (photoToLetters.length - 1); i++) {
+        trimmedArr.push(photoToLetters[i]);
+      }
+      const imgStringCommas = trimmedArr.toString();
+      const imgStringCorrect = imgStringCommas.replace(/,/g, "");
+      const photoCarry = imgStringCorrect.replace(/amp;/g, "");
+
+      const data = {
+        title: titleCarry,
+        author: authorCarry,
+        photo: photoCarry,
+        description: descCarry,
+        state: stateCarry,
+        isbn: isbnCarry
+      };
+      console.log("data is here", data);
+      checkDuplicate(data);
     }
-    const imgStringCommas = trimmedArr.toString();
-    const imgStringCorrect = imgStringCommas.replace(/,/g, "");
-    const photoCarry = imgStringCorrect.replace(/amp;/g, "");
-    // console.log("description length is ", descCarry.length);
-
-    const data = {
-      title: titleCarry,
-      author: authorCarry,
-      photo: photoCarry,
-      description: descCarry,
-      state: stateCarry,
-      isbn: isbnCarry
-    };
-    // console.log("data is here", data);
-    checkDuplicate(data);
   });
 
+  function findFromModal (id, state) {
+    console.log(id);
+    $.ajax({
+      type: "GET",
+      url: `/api/books/${id}`
+    }).then(function (res) {
+      addToList(state, res.title, res.id, res.author, res.photo, res.description, res.isbn);
+    });
+  }
+
   function checkDuplicate (data) {
-    // console.log("we're checking for duplicates for ", data);
+    console.log("we're checking for duplicates for ", data);
     $.ajax({
       type: "GET",
       url: "/api/books"
     }).then(function (res) {
       const dupArr = [];
-      // console.log("data: ", data);
-      // console.log("res: ", res);
+      console.log("data: ", data);
+      console.log("res: ", res);
       for (let i = 0; i < res.length; i++) {
         if (res[i].isbn === data.isbn) {
           dupArr.push(res[i]);
@@ -79,7 +95,7 @@ $(document).ready(function () {
       if (dupArr.length === 0) {
         addBookTwice(data);
       } else {
-        addToList(data.state, data.title, data.id, data.author, data.photo, data.description);
+        addToList(data.state, data.title, data.id, data.author, data.photo, data.description, data.isbn);
       }
     });
   };
@@ -94,40 +110,40 @@ $(document).ready(function () {
       url: "/api/books",
       data: data
     }).then(function (res) {
-      addToList(res.state, res.title, res.id, res.author, res.photo, res.description);
+      addToList(res.state, res.title, res.id, res.author, res.photo, res.description, res.isbn);
     });
   };
 
   function singleBookInfo (listId) {
-    // console.log("listId", listId);
+    console.log("listId", listId);
     $.ajax({
       type: "GET",
       // Temporary fix below, change upon deployment.
       url: `http://localhost:3334/api/lists/${listId}`
     }).then(response => {
-      // console.log("response from req", response);
+      console.log("response from req", response);
       $(".modal-title-author-text").remove();
       $(".modal-img").remove();
       $(".modal-desc-text").remove();
 
       const modalTitleAuthor = $("<p>").attr("class", "modal-title-author-text").html(`${response.title} | ${response.author}`);
       $(".modal-title-author-row").append(modalTitleAuthor);
-      const modalImg = $("<img>").attr("src", response.photo).attr("class", "modal-img");
+      const modalImg = $("<img>").attr("src", response.photo).attr("class", "modal-img").attr("id", listId);
       $(".modal-img-row").append(modalImg);
-      const modalDescription = $("<p>").attr("class", "modal-desc-text").html(response.description);
+      const modalDescription = $("<p>").attr("class", "modal-desc-text").attr("id", response.BookId).html(response.description);
       $(".modal-desc-col").append(modalDescription);
     });
   }
 
   $(".list-card").on("click", function () {
     const internalBook = ($(this).attr("id"));
-    // console.log("i clicked on list-card, and internalbook is ", internalBook);
+    console.log("i clicked on list-card, and internalbook is ", internalBook);
     singleBookInfo(internalBook);
   });
 
   $(".user-connection").on("click", function () {
     const userTarget = ($(this).attr("id"));
-    // console.log("user target", userTarget);
+    console.log("user target", userTarget);
     const pastArr = [];
     const currentArr = [];
     const futureArr = [];
@@ -136,7 +152,7 @@ $(document).ready(function () {
       url: "api/lists"
     }).then(function (res) {
       $(".modal-books").empty();
-      // console.log(res);
+      console.log(res);
       for (let i = 0; i < res.length; i++) {
         if (res[i].UserId.toString() === userTarget && res[i].state === "past") {
           pastArr.push(res[i]);
@@ -146,7 +162,7 @@ $(document).ready(function () {
           futureArr.push(res[i]);
         }
       };
-      // console.log("pastArr length is ", pastArr.length, "current is ", currentArr.length, "and future is ", futureArr.length);
+      console.log("pastArr length is ", pastArr.length, "current is ", currentArr.length, "and future is ", futureArr.length);
       const pastHeading = $("<ul>").attr("class", "connection-book-header").text("Books I have read");
       const currentHeading = $("<ul>").attr("class", "connection-book-header").text("Books I am currently reading");
       const futureHeading = $("<ul>").attr("class", "connection-book-header").text("Books I would like to read");
@@ -169,22 +185,20 @@ $(document).ready(function () {
   });
 
   $(".remove-button").on("click", function () {
-    const entryId = $(this).attr("id");
-    // console.log($(this).parent());
-    // console.log(entryId);
+    const entryId = $(this).parent().parent().siblings(".modal-img-row").children().attr("id");
     $.ajax({
       type: "DELETE",
       url: `api/lists/${entryId}`,
       data: entryId
     }).then(function (result) {
       location.reload();
-      // console.log(result);
+      console.log(result);
     });
   });
 
   function findBook (val, query) {
     const queryURL = "https://www.googleapis.com/books/v1/volumes?q=in" + val + ":" + query + "&key=AIzaSyDWTm5Ri0oiuRWTkY3efShrFVhGS0UqNbI";
-    // console.log(queryURL);
+    console.log(queryURL);
     $.ajax({
       type: "GET",
       url: queryURL
@@ -250,29 +264,30 @@ $(document).ready(function () {
     }
   };
 
-  function addToList (state, name, book, author, picture, desc) {
+  function addToList (state, name, book, author, picture, desc, isbn) {
     const data = {
       state: state,
       title: name,
+      isbn: isbn,
       author: author,
       photo: picture,
       description: desc,
       UserId: window.userId,
       BookId: book
     };
-    // console.log("here's who's logged in", data.userId);
+    console.log("here's who's logged in", data.userId);
     $.ajax({
       type: "POST",
       url: "/api/lists",
       data: data
     }).then(function (res) {
-      // console.log("and here's the resulte!", res);
+      console.log("and here's the resulte!", res);
       callSuccess();
     });
   }
 
   function addConnection (me, you) {
-    // console.log($(this));
+    console.log($(this));
     const data = {
       followerId: me,
       followeeId: you
@@ -282,7 +297,7 @@ $(document).ready(function () {
       url: "/api/connections",
       data: data
     }).then(function (res) {
-      // console.log(res);
+      console.log(res);
     });
   }
 
@@ -297,7 +312,7 @@ $(document).ready(function () {
       url: "/api/blog",
       data: data
     }).then(function (res) {
-      // console.log(`res is ${res}`);
+      console.log(`res is ${res}`);
     });
   };
 
@@ -324,7 +339,7 @@ $(document).ready(function () {
         window.location.href = "/";
       });
     } else {
-      // console.log("**Please fill out entire form**");
+      console.log("**Please fill out entire form**");
       $("#create-err-msg").empty("").text("**Please fill out entire form**");
     }
   });
@@ -343,7 +358,7 @@ $(document).ready(function () {
     };
     $("#err-msg").empty("");
     // $('#change-user-modal').modal('show');
-    // console.log(changeUser);
+    console.log(changeUser);
 
     if (changeUser.password.length > 0 && changeUser.email.length > 0 && changeUser.password.length > 0 && changeUser.lastName.length > 0 && changeUser.firstName.length > 0) {
       $.ajax({
@@ -351,12 +366,12 @@ $(document).ready(function () {
         url: `/api/user/${id}`,
         data: changeUser
       }).then((result) => {
-        // console.log("Updated user:", result);
+        console.log("Updated user:", result);
         // Reload the page to get the updated list
         window.location.href = "/logout";
       });
     } else {
-      // console.log("**Please fill out entire form**");
+      console.log("**Please fill out entire form**");
       $("#update-err-msg").empty("").text("**Please fill out entire form**");
     }
   });
@@ -387,7 +402,7 @@ $(document).ready(function () {
           $.ajax(`/api/user/${id}`, {
             type: "DELETE"
           }).then(() => {
-            // console.log("Deleted user", deleteUser);
+            console.log("Deleted user", deleteUser);
             // Reload the page to get the updated list
             window.location.href = "/logout";
           });
@@ -396,7 +411,7 @@ $(document).ready(function () {
         }
       });
     } else {
-      // console.log("fill out entire form");
+      console.log("fill out entire form");
       $("#err-msg").empty("").text("fill out entire form");
     }
   });
@@ -441,25 +456,41 @@ $(document).ready(function () {
     addConnection(me, you);
   });
 
+  // function imageUpload (file) {
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/api/upload",
+  //     data: file
+  //   }).then((data) => {
+  //     console.log(data);
+  //   });
+  // }
+
+  // $("#submitButton").on("click", function () {
+  //   const fileName = $("#input-files").val();
+  //   console.log(fileName);
+  //   imageUpload(fileName);
+  // });
+
   $("#blogSubmit").on("click", function (event) {
     const title = $("#blog-title").val();
     const body = $("#blog-body").val();
-    // console.log(`here is ${title} and now the body is ${body}`);
+    console.log(`here is ${title} and now the body is ${body}`);
     // alert(`title is ${title} and body is ${body}`);
     addBlogPost(title, body);
   });
 
   $(".removeBlogButton").on("click", function () {
     const entryId = $(this).attr("id");
-    // console.log($(this).parent());
-    // console.log(entryId);
+    console.log($(this).parent());
+    console.log(entryId);
     $.ajax({
       type: "DELETE",
       url: `api/Blog/${entryId}`,
       data: entryId
     }).then(function (result) {
       location.reload();
-      // console.log(result);
+      console.log(result);
     });
   });
 

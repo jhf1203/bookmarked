@@ -16,6 +16,7 @@ module.exports = (passport, db) => {
 
   // Project GET routes
   router.get("/books", AppController.getBookInfoInternal);
+  router.get("/books/:id", AppController.getOneBook);
   router.get("/userInfo/:id", AppController.getUserInfo);
   router.get("/lists/:id", AppController.getUserList);
   router.get("/connections/", AppController.getUserConnections);
