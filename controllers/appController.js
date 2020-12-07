@@ -170,6 +170,13 @@ module.exports = function (db) {
     //   });
     // },
 
+    addImage: function (req, res) {
+      console.log("reqbody: ", req.body)
+      db.Image.create(req.body).then(function (dbImage) {
+        res.json(dbImage);
+      });
+    },
+
     addToList: function (req, res) {
       db.List.create(req.body).then(function (dbAddToList) {
         res.json(dbAddToList);
@@ -232,11 +239,7 @@ module.exports = function (db) {
       });
     },
 
-    updateImage: function (req, res) {
-      db.Image.create(req.body).then(function (dbImage) {
-        res.json(dbImage);
-      });
-    }
+
     // deleteExample: function (req, res) {
     //   db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
     //     res.json(dbExample);
