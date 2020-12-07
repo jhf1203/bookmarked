@@ -121,7 +121,6 @@ module.exports = function (db) {
         console.log(error);
       });
     },
-
     // getUserImage: function (req, res) {
     //   db.Image.findOne({
     //     where: {
@@ -166,14 +165,14 @@ module.exports = function (db) {
     },
 
     addBlogPost: function (req, res) {
-      console.log(req.body);
+      // console.log(req.body);
       db.Blog.create({
         heading: req.body.heading,
         blurb: req.body.blurb,
         UserId: req.body.UserId
       }).then(function (blogData) {
         res.json(blogData);
-        console.log("res", res);
+        // console.log("res", res);
         console.log("blogdata", blogData);
       });
     },
@@ -224,6 +223,7 @@ module.exports = function (db) {
     updateImage: function (req, res) {
       db.Image.create(req.body).then(function (dbImage) {
         res.json(dbImage);
+        console.log(dbImage);
       });
     }
     // deleteExample: function (req, res) {

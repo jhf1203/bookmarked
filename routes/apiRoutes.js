@@ -1,4 +1,5 @@
 const router = require("express").Router();
+// const appController = require("../controllers/appController");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 
 module.exports = (passport, db) => {
@@ -25,7 +26,6 @@ module.exports = (passport, db) => {
   router.post("/connections", AppController.followUser);
   router.post("/lists", AppController.addToList);
   router.post("/blog", AppController.addBlogPost);
-
   router.post("/image", AppController.updateImage);
 
   // Project DELETE routes
