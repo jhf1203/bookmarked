@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 const dotenv = require("dotenv").config();
 const express = require("express");
-const exphbs = require("express-handlebars");
 // eslint-disable-next-line no-unused-vars
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
@@ -18,11 +17,17 @@ app.use(require("express-session")({ secret: "benny", resave: true, saveUninitia
 
 console.log(process.env);
 
+const helpers = require("./utils/helper");
+const exphbs = require("express-handlebars");
+const hbs = exphbs.create({ helpers });
+
 // app.use(express.cookieParser("benny"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
+// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+// app.set("view engine", "handlebars");
 
 if (app.get("env") !== "test") {
   app.use(morgan("dev")); // Hook up the HTTP logger

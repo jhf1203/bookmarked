@@ -149,9 +149,9 @@ body {
   color: white !important;
 }
 
-[data-register="true"] {
-  color: white !important;
-}
+/* [data-register="true"] {
+  /* color: !important;
+} */
 
 .lead {
   font-size: 1.8rem;
@@ -176,6 +176,18 @@ hr {
   color: #444;
   overflow-y: auto;
 }
+
+/*register page*/
+#register-container{
+  background-color: white;
+  border-style: solid;
+  border-radius: 20px;
+  border-width: 2px;
+  border-color: #617056;
+  max-width: 40%;
+}
+
+
 
 /*card body for all pages*/
 #cardBody5,

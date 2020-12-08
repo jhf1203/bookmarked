@@ -2,142 +2,135 @@
 
 <!--container for page-->
 <div class="container">
-
   <!-- jumbotron with logo-->
   <div id="jumbotronProfile" class="jumbotron">
-  </div>
+  </div>>
 
   <!--user info card-->
-  <div class="card card-1 col-md-4 offset-lg-4">
-    <div class="row">
-      <div class="col-md-6">
-        <img id="userImage" src="https://via.placeholder.com/1000x2000" class="card-img" alt="userProfileImage">
-        <!--POSSIBLE UPLOAD BUTTON HERE-->
-        <form class="mt-1" action="/upload" method="POST" enctype="multipart/form-data">
-          <div class="form-group">
-            <input type="file" name="file" id="input-files" class="form-control-file border" />
-            <button id="submitButton" type="submit" class="btn btn-default btn-sm">
-              <i class="fa fa-camera-retro">Submit</i>
-            </button>
+  <section class="container-fluid">
+    <div id="infoCard" class="card mb-12" style="max-width: 650px;">
+      <div class="row no-gutters">
+
+        <div class="col-md-4">
+          <form id="thisIsImage" action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="card mx-auto">
+              <h6 id="movingNames" class="row text-center justify-content-start text-uppercase">{{ userInfo.firstName}}
+                {{userInfo.lastName}}</h6> <button id="addUserButtonNew" type="button" class="btn btn-default btn-sm">
+                <i class="fa fa-user-plus"></i>
+              </button>
+
+              <img class="card-img-top" id="userImage" src="https://res.cloudinary.com/bookmarked/image/upload/v1607383426/person-reading-icon-17_hkhwyf.png" />
+              <input value="Upload" id="upload_widget_opener" class="btn btn-primary btn-block">
+            </div>
+          </form>
+          <p class="card-text"><small class="text-muted">Member Since: {{ memberSince }}</small></p>
+
+        </div>
+        <div class="col-md-8">
+          <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1" type="button">
+          <i class="fa fa-users">Followers</i>
+        </button>
+        <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3" type="button">
+          <i class="fa fa-users">Following</i>
+        </button>
+        {{#each userInfo.followees}}
+        <div>{{this.firstName}} {{this.lastName}}</div>
+        {{/each}}
+          <div class="card-body">
+            <h5 id="currentlyReading" class="card-title">{{userInfo.firstName}} is currently reading:</h5>
+            <p class="card-text"> {{#each currentList}}
+            <div id="scrollBody" class="col-md-12 list-img" id={{id}}>
+              <div>
+                <div class="card list-card" id={{id}} data-toggle="modal" data-target="#myModal2"
+                  style="background-image: url('{{photo}}')">
+                  <div class="card-body list-card-body">
+                    <p> Click for more info </p>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+            </p>
           </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <div class="card-body">
-          <h5 id="userName" class="card-title">{{ userInfo.firstName}}</h5>
-          <p class="card-text">Member Since: {{ memberSince }}</p>
-          <p>{{userInfo.firstName}} is currently reading:
-            {{#each currentList}}
-            <p class={{id}}>{{title}}
-              {{/each}}
-              <!--Change title of currently reading to just the book image?-->
-            </p>
-            <!--Buttons for user interaction-->
-            <p> <button id={{userInfo.id}} type="button" class="btn btn-default btn-sm follow-btn">
-                <i class="fa fa-user-plus">Add Friend</i>
-              </button>
-              <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1"
-                type="button">
-                <i class="fa fa-users">Followers</i>
-              </button>
-              <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3"
-                type="button">
-                <i class="fa fa-users">Following</i>
-              </button>
-              {{#each userInfo.followees}}
-              <div>{{this.firstName}} {{this.lastName}}</div>
-              {{/each}}
-            </p>
+
         </div>
       </div>
-    </div>
-  </div>
+      {{!-- <div class="card-footer">
+        <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1" type="button">
+          <i class="fa fa-users">Followers</i>
+        </button>
+        <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3" type="button">
+          <i class="fa fa-users">Following</i>
+        </button>
+        {{#each userInfo.followees}}
+        <div>{{this.firstName}} {{this.lastName}}</div>
+        {{/each}}
+      </div>
+    </div> --}}
+  </section>
 
   <!--books area-->
   <!--Have Read Card-->
   <div class="row">
-    <div class="col-sm-6 mt-5">
-      <div class="card">
+    <div class="col-lg-6">
+      <div class="cardAll">
         <div class="card-header">Have Read</div>
         <div class="card-body" id="cardBody2">
-          <ul class='future-list'>
-            {{#each pastList}}
-            <div class="col-md-4 list-img" id={{id}}>
-              <div class="card list-card" data-toggle="modal" data-target="#myModal2" id={{id}} style="background-image: url('{{photo}}')">
-                <div class="card-body list-card-body">
-                  <p>Click for more info</p>
-                </div>
+          {{#each pastList}}
+          <div class="col-md-4 list-img" id={{id}}>
+            <div class="card list-card" id={{id}} data-toggle="modal" data-target="#myModal2"
+              style="background-image: url('{{photo}}')">
+              <div class="card-body list-card-body">
+                <p>Click for more info</p>
               </div>
             </div>
-            {{/each}}
-          </ul>
+          </div>
+          {{/each}}
         </div>
       </div>
     </div>
 
     <!--Want to Read Card-->
-    <div class="col-sm-6 mt-5">
-      <div class="card">
+    <div class="col-lg-6">
+      <div class="cardAll">
         <div class="card-header">Want to Read</div>
         <div class="card-body" id="cardBody2">
-          <ul class='future-list'>
-            {{#each futureList}}
-            <div class="col-md-4 list-img" id={{id}}>
-              <div class="card list-card" data-toggle="modal" data-target="#myModal2" id={{id}} style="background-image: url('{{photo}}')">
-                <div class="card-body list-card-body">
-                  <p>Click for more info</p>
-                </div>
+          {{#each futureList}}
+          <div class="col-sm-4 list-img" id={{id}}>
+            <div class="card list-card" id={{id}} data-toggle="modal" data-target="#myModal2"
+              style="background-image: url('{{photo}}')">
+              <div class="card-body list-card-body">
+                <p>Click for more info</p>
               </div>
             </div>
-            {{/each}}
-          </ul>
+          </div>
+          {{/each}}
         </div>
       </div>
     </div>
   </div>
 
-  <!--blog/review area-->
-  {{!-- <div class="row">
-    <div class="col md-12 mt-5">
-      <div class="card">
-        <div class="card-header">
-          Thoughts: <i class="fa fa-commenting-o"></i>
-        </div>
-        <div class="card-body">
-          <div class="form-group shadow-textarea">
-            <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3"
-              placeholder="Write something here..."></textarea>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-          <hr>
-          <p class="card-text">this area will populate with posts?
-            <hr>
-          </p>
-          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-        </div>
-      </div>
-    </div>
-  </div> --}}
+  <div class="col-md-12 blog-container" style="max-width: 1500px;">
+    <h1 class="bookNotes">Booknotes <i class="fa fa-pencil-square"></i> </h1>
+    <hr class="line_break">
+    {{#each userBlog}}
+    <h5 id={{id}} class="blog-head"> &#8608; {{heading}} &#8606; </h6> 
+      <p class="blog-body" scroll>{{blurb}}</p>
+      <small class="text-muted">{{format_date createdAt}}</small>
+      <button id={{id}} class="removeBlogButton" {{id}}><i class="fa fa-times test-icon">Remove Post</i>
+        <span hidden>
+          {{id}}</span></button> <br>
+      <hr class="line_break">
+      {{/each}}
+  </div>
+
   <div class="row mt-4">
     <div class="col-md-4">
       <div class="form-group">
 
       </div>
     </div>
-    <div class="col-md-2">
-    </div>
   </div>
-  <div class="row">
-    <div class="col-md-12 blog-container">
-      {{#each userBlog}}
-      <h6 id={{id}} class="blog-head">{{heading}}</h6>
-      <p class="blog-body">{{blurb}}</p>
-      {{/each}}
-    </div>
-  </div>
-
-</div>
-
 </div>
 
 <!-- Followers Modal -->
