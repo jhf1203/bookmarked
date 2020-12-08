@@ -17,7 +17,7 @@
                 <i class="fa fa-user-plus"></i>
               </button>
 
-              <img class="card-img-top" id="userImage" src="https://icon-library.com/images/person-reading-icon/person-reading-icon-17.jpg" />
+              <img class="card-img-top" id="userImage" src="https://res.cloudinary.com/bookmarked/image/upload/v1607383426/person-reading-icon-17_hkhwyf.png" />
               <input value="Upload" id="upload_widget_opener" class="btn btn-primary btn-block">
             </div>
           </form>
@@ -112,8 +112,9 @@
     <h1 class="bookNotes">Booknotes <i class="fa fa-pencil-square"></i> </h1>
     <hr class="line_break">
     {{#each userBlog}}
-    <h5 id={{id}} class="blog-head"> &#8608; {{heading}} &#8606; </h6>
+    <h5 id={{id}} class="blog-head"> &#8608; {{heading}} &#8606; </h6> 
       <p class="blog-body" scroll>{{blurb}}</p>
+      <small class="text-muted">{{format_date createdAt}}</small>
       <button id={{id}} class="removeBlogButton" {{id}}><i class="fa fa-times test-icon">Remove Post</i>
         <span hidden>
           {{id}}</span></button> <br>
