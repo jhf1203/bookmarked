@@ -463,7 +463,7 @@ $(document).ready(function () {
       if (error) throw error;
 
       $("#userImage").attr("src", result[0].url);
-
+      console.log("result!", result)
       const profilePic = result[0].url;
       addPhoto(profilePic);
     });
@@ -482,7 +482,7 @@ $(document).ready(function () {
       url: "/api/images",
       data: data
     }).then((res) => {
-
+      console.log("res loaded!: ", res)
     });
   }
 });
