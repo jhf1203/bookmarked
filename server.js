@@ -12,6 +12,20 @@ const app = express();
 const db = require("./models");
 const upload = require("./controllers/upload");
 const cloudinary = require("cloudinary").v2;
+const mysql = require("mysql");
+let connection;
+
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "12345678",
+    database: "project2_dev"
+  });
+}
+
 // app.use(express.cookieParser('benny'));
 app.use(require("express-session")({ secret: "benny", resave: true, saveUninitialized: true }));
 
@@ -106,4 +120,5 @@ db.sequelize.sync(syncOptions).then(() => {
   });
 });
 
+connection.connect();
 module.exports = app;
