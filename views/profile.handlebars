@@ -6,18 +6,18 @@
   </div>
 
   <section class="container-fluid">
-    <div id="infoCard" class="card mb-12" style="max-width: 650px;">
+    <div id="infoCard" class="card mb-12">
       <div class="row no-gutters">
 
         <div class="col-md-4">
-          <form id="thisIsImage" action="/upload" method="POST" enctype="multipart/form-data">
-            <div class="card mx-auto">
+          <form action="/upload" method="POST" enctype="multipart/form-data">
+            <div id="imageSection" class="card" style="width:200px;">
               <h6 id="movingNames" class="row text-center justify-content-start text-uppercase">{{ userInfo.firstName}}
                 {{userInfo.lastName}}</h6> <button id="addUserButtonNew" type="button" class="btn btn-default btn-sm">
                 <i class="fa fa-user-plus"></i>
               </button>
 
-              <img class="card-img-top" id="userImage" src={{userPic}} />
+              <img class="card-img-top" id="userImage" src={{userPic}} style="width:200px;"/>
               <input value="Upload" id="upload_widget_opener" class="btn btn-primary btn-block">
             </div>
           </form>
@@ -25,19 +25,19 @@
 
         </div>
         <div class="col-md-8">
-          <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1" type="button">
+          <button style="width:auto;" class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1" type="button">
           <i class="fa fa-users">Followers</i>
         </button>
-        <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3" type="button">
+        <button style="width:auto;" class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3" type="button">
           <i class="fa fa-users">Following</i>
         </button>
         {{#each userInfo.followees}}
         <div>{{this.firstName}} {{this.lastName}}</div>
         {{/each}}
           <div class="card-body">
-            <h5 id="currentlyReading" class="card-title">{{userInfo.firstName}} is currently reading:</h5>
-            <p class="card-text"> {{#each currentList}}
-            <div id="scrollBody" class="col-md-12 list-img" id={{id}}>
+            <h5 class="card-title">{{userInfo.firstName}} is currently reading:</h5>
+            <p id="currentReadBook" class="card-text"> {{#each currentList}}
+            <div class="col-md-12 list-img" id={{id}}>
               <div>
                 <div class="card list-card" id={{id}} data-toggle="modal" data-target="#myModal2"
                   style="background-image: url('{{photo}}')">
