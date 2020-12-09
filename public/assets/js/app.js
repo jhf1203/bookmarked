@@ -110,8 +110,9 @@ $(document).ready(function () {
     $.ajax({
       type: "GET",
       // Temporary fix below, change upon deployment.
-      url: `http://localhost:3334/api/lists/${listId}`
+      url: `/api/lists/${listId}`
     }).then(response => {
+      console.log("Response: ", response)
       $(".modal-title-author-text").remove();
       $(".modal-img").remove();
       $(".modal-desc-text").remove();
