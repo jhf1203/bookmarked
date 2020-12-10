@@ -1,7 +1,6 @@
 {{> nav/nav-block user=true register=false}}
 
 <!--container for page-->
-<body class="background">
 <div class="container">
   <!-- jumbotron with logo-->
   <div id="jumbotronProfile" class="jumbotron">
@@ -9,10 +8,10 @@
 
   <!--user info card-->
   <section class="container-fluid">
-    <div id="infoCard" class="card mb-12" style="max-width: 650px;">
-      <div class="row no-gutters">
+    <div id="infoCard" class="card mx-auto">
+      <div class="row">
 
-        <div class="col-md-4">
+        <div class="col-md-6">
           <form id="thisIsImage" action="/upload" method="POST" enctype="multipart/form-data">
             <div class="card mx-auto">
               <h6 id="movingNames" class="row text-center justify-content-start text-uppercase">{{ userInfo.firstName}}
@@ -27,7 +26,7 @@
           <p class="card-text"><small class="text-muted">Member Since: {{ memberSince }}</small></p>
 
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
           <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1" type="button">
           <i class="fa fa-users">Followers</i>
         </button>
@@ -40,9 +39,9 @@
           <div class="card-body">
             <h5 id="currentlyReading" class="card-title">{{userInfo.firstName}} is currently reading:</h5>
             <p class="card-text"> {{#each currentList}}
-            <div id="scrollBody" class="col-md-12 list-img" id={{id}}>
+            <div id="scrollBody" class="list-img" id={{id}}>
               <div>
-                <div class="card list-card" id={{id}} data-toggle="modal" data-target="#myModal2"
+                <div class="col-8 card list-card" id={{id}} data-toggle="modal" data-target="#myModal2"
                   style="background-image: url('{{photo}}')">
                   <div class="card-body list-card-body">
                     <p> Click for more info </p>
@@ -56,18 +55,6 @@
 
         </div>
       </div>
-      {{!-- <div class="card-footer">
-        <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1" type="button">
-          <i class="fa fa-users">Followers</i>
-        </button>
-        <button class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal3" type="button">
-          <i class="fa fa-users">Following</i>
-        </button>
-        {{#each userInfo.followees}}
-        <div>{{this.firstName}} {{this.lastName}}</div>
-        {{/each}}
-      </div>
-    </div> --}}
   </section>
 
   <!--books area-->
@@ -249,7 +236,6 @@
     </div>
   </div>
 </div>
-</body>
 
 <script>
   var userId = {{activeUser}};
