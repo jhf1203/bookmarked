@@ -17,7 +17,7 @@
 <hr>
 
 ## Description
-Bookmarked is a public platform for book lovers. It allows users to add friends, and share with them what they are currently reading, have read, and want to read. Users are able to upload a profile picture, make blog posts, and follow their friends to keep up with what they are reading and reviewing. 
+Bookmarked is a public platform for book lovers. It allows users to add friends, and share with them what they are currently reading, have read, and want to read. Users are able to upload a profile picture, make blog posts, and keep up with what their friends are reading and reviewing. 
 
 <hr>
   
