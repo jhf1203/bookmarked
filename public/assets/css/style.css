@@ -386,6 +386,36 @@ margin-bottom: 15px;
   z-index: 1050 !important;
 }
 
+.connection-img {
+  height: 150px;
+  width: 150px;
+  border: 1px solid transparent;
+  border-radius: 50%
+}
+
+.connection-img-col {
+  border-radius: 1
+}
+
+.connection-name-text {
+  font-size: 30px;
+  margin-left: 4%;
+  margin-top: 9%;
+  margin-bottom: 1%
+}
+
+.connection-profile-button {
+  background: white;
+  color: black;
+  border: 2px solid #617056;
+  border-radius: 5px;
+  font-weight: bold;
+  /* width: 50%; */
+  position: relative;
+  padding: 5px;
+  /* margin-top: 30px; */
+}
+
 
 
 /*view books page*/
@@ -440,7 +470,7 @@ margin-bottom: 15px;
   background-size: 22%;
 }
 
-#addUserButtonNew {
+.addUserButtonNew {
   background: white;
   color: black;
   border: 2px solid #617056;

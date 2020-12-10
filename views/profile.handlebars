@@ -143,9 +143,24 @@
         <div class="modal-body">
           <ul>
             {{#each followingUser}}
-            <p class='user-connection' id={{id}}>{{this.firstName}} {{this.lastName}} | <a data-toggle='modal'
-                class='user-books'> {{this.firstName}}'s books <i class="fa fa-book"></i></a> | <a class='user-follow'>
-                Follow {{this.firstName}} <i class="fa fa-times test-icon"></i></a></p>
+            <div class="row justify-content-center">
+                <div class="col-md-3 connection-img-col">
+                  <img class="connection-img" src={{image}}>
+                </div>
+                <div class="col-md-5">
+                  <div class="row connection-name-row">
+                    <p class="connection-name-text">{{firstName}} {{lastName}}</p>
+                  </div>
+                  <div class="row connection-action-row">
+                    <div class="col-md-4">
+                      <button class="btn btn-default btn-sm connection-profile-button" id={{id}}>{{firstName}}'s Profile</button>
+                    </div>
+                    <div class="col-md-4">
+                      <button class="btn btn-default btn-sm addUserButtonNew" id={{id}}>Follow {{firstName}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             {{/each}}
           </ul>
         </div>
@@ -169,9 +184,24 @@
         <div class="modal-body">
           <ul>
             {{#each userFollowing}}
-            <p class='user-connection' id={{id}}>{{this.firstName}} {{this.lastName}} | <a data-toggle='modal'
-                class='user-books'> {{this.firstName}}'s books <i class="fa fa-book"></i></a> | <a class='user-follow'>
-                Follow {{this.firstName}} <i class="fa fa-times test-icon"></i></a></p>
+              <div class="row justify-content-center">
+                <div class="col-md-3 connection-img-col">
+                  <img class="connection-img" src={{image}}>
+                </div>
+                <div class="col-md-5">
+                  <div class="row connection-name-row">
+                    <p class="connection-name-text">{{firstName}} {{lastName}}</p>
+                  </div>
+                  <div class="row connection-action-row">
+                    <div class="col-md-4">
+                      <button class="btn btn-default btn-sm connection-profile-button" id={{id}}>{{firstName}}'s Profile</button>
+                    </div>
+                    <div class="col-md-4">
+                      <button class="btn btn-default btn-sm addUserButtonNew" id={{id}}>Follow {{firstName}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             {{/each}}
           </ul>
         </div>

@@ -425,9 +425,10 @@ $(document).ready(function () {
     });
   });
 
-  $(".follow-btn").on("click", function () {
+  $(".addUserButtonNew").on("click", function () {
     const you = ($(this).attr("id"));
     const me = (window.userId);
+    console.log("me: ", me, " and you: ", you)
     addConnection(me, you);
   });
 
