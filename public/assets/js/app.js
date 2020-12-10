@@ -280,6 +280,7 @@ $(document).ready(function () {
       url: "/api/connections",
       data: data
     }).then(function (res) {
+      callSuccess()
     });
   }
 
