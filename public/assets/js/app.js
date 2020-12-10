@@ -425,11 +425,17 @@ $(document).ready(function () {
     });
   });
 
-  $(".follow-btn").on("click", function () {
+  $(".addUserButtonNew").on("click", function () {
     const you = ($(this).attr("id"));
     const me = (window.userId);
+    console.log("me: ", me, " and you: ", you)
     addConnection(me, you);
   });
+
+  // $(".connection-profile-button").on("click", function () {
+  //   const user = $(this).attr("id").toString()
+  //   window.location.href =`user/${user}`
+  // })
 
   $("#blogSubmit").on("click", function (event) {
     const title = $("#blog-title").val();

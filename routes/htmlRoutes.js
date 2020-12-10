@@ -45,6 +45,7 @@ module.exports = (db) => {
           profileArr.push(defaultImg)
         } else {
           profileArr.push(data[4].data)
+          console.log("PROFILEARR: ", profileArr)
         }
         const followingUser = [];
         const userFollowing = [];
@@ -63,17 +64,31 @@ module.exports = (db) => {
           }
         };
         db.User.findAll({
-          raw: true
+          raw: true,
+          include: [db.Image]
         }).then(allUsers => {
           allUsers.forEach(user => {
             data[2].forEach(fol => {
               if (fol.followerId === user.id && fol.followeeId === req.session.passport.user.id) {
-                followingUser.push(user);
+                followingUser.push({
+                  id: user.id,
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  image: user['Image.data']
+                });
               } else if (fol.followeeId === user.id && fol.followerId === req.session.passport.user.id) {
-                userFollowing.push(user);
+                userFollowing.push({
+                  id: user.id,
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  image: user['Image.data']
+                });
               }
             });
           });
+          console.log("FOLLOWING USER: ", followingUser)
+          console.log("USER FOLLOWING: ", userFollowing)
+
           const userToSend = {
             userInfo: data[0],
             userFollowing: userFollowing,
@@ -162,15 +177,30 @@ module.exports = (db) => {
           }
         };
         db.User.findAll({
-          raw: true
+          raw: true,
+          include: [db.Image]
         }).then(allUsers => {
+  
           allUsers.forEach(user => {
             data[2].forEach(fol => {
-              if (fol.followerId === user.id && fol.followeeId === req.params.id) {
-                followingUser.push(user);
-              } else if (fol.followeeId === user.id && fol.followerId === req.params.id) {
-                userFollowing.push(user);
+              console.log("DATA2: ", data[2])
+              if (fol.followerId === user.id && fol.followeeId === data[0].id) {
+                followingUser.push({
+                  id: user.id,
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  image: user['Image.data']
+                });
+              } else if (fol.followeeId === user.id && fol.followerId === data[0].id) {
+                userFollowing.push({
+                  id: user.id,
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  image: user['Image.data']
+                });
               }
+              console.log("FOLLOWING USER: ", followingUser)
+              console.log("USER FOLLOWING: ", userFollowing)
             });
           });
           const userToSend = {

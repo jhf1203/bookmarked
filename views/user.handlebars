@@ -16,7 +16,7 @@
           <form id="thisIsImage" action="/upload" method="POST" enctype="multipart/form-data">
             <div class="card mx-auto">
               <h6 id="movingNames" class="row text-center justify-content-start text-uppercase">{{ userInfo.firstName}}
-                {{userInfo.lastName}}</h6> <button id="addUserButtonNew" type="button" class="btn btn-default btn-sm">
+                {{userInfo.lastName}}</h6> <button id={{userInfo.id}} type="button" class="btn btn-default btn-sm addUserButtonNew">
                 <i class="fa fa-user-plus"></i>
               </button>
 
@@ -118,10 +118,6 @@
     <h5 id={{id}} class="blog-head"> &#8608; {{heading}} &#8606; </h6> 
       <p class="blog-body" scroll>{{blurb}}</p>
       <small class="text-muted">{{format_date createdAt}}</small>
-      <button id={{id}} class="removeBlogButton" {{id}}><i class="fa fa-times test-icon">Remove Post</i>
-        <span hidden>
-          {{id}}</span></button> <br>
-      <hr class="line_break">
       {{/each}}
   </div>
 
@@ -146,9 +142,24 @@
         <div class="modal-body">
           <ul>
             {{#each followingUser}}
-            <p class='user-connection' id={{id}}>{{this.firstName}} {{this.lastName}} | <a data-toggle='modal'
-                class='user-books' href='#myModal2'> {{this.firstName}}'s books <i class="fa fa-book"></i></a> | <a
-                class='user-follow'> Follow {{this.firstName}} <i class="fa fa-times test-icon"></i></a></p>
+            <div class="row justify-content-center">
+                <div class="col-md-3 connection-img-col">
+                  <img class="connection-img" src={{image}}>
+                </div>
+                <div class="col-md-5">
+                  <div class="row connection-name-row">
+                    <p class="connection-name-text">{{firstName}} {{lastName}}</p>
+                  </div>
+                  <div class="row connection-action-row">
+                    <div class="col-md-4">
+                      <button class="btn btn-default btn-sm connection-profile-button" id={{id}}><a class="connection-profile-link" href="/user/{{id}}">{{firstName}}'s Profile</a></button>
+                    </div>
+                    <div class="col-md-4">
+                      <button class="btn btn-default btn-sm addUserButtonNew" id={{id}}>Follow {{firstName}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             {{/each}}
           </ul>
         </div>
@@ -172,9 +183,24 @@
         <div class="modal-body">
           <ul>
             {{#each userFollowing}}
-            <p class='user-connection' id={{id}}>{{this.firstName}} {{this.lastName}} | <a data-toggle='modal'
-                class='user-books' href='#myModal2'> {{this.firstName}}'s books <i class="fa fa-book"></i></a> | <a
-                class='user-follow'> Follow {{this.firstName}} <i class="fa fa-times test-icon"></i></a></p>
+            <div class="row justify-content-center">
+                <div class="col-md-3 connection-img-col">
+                  <img class="connection-img" src={{image}}>
+                </div>
+                <div class="col-md-5">
+                  <div class="row connection-name-row">
+                    <p class="connection-name-text">{{firstName}} {{lastName}}</p>
+                  </div>
+                  <div class="row connection-action-row">
+                    <div class="col-md-4">
+                      <button class="btn btn-default btn-sm connection-profile-button" id={{id}}><a class="connection-profile-link" href="/user/{{id}}">{{firstName}}'s Profile</a></button>
+                    </div>
+                    <div class="col-md-4">
+                      <button class="btn btn-default btn-sm addUserButtonNew" id={{id}}>Follow {{firstName}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             {{/each}}
           </ul>
         </div>
