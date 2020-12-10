@@ -9,6 +9,14 @@ body {
   margin-top: 6em;
 }
 
+a {
+  color: black
+}
+
+.card {
+  border: none
+}
+
 
 /*login page jumbotron*/
 .jumbotron {
@@ -305,13 +313,15 @@ display: -webkit-inline-box;
 background: white;
 color: Black;
 margin-bottom: 15px;
+padding-left: 2%
 }
 
 .list-card-body {
   opacity: 0%;
   background-color: #68aaa2;
   color: white;
-  height: 200px;
+  height: 190px;
+  width: 120px
 }
 
 .list-card-body:hover {
