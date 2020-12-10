@@ -432,6 +432,11 @@ $(document).ready(function () {
     addConnection(me, you);
   });
 
+  // $(".connection-profile-button").on("click", function () {
+  //   const user = $(this).attr("id").toString()
+  //   window.location.href =`user/${user}`
+  // })
+
   $("#blogSubmit").on("click", function (event) {
     const title = $("#blog-title").val();
     const body = $("#blog-body").val();
