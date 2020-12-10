@@ -1,15 +1,17 @@
 {{> nav/nav-block user=true register=false}}
 
+
 <div class="container">
   <!-- jumbotron with logo-->
-  <div id="jumbotronProfile" class="jumbotron">
+  <div  id="jumbotronProfile" class="jumbotron">
   </div>
 
   <section class="container-fluid">
-    <div id="infoCard" class="card mb-12">
-      <div class="row no-gutters">
+    <div id="infoCard" class="card mx-auto">
+      <div class="row">
 
-        <div class="col-md-4">
+        <div class="col-md-6">
+          
           <form action="/upload" method="POST" enctype="multipart/form-data">
             <div id="imageSection" class="card" style="width:200px;">
               <h6 id="movingNames" class="row text-center justify-content-start text-uppercase">{{ userInfo.firstName}}
@@ -24,7 +26,7 @@
           <p class="card-text"><small class="text-muted">Member Since: {{ memberSince }}</small></p>
 
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
           <button style="width:auto;" class="btn btn-default btn-sm" id="btnFollow" data-toggle="modal" data-target="#myModal1" type="button">
           <i class="fa fa-users">Followers</i>
         </button>
@@ -34,14 +36,14 @@
         {{#each userInfo.followees}}
         <div>{{this.firstName}} {{this.lastName}}</div>
         {{/each}}
-          <div class="card-body">
+          <div  class="card-body">
             <h5 class="card-title">{{userInfo.firstName}} is currently reading:</h5>
             <p id="currentReadBook" class="card-text"> {{#each currentList}}
-            <div class="col-md-12 list-img" id={{id}}>
+            <div class="list-img" id={{id}}>
               <div>
-                <div class="card list-card" id={{id}} data-toggle="modal" data-target="#myModal2"
+                <div class="col-8 card list-card" id={{id}} data-toggle="modal" data-target="#myModal2"
                   style="background-image: url('{{photo}}')">
-                  <div class="card-body list-card-body">
+                  <div class="card-body  list-card-body">
                     <p> Click for more info </p>
                   </div>
                 </div>
@@ -113,7 +115,7 @@
     <hr class="line_break">
     {{#each userBlog}}
     <h5 id={{id}} class="blog-head"> &#8608; {{heading}} &#8606; </h6> 
-      <p class="blog-body" scroll>{{blurb}}</p>
+      <p class="blog-body">{{blurb}}</p>
       <small class="text-muted">{{format_date createdAt}}</small>
       <button id={{id}} class="removeBlogButton" {{id}}><i class="fa fa-times test-icon">Remove Post</i>
         <span hidden>
@@ -215,6 +217,7 @@
     </div>
   </div>
 </div>
+
 
 
 <script>

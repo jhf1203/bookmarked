@@ -4,10 +4,11 @@ body {
   font-family: 'Antic Slab', serif;
   font-weight: bold;
   overflow-x: auto;
-  background-image: url("../images/bgop1.jpg");
-  background-repeat: no-repeat;
+  background: url("../images/bgop1.jpg") no-repeat center center fixed;
   background-size: cover;
+  margin-top: 6em;
 }
+
 
 /*login page jumbotron*/
 .jumbotron {
@@ -279,11 +280,6 @@ hr {
   height: 280px;
   width: 100%;
   color: Black;
-
-}
-
-#booksOnBooks {
-  padding: 50px;
 }
 
 .card-list-close-text {
@@ -591,8 +587,10 @@ margin-bottom: 15px;
   border-bottom-right-radius: 0px;
   color: Black;
   overflow-y: scroll;
+  scrollbar-width: thin;
   padding: 25px;
 }
+
 
 #jumbotronBlog {
   background-image: url("../images/bookmarked.png");
@@ -646,10 +644,7 @@ margin-bottom: 15px;
   border-color: #617056;
   padding: 2em;
   color: black;
-  display: flex;
-  flex-direction: row;
-  margin-left: 20%;
-}
+  }
 
 
 #cardText {
@@ -680,13 +675,7 @@ margin-bottom: 15px;
   margin-left: 15px;
 }
 
-@media screen and (max-width: 1050px) {
-
-  body {
-    background-repeat: no-repeat !important;
-    background-size: cover;
-    height: 100% !important;
-  }
+@media screen and (max-width: 1279) {
 
   .userRow {
     margin-top: 15%;
@@ -699,45 +688,5 @@ margin-bottom: 15px;
   .readRow {
     position: relative;
     margin-right: 15%;
-  }
-}
-
-@media only screen and (max-device-width: 1000px) {
-
-  /* #cardBody5,
-  #cardBody6,
-  #cardBody7 {
-    margin-left: 20px;
-    margin-right: 20px;
-  } */
-
-  body {
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-  }
-
-  #main-container{
-    margin-top: 35% !important;
-  }
-}
-
-@media only screen and (max-device-width: 500px) {
-
-  #infoCard{
-    max-width: 100% !important;
-  }
-
-
-  #cardBody5,
-  #cardBody6,
-  #cardBody7 {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  body {
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    height: 100%;
   }
 }
